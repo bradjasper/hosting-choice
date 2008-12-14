@@ -14,4 +14,5 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
+    (r'^category/(?P<slug>.*)/$', 'catalog.views.category_dir'),
 )
