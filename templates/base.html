@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	<head>
+		<title>{% block title %}BizDir{% endblock %}</title>
+
+		<link rel="stylesheet" type="text/css" href="/static/style.css" />
+	</head>
+	
+	<body>
+        {% if categories %}
+        <div id="categories">
+            <ul>
+            {% for category in categories %}
+                <li>
+                <a href="/category/{{category.slug}}.html">{{category.name}}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+		{% block body %}
+				This is the base template. You shouldn't see this message.
+		{% endblock %}		
+	</body>
+</html>

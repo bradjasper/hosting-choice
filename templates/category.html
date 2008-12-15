@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div id="category">
+        {% if category %}
+            <h1>{{category.name}}</h1>
+            <p class="desc">{{category.description}}</p>
+            <h2>Entries in {{category.name}}</h2>
+            <ul>
+                {% for entry in entries %}
+                    <a href="/entry/{{entry.slug}}.html">{{entry.name}}</a>
+                    <span>{{entry.url}}</span>
+                    <em>({{entry.user}} - {{entry.hits}} hits)</em>
+                    <p>{{entry.description}}</p>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>Cannot find category</h1>
+        {% endif %}
+    </div>
+{% endblock %}

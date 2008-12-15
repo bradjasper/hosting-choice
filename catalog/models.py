@@ -28,12 +28,12 @@ class CommonBase(models.Model):
 
 class CommonElement(CommonBase):
     name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default=None, blank=True)
     description = models.TextField(blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
 
     def save(self):
-        if not self.slug:
+        if len(self.slug.strip()) == 0:
             self.slug = slugify(self.name)
 
         super(CommonElement, self).save()
@@ -41,6 +41,9 @@ class CommonElement(CommonBase):
 
 class Tag(CommonBase):
     name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Category(CommonElement):
@@ -61,6 +64,11 @@ class Entry(CommonElement):
     url = models.CharField(max_length=255)
     link_back = models.CharField(max_length=255, blank=True)
     hits = models.IntegerField(default=0)
+
+    rating = models.FloatField(blank=True, default=0)
+    featured = models.IntegerField(default=0, blank=True)
+
+    notes = models.TextField(blank=True)
 
     class Meta:
         verbose_name_plural = "Entries"
