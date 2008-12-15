@@ -2,7 +2,6 @@ import re
 import datetime
 from django.db import models
 from django.contrib.auth import models as auth
-from django.contrib import admin
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -40,6 +39,7 @@ class CommonElement(CommonBase):
 
 
 class Tag(CommonBase):
+    public = models.BooleanField(default=True)
     name = models.CharField(max_length=255)
 
     def __unicode__(self):
@@ -61,14 +61,14 @@ class Entry(CommonElement):
     user = models.ForeignKey(auth.User)
     category = models.ForeignKey(Category)
 
-    url = models.CharField(max_length=255)
-    link_back = models.CharField(max_length=255, blank=True)
-    hits = models.IntegerField(default=0)
+    url = models.URLField(max_length=255)
+    link_back = models.URLField(max_length=255, blank=True)
 
     rating = models.FloatField(blank=True, default=0)
+    hits = models.IntegerField(default=0)
     featured = models.IntegerField(default=0, blank=True)
 
-    notes = models.TextField(blank=True)
+    notes = models.OneToOneField('Note')
 
     class Meta:
         verbose_name_plural = "Entries"
@@ -77,3 +77,15 @@ class Entry(CommonElement):
         return self.name
 
 
+class Note(CommonBase):
+    TYPES = (
+        (1, 'info'),
+        (2, 'warning'),
+        (3, 'error'),
+        (4, 'critical'))
+
+    text = models.TextField()
+    type = models.IntegerField(choices=TYPES)
+
+    def __unicode__(self):
+        return self.text[0:300]
