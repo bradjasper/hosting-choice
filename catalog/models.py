@@ -47,7 +47,7 @@ class Tag(CommonBase):
 
 
 class Category(CommonElement):
-    parent = models.ManyToManyField('self', blank=True)
+    parent = models.OneToOneField('self', blank=True)
     order = models.IntegerField(default=0)
 
     class Meta:
@@ -76,6 +76,14 @@ class Entry(CommonElement):
     def __unicode__(self):
         return self.name
 
+
+class Comment(CommonBase):
+    user = models.ForeignKey(auth.User)
+    text = models.TextField()
+    rating = models.IntegerField(blank=True)
+
+    def __unicode__(self):
+        return self.text[0:50]
 
 class Note(CommonBase):
     TYPES = (

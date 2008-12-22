@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
     (r'^category/(?P<slug>.*).html$', 'catalog.views.show_category'),
     (r'^entry/(?P<slug>.*).html$', 'catalog.views.show_entry'),
+    (r'^spyder/$', 'spyder.views.link_page'),
 )
