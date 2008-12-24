@@ -1,5 +1,8 @@
+from __future__ import division
+
 import re
 import datetime
+
 from django.db import models
 from django.contrib.auth import models as auth
 
@@ -32,7 +35,7 @@ class CommonElement(CommonBase):
     tags = models.ManyToManyField('Tag', blank=True)
 
     def save(self):
-        if len(self.slug.strip()) == 0:
+        if self.slug is None or len(self.slug.strip()) == 0:
             self.slug = slugify(self.name)
 
         super(CommonElement, self).save()
@@ -47,7 +50,8 @@ class Tag(CommonBase):
 
 
 class Category(CommonElement):
-    parent = models.OneToOneField('self', blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True,
+        related_name='children')
     order = models.IntegerField(default=0)
 
     class Meta:
@@ -64,11 +68,8 @@ class Entry(CommonElement):
     url = models.URLField(max_length=255)
     link_back = models.URLField(max_length=255, blank=True)
 
-    rating = models.FloatField(blank=True, default=0)
     hits = models.IntegerField(default=0)
     featured = models.IntegerField(default=0, blank=True)
-
-    notes = models.OneToOneField('Note')
 
     class Meta:
         verbose_name_plural = "Entries"
@@ -76,24 +77,66 @@ class Entry(CommonElement):
     def __unicode__(self):
         return self.name
 
+    def rating(self):
+        """Return the rating for an entry"""
+        comments = Comment.objects.filter(entry=self, active=True)
+        ratings = [comment.rating() for comment in comments]
+
+        return sum(ratings) / len(ratings)
+
 
 class Comment(CommonBase):
-    user = models.ForeignKey(auth.User)
+
+    user = models.ForeignKey(auth.User, blank=True, null=True)
+    entry = models.ForeignKey('Entry')
+
+    # anonymous comments
+    name = models.CharField(max_length=255, blank=True)
+    email = models.CharField(max_length=255, blank=True)
+    website = models.CharField(max_length=255, blank=True)
+
     text = models.TextField()
-    rating = models.IntegerField(blank=True)
 
     def __unicode__(self):
         return self.text[0:50]
 
-class Note(CommonBase):
-    TYPES = (
-        (1, 'info'),
-        (2, 'warning'),
-        (3, 'error'),
-        (4, 'critical'))
+    def rating(self):
+        """Figure out the rating for the overall comment. This averages
+        all of the ratingtype's and provides and overall rating"""
 
-    text = models.TextField()
-    type = models.IntegerField(choices=TYPES)
+        value = 0
+        total = 0
+        for rating in Rating.objects.filter(comment=self, active=True):
+            value += rating.value
+            total += rating.type.limit
+
+        return value / total
+
+
+
+
+class Rating(CommonBase):
+    comment = models.ForeignKey('Comment')
+    type = models.ForeignKey('RatingType')
+    value = models.IntegerField()
+
+    def save(self):
+        if self.value > self.type.limit:
+            self.value = self.type.limit
+        elif self.value < 0:
+            self.value = 0
+
+        super(Rating, self).save()
+
 
     def __unicode__(self):
-        return self.text[0:300]
+        return "%s (%d/%d)" % (self.type, self.value, self.type.limit)
+
+class RatingType(CommonBase):
+    name = models.CharField(max_length=255)
+    limit = models.IntegerField(default=5)
+
+    def __unicode__(self):
+        return self.name
+    
+
