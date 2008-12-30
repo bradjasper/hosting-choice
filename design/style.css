@@ -1,0 +1,79 @@
+@import 'reset.css';
+
+body {
+    margin-top: 0px;
+    background: url('images/bg-tile.gif') top left;
+    font-family: Verdana, Tahoma, Sans-Serif;
+    font-size: 80%;
+}
+
+#outer {
+    width: 787px;
+    margin: 0 auto;
+    background: url('images/body-tile-left.png') repeat-y;
+}
+
+#inner {
+    background: url('images/body-tile-right.png') top right repeat-y;
+}
+
+#container {
+    margin: 0 7px;
+    padding: 78px 0 10px 0px;
+    background: #fff url('images/content-top.png') 20px 90px no-repeat;
+    position: relative;
+}
+
+#topbar {
+    position: absolute;
+    top: 0;
+    background: url('images/header-tile.png') repeat-x;
+    height: 78px;
+    width: 97%;
+    margin: 0 10px;
+}
+
+#menu {
+    background: url('images/header-logo.png') no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+#menu li {
+    float: right;
+    padding: 9px 18px;
+    background: url('images/header-sep.png') top right no-repeat;
+}
+
+#menu li.first {
+    background: url('images/header-right.png') top right no-repeat;
+    padding-right: 26px;
+}
+
+#menu li.active {
+    border-bottom: 2px solid #ff9c00;
+}
+
+#menu li a {
+    color: #000;
+    font-size: 97%;
+}
+
+#content {
+    margin: 20px;
+    background: url('images/content-tile.png') repeat-y;
+}
+
+#content-inner {
+    background: url('images/content-bottom.png') bottom no-repeat;
+    padding: 10px 20px 20px 20px;
+}
+
+#footer {
+    background: url('images/body-footer.png') bottom left no-repeat;
+    height: 19px;
+    margin: 0 auto;
+    width: 767px;
+    font-size: 80%;
+    padding: 10px;
+}
