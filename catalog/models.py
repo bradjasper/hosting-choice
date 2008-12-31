@@ -113,6 +113,14 @@ class Comment(CommonBase):
         return value / total
 
 
+class Karma(CommonBase):
+    comment = models.ForeignKey('Comment')
+    ip = models.CharField(max_length=25)
+    value = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = ('comment', 'ip',)
+
 
 
 class Rating(CommonBase):

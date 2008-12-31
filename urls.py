@@ -14,4 +14,8 @@ urlpatterns = patterns('',
     (r'^entry/(?P<slug>.*).html$', 'catalog.views.show_entry'),
     (r'^spyder/$', 'spyder.views.link_page'),
     (r'^$|index.html$', 'main.views.index'),
+    (r'^design/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': '/Users/bjasper/Sites/hosting-choice/design',
+        'show_indexes': True}),
+    
 )

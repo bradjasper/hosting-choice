@@ -63,10 +63,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'bizdir.urls'
+ROOT_URLCONF = 'hosting-choice.urls'
 
 TEMPLATE_DIRS = (
-    '/Users/bjasper/Sites/bizdir/templates/'
+    '/Users/bjasper/Sites/hosting-choice/templates/'
 )
 
 INSTALLED_APPS = (
@@ -75,5 +75,5 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'bizdir.catalog',
+    'hosting-choice.catalog',
 )
