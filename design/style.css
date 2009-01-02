@@ -9,16 +9,19 @@ body {
     background: url('images/bg-tile.gif') top left;
     font-family: Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
+    text-align: center;
 }
 
 #outer {
     width: 813px;
     margin: 0 auto;
     background: url('images/body-tile.png') repeat-y;
+    text-align: center;
 }
 
 #inner {
     margin: 0 7px;
+    text-align: center;
 }
 
 
@@ -28,6 +31,7 @@ body {
     background: url('images/footer.png') bottom left no-repeat;
     min-height: 30px;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 #footer span {
@@ -40,6 +44,8 @@ body {
 #header {
     height: 78px;
     background: url('images/header.png') top center no-repeat;
+    width: 770px;
+    margin: 0 auto;
 }
 
 #nav {
@@ -71,8 +77,9 @@ body {
 
 #content {
     width: 778px;
-    background: url('images/content-sprite.png') -778px 0 repeat-y;
+    background: url('images/content-sprite.png') -778px repeat-y;
     margin: 0 auto;
+    text-align: left;
 }
 
 #content-top {
@@ -87,8 +94,10 @@ body {
 
 #content-inner {
     float: left;
-    width: 535px;
-    padding: 3px 15px;
+    width: 555px;
+    font-size: 100%;
+    padding: 0 0 0 20px;
+    margin: 0;
 }
 
 #sidebar {
@@ -155,15 +164,16 @@ a.visit span {
 }
 
 #reviews .icon {
-    background: url('images/icon-sprite.png') 4px 2px no-repeat;
+    background: url('images/icon-sprite.png') 4px 3px no-repeat;
     display: block;
     width: 30px;
     height: 19px;
+    font-size: 1%;
     float: left;
 }
 
 .arrow-point {
-    background: url('images/icon-sprite.png') 0 -44px no-repeat;
+    background: #fff url('images/icon-sprite.png') 0 -44px no-repeat;
     display: block;
     height: 17px;
     width: 20px;
@@ -174,25 +184,25 @@ a.visit span {
 
 #info {
     float: right;
-    padding: 0 0 10px 10px;
+    width: 125px;
 }
 
+
 #ratings {
-    background: url('images/rating.png') bottom left no-repeat;
-    height: 112px;
-    font-size: 85%;
-    padding: 3px;
+    background: url('images/rating.png') top left no-repeat;
+    height: 120px;
     width: 89px;
-    float: right;
+    font-size: 85%;
+    padding-top: 3px;
 }
 
 #info .visit {
-    float: right;
 }
 
 
 #ratings li {
-    padding: 4px;
+    padding: 4px 5px;
+    margin: 0;
 }
 
 #ratings li span {
@@ -207,6 +217,7 @@ a.visit span {
     height: 10px;
     margin: 2px;
     display: block !important;
+    font-size: 1%;
 }
 
 .stars05 { background-position: 0 -13px; }
@@ -243,17 +254,30 @@ a.visit span {
     background: url('images/comment-sprite.png') 0 -2866px no-repeat;
     display: block;
     height: 14px;
+    font-size: 1%;
 
 }
 
-#reviews .positive { background-position: -514px 0; }
-#reviews .positive .comment-bottom { background-position: -514px -2866px; }
+#reviews .positive {
+    background-position: -514px 0;
+}
+#reviews .positive .comment-bottom {
+    background-position: -514px -2866px;
+}
 
-#reviews .negative { background-position: -1028px 0; }
-#reviews .negative .comment-bottom { background-position: -1028px -2866px; }
+#reviews .negative {
+    background-position: -1028px 0;
+}
+#reviews .negative .comment-bottom {
+    background-position: -1028px -2866px;
+}
 
-#reviews .neutral { background-position: -1542px 0; }
-#reviews .neutral .comment-bottom { background-position: -1542px -2866px; }
+#reviews .neutral {
+    background-position: -1542px 0;
+}
+#reviews .neutral .comment-bottom {
+    background-position: -1542px -2866px;
+}
 
 #purchase {
     padding: 5px 0;
@@ -266,7 +290,6 @@ a.visit span {
 
 .ratings li {
     width: 100px !important;
-    border: 1px solid red;
     float: right !important;
     margin: 0;
     padding: 0;
@@ -275,3 +298,4 @@ a.visit span {
 .ratings li span {
     float: left;
 }
+
