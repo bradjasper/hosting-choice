@@ -1,5 +1,9 @@
 @import 'reset.css';
 
+a {
+    color: #92a11d;
+}
+
 body {
     margin-top: 0px;
     background: url('images/bg-tile.gif') top left;
@@ -22,11 +26,14 @@ body {
     width: 813px;
     margin: 0 auto;
     background: url('images/footer.png') bottom left no-repeat;
-    min-height: 25px;
+    min-height: 30px;
+    margin-bottom: 20px;
 }
 
 #footer span {
-    padding: 16px;
+    padding: 18px;
+    width: 100%;
+    display: block;
     font-size: 80%;
 }
 
@@ -44,15 +51,23 @@ body {
 #nav li {
     float: right;
     height: 100%;
-    padding: 9px 0;
-    background: url('images/nav-sep.png') no-repeat;
+    padding: 0;
+    background: url('images/nav-sprite.png') 0 0 no-repeat;
 }
 
 #nav li a {
-    padding: 6px 18px;
-    color: black;
-    font-size: 93%;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
+
+#nav li a span {
+    display: none;
+}
+
+#nav .submit { width: 100px; }
+#nav .reviews { width: 93px; background-position: -110px 0; }
+#nav .about { width: 75px; background-position: -203px 0; }
 
 #content {
     width: 778px;
@@ -72,7 +87,7 @@ body {
 
 #content-inner {
     float: left;
-    width: 565px;
+    width: 535px;
     padding: 3px 15px;
 }
 
@@ -100,6 +115,7 @@ h5 { font-size: 105% }
     font-size: 90%;
     border-bottom: 3px solid #bcbcbc;
     font-weight: bold;
+    padding: 0;
 }
 
 #sidebar ul {
@@ -108,7 +124,13 @@ h5 { font-size: 105% }
 }
 
 #sidebar ul li {
-    padding: 4px 0;
+    padding: 1px 0;
+}
+
+#sidebar ul li a {
+    display: block;
+    padding: 5px 0;
+    color: #333;
 }
 
 p {
@@ -129,10 +151,10 @@ a.visit span {
 }
 
 #reviews {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
-#reviews #icon {
+#reviews .icon {
     background: url('images/icon-sprite.png') 4px 2px no-repeat;
     display: block;
     width: 30px;
@@ -140,15 +162,34 @@ a.visit span {
     float: left;
 }
 
-#ratings {
+.arrow-point {
+    background: url('images/icon-sprite.png') 0 -44px no-repeat;
+    display: block;
+    height: 17px;
+    width: 20px;
+    padding: 2px;
+    margin-top: 1px;
+    float: left;
+}
+
+#info {
     float: right;
+    padding: 0 0 10px 10px;
+}
+
+#ratings {
     background: url('images/rating.png') bottom left no-repeat;
-    width: 83px;
     height: 112px;
     font-size: 85%;
     padding: 3px;
-
+    width: 89px;
+    float: right;
 }
+
+#info .visit {
+    float: right;
+}
+
 
 #ratings li {
     padding: 4px;
@@ -165,6 +206,7 @@ a.visit span {
     width: 60px;
     height: 10px;
     margin: 2px;
+    display: block !important;
 }
 
 .stars05 { background-position: 0 -13px; }
@@ -177,3 +219,59 @@ a.visit span {
 .stars4 { background-position: 0 -108px; }
 .stars45 { background-position: 0 -122px; }
 .stars5 { background-position: 0 -135px; }
+
+#reviews ul li {
+    background: url('images/comment-sprite.png') 0 0 no-repeat;
+    width: 514px;
+    margin: 20px 0;
+    display: block;
+}
+
+#reviews ul li p {
+    margin: 0;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+#reviews .meta {
+    padding: 20px 20px 0 20px;
+    margin-left: 20px;
+    font-style: italic;
+}
+
+#reviews ul li .comment-bottom {
+    background: url('images/comment-sprite.png') 0 -2866px no-repeat;
+    display: block;
+    height: 14px;
+
+}
+
+#reviews .positive { background-position: -514px 0; }
+#reviews .positive .comment-bottom { background-position: -514px -2866px; }
+
+#reviews .negative { background-position: -1028px 0; }
+#reviews .negative .comment-bottom { background-position: -1028px -2866px; }
+
+#reviews .neutral { background-position: -1542px 0; }
+#reviews .neutral .comment-bottom { background-position: -1542px -2866px; }
+
+#purchase {
+    padding: 5px 0;
+    font-size: 120%;
+}
+
+.ratings .stars {
+    float: left;
+}
+
+.ratings li {
+    width: 100px !important;
+    border: 1px solid red;
+    float: right !important;
+    margin: 0;
+    padding: 0;
+}
+
+.ratings li span {
+    float: left;
+}
