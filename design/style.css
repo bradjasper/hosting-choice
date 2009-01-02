@@ -53,3 +53,127 @@ body {
     color: black;
     font-size: 93%;
 }
+
+#content {
+    width: 778px;
+    background: url('images/content-sprite.png') -778px 0 repeat-y;
+    margin: 0 auto;
+}
+
+#content-top {
+    height: 12px;
+    background: url('images/content-sprite.png') 0 0 no-repeat;
+}
+
+#content-bottom {
+    height: 12px;
+    background: url('images/content-sprite.png') -1556px 0 no-repeat;
+}
+
+#content-inner {
+    float: left;
+    width: 565px;
+    padding: 3px 15px;
+}
+
+#sidebar {
+    float: right;
+    padding: 10px 0;
+    width: 180px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #aec023;
+    font-size: 170%;
+    padding: 5px 0 10px 0;
+}
+
+h2 { font-size: 150% }
+h3 { font-size: 135% }
+h4 { font-size: 120% }
+h5 { font-size: 105% }
+
+#sidebar h3 {
+    color: #aec023;
+    font-family: Arial, Verdana, "Sans-serif";
+    text-transform: uppercase;
+    font-size: 90%;
+    border-bottom: 3px solid #bcbcbc;
+    font-weight: bold;
+}
+
+#sidebar ul {
+    padding: 5px 10px;
+    margin-bottom: 25px;
+}
+
+#sidebar ul li {
+    padding: 4px 0;
+}
+
+p {
+    line-height: 18px;
+    margin-bottom: 18px;
+}
+
+a.visit {
+    width: 113px;
+    height: 27px;
+    display: block;
+    background: url('images/icon-sprite.png') 0 -17px no-repeat;
+    margin: 10px 0;
+}
+
+a.visit span {
+    display: none;
+}
+
+#reviews {
+    margin-top: 20px;
+}
+
+#reviews #icon {
+    background: url('images/icon-sprite.png') 4px 2px no-repeat;
+    display: block;
+    width: 30px;
+    height: 19px;
+    float: left;
+}
+
+#ratings {
+    float: right;
+    background: url('images/rating.png') bottom left no-repeat;
+    width: 83px;
+    height: 112px;
+    font-size: 85%;
+    padding: 3px;
+
+}
+
+#ratings li {
+    padding: 4px;
+}
+
+#ratings li span {
+    display: block;
+    padding: 1px 0;
+}
+
+
+.stars {
+    background: url('images/star-sprite.png') 0 0 no-repeat;
+    width: 60px;
+    height: 10px;
+    margin: 2px;
+}
+
+.stars05 { background-position: 0 -13px; }
+.stars1 { background-position: 0 -26px; }
+.stars15 { background-position: 0 -39px; }
+.stars2 { background-position: 0 -53px; }
+.stars25 { background-position: 0 -67px; }
+.stars3 { background-position: 0 -81px; }
+.stars35 { background-position: 0 -94px; }
+.stars4 { background-position: 0 -108px; }
+.stars45 { background-position: 0 -122px; }
+.stars5 { background-position: 0 -135px; }

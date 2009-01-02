@@ -113,6 +113,13 @@ class Comment(CommonBase):
         return value / total
 
 
+    def karma(self):
+        """Return the karma for the entire comment"""
+
+        karmas = Karma.objects.filter(comment=self)
+        return sum(map(lambda x: x.value, karmas))
+
+
 class Karma(CommonBase):
     comment = models.ForeignKey('Comment')
     ip = models.CharField(max_length=25)

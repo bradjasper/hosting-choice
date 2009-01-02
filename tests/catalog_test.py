@@ -4,6 +4,41 @@ from django.contrib.auth import models as auth
 
 class CatalogTest(unittest.TestCase):
 
+    def testKarma(self):
+        """Test karma"""
+
+        try:
+            entry = models.Entry.objects.all()[0]
+            comment = models.Comment(text='test', entry=entry)
+            comment.save()
+
+            karma = models.Karma(comment=comment, value=2, ip='2345')
+            karma.save()
+
+            assert karma.value == 2
+            assert comment.karma() == 2, comment.karma()
+
+
+            karma2 = models.Karma(comment=comment, value=5, ip='234')
+            karma2.save()
+
+            assert comment.karma() == 7, comment.karma()
+
+            karma3 = models.Karma(comment=comment, value=-10, ip='102')
+            karma3.save()
+
+            assert comment.karma() == -3, comment.karma()
+
+            
+        except:
+            raise
+        finally:
+            karma.delete()
+            karma2.delete()
+            karma3.delete()
+            comment.delete()
+
+
     def testRatingLimit(self):
         """Test the rating limit"""
 
@@ -20,6 +55,8 @@ class CatalogTest(unittest.TestCase):
         """Test individual comment rating"""
 
         entry = models.Entry.objects.all()[0]
+
+
         comment = models.Comment(text='test', entry=entry)
         comment.save()
 
