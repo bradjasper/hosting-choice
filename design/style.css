@@ -4,6 +4,10 @@ a {
     color: #92a11d;
 }
 
+clear {
+    clear: both;
+}
+
 body {
     margin-top: 0px;
     background: url('images/bg-tile.gif') top left;
@@ -94,10 +98,9 @@ body {
 
 #content-inner {
     float: left;
-    width: 555px;
+    width: 545px;
     font-size: 100%;
-    padding: 0 0 0 20px;
-    margin: 0;
+    padding: 0 10px 0 20px;
 }
 
 #sidebar {
@@ -185,6 +188,7 @@ a.visit span {
 #info {
     float: right;
     width: 125px;
+    margin-left: 10px;
 }
 
 
@@ -220,7 +224,7 @@ a.visit span {
     font-size: 1%;
 }
 
-.stars05 { background-position: 0 -13px; }
+.stars05 { background-position: 0 -12px; }
 .stars1 { background-position: 0 -26px; }
 .stars15 { background-position: 0 -39px; }
 .stars2 { background-position: 0 -53px; }
@@ -231,7 +235,7 @@ a.visit span {
 .stars45 { background-position: 0 -122px; }
 .stars5 { background-position: 0 -135px; }
 
-#reviews ul li {
+.comment {
     background: url('images/comment-sprite.png') 0 0 no-repeat;
     width: 514px;
     margin: 20px 0;
@@ -284,18 +288,36 @@ a.visit span {
     font-size: 120%;
 }
 
-.ratings .stars {
+.ratings {
+    margin-left: 22px;
+    font-size: 85%;
+}
+
+.ratings dl {
+    display: inline;
+    float: left;
+    padding: 5px 10px;
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-left: 18px;
+}
+
+.ratings dl dt, .ratings dl dd {
+    display: inline;
     float: left;
 }
 
-.ratings li {
-    width: 100px !important;
-    float: right !important;
-    margin: 0;
+.ratings dl dt {
+    margin: 2px 0 0 10px;
+}
+
+.ratings dl dd {
+    margin: 1px 10px 0 2px;
+}
+
+.ratings dl dd span {
     padding: 0;
+    margin: 0;
+    height: 13px;
 }
-
-.ratings li span {
-    float: left;
-}
-
