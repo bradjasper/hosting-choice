@@ -17,5 +17,8 @@ urlpatterns = patterns('',
     (r'^design/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': '/Users/bjasper/Sites/hosting-choice/design',
         'show_indexes': True}),
-    
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': '/Users/bjasper/Sites/hosting-choice/static',
+        'show_indexes': True}),
+
 )

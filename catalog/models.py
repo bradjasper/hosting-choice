@@ -61,15 +61,29 @@ class Category(CommonElement):
         return self.name
 
 
+class Plan(CommonBase):
+
+    space = models.IntegerField()
+    bandwidth = models.IntegerField()
+    price = models.FloatField()
+
+    cpanel = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return "%sMB - %sMB - $%s" % (self.space, self.bandwidth, self.price)
+
+
 class Entry(CommonElement):
     user = models.ForeignKey(auth.User)
     category = models.ForeignKey(Category)
+    plan = models.ForeignKey(Plan)
 
     url = models.URLField(max_length=255)
     link_back = models.URLField(max_length=255, blank=True)
 
     hits = models.IntegerField(default=0)
     featured = models.IntegerField(default=0, blank=True)
+
 
     class Meta:
         verbose_name_plural = "Entries"

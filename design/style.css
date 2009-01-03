@@ -4,7 +4,7 @@ a {
     color: #92a11d;
 }
 
-clear {
+.clear {
     clear: both;
 }
 
@@ -124,7 +124,7 @@ h5 { font-size: 105% }
     color: #aec023;
     font-family: Arial, Verdana, "Sans-serif";
     text-transform: uppercase;
-    font-size: 90%;
+    font-size: 100%;
     border-bottom: 3px solid #bcbcbc;
     font-weight: bold;
     padding: 0;
@@ -166,6 +166,9 @@ a.visit span {
     margin-top: 50px;
 }
 
+#reviews h3 {
+    font-size: 135%;
+}
 #reviews .icon {
     background: url('images/icon-sprite.png') 4px 3px no-repeat;
     display: block;
@@ -178,7 +181,7 @@ a.visit span {
 .arrow-point {
     background: #fff url('images/icon-sprite.png') 0 -44px no-repeat;
     display: block;
-    height: 17px;
+    height: 15px;
     width: 20px;
     padding: 2px;
     margin-top: 1px;
@@ -240,6 +243,7 @@ a.visit span {
     width: 514px;
     margin: 20px 0;
     display: block;
+    border: 1px solid #fff;
 }
 
 #reviews ul li p {
@@ -320,4 +324,68 @@ a.visit span {
     padding: 0;
     margin: 0;
     height: 13px;
+}
+
+.author .name {
+    color: #000;
+    font-size: 130%;
+}
+
+.author .name a {
+    color: #92a11d;
+}
+
+.author {
+    color: #aaa;
+    line-height: 20px;
+    float: left;
+}
+
+.tools {
+    font-size: 80%;
+    float: right;
+    color: #999;
+}
+
+.tools a {
+    color: inherit;
+}
+
+.rating {
+    margin: 0;
+}
+
+#comment-form {
+    font-size: 90%;
+}
+
+#comment-form table th, #comment-form table td {
+    padding: 4px 0;
+}
+
+#comment-form table th {
+    width: 8%;
+    vertical-align: middle !important;
+}
+
+#comment-form table td {
+    width: 35%;
+    vertical-align: middle !important;
+}
+
+#comment-form .rating {
+}
+
+#comment-form .textarea {
+    vertical-align: top !important;
+}
+
+#comment-form .optional {
+    color: grey;
+}
+
+
+#comment-form small {
+    color: grey;
+    font-size: 80%;
 }
