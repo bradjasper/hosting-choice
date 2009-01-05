@@ -1,3 +1,36 @@
-{% macro Categories() %}
+{%- macro Categories() -%}
     {{ caller() }}
-{% endmacro %}
+{%- endmacro -%}
+
+{%- macro get_rating_class(rating) -%}
+    stars{{rating | smart_round | replace('.', '') }} {{ caller() }}
+{%- endmacro -%}
+
+{%- macro get_rating_mood(rating) -%}
+    {%- if rating == -1 -%}
+        unrated
+    {%- elif rating < 1.67 -%}
+        negative
+    {%- elif rating > 3.3 -%}
+        positive
+    {%- else -%}
+        neutral
+    {%- endif %} {{ caller() }}
+{%- endmacro -%}
+
+{%- macro Ratings(ratings) -%}
+    {% if ratings | length %}
+    {% for name in ratings %}
+        <dl>
+            <dt class="name">{{name}}:</dt>
+            <dd>
+                <span class="
+                    {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
+                "></span>
+            </dd>
+        </dl>
+    {% endfor %}
+    {% endif %}
+    {{ caller() }}
+{%- endmacro -%}
+

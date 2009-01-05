@@ -2,7 +2,14 @@ from django import http
 from catalog import models
 import jinja2
 
-env = jinja2.Environment(loader=jinja2.PackageLoader('hosting-choice', 'templates'))
+env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
+        loader=jinja2.PackageLoader('hosting-choice', 'templates'))
+
+def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+    return value.strftime(format)
+
+env.filters['datetimeformat'] = datetimeformat
+env.filters['smart_round'] = lambda num: round(num / 0.5) * 0.5
 
 
 def render_to_response(template, context = None):

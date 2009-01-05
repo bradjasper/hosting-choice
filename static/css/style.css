@@ -162,14 +162,14 @@ a.visit span {
     display: none;
 }
 
-#reviews {
+.comments {
     margin-top: 50px;
 }
 
-#reviews h3 {
+.comments h3 {
     font-size: 135%;
 }
-#reviews .icon {
+.comments .icon {
     background: url('/static/images/icon-sprite.png') 4px 3px no-repeat;
     display: block;
     width: 30px;
@@ -207,13 +207,12 @@ a.visit span {
 }
 
 
-#ratings li {
+#ratings dl {
     padding: 4px 5px;
     margin: 0;
 }
 
-#ratings li span {
-    display: block;
+#ratings dl dd, #ratings dl dt {
     padding: 1px 0;
 }
 
@@ -221,22 +220,22 @@ a.visit span {
 .stars {
     background: url('/static/images/star-sprite.png') 0 0 no-repeat;
     width: 60px;
-    height: 10px;
+    height: 13px;
     margin: 2px;
     display: block !important;
     font-size: 1%;
 }
 
 .stars05 { background-position: 0 -12px; }
-.stars1 { background-position: 0 -26px; }
+.stars10 { background-position: 0 -26px; }
 .stars15 { background-position: 0 -39px; }
-.stars2 { background-position: 0 -53px; }
+.stars20 { background-position: 0 -53px; }
 .stars25 { background-position: 0 -67px; }
-.stars3 { background-position: 0 -81px; }
+.stars30 { background-position: 0 -81px; }
 .stars35 { background-position: 0 -94px; }
-.stars4 { background-position: 0 -108px; }
+.stars40 { background-position: 0 -108px; }
 .stars45 { background-position: 0 -122px; }
-.stars5 { background-position: 0 -135px; }
+.stars50 { background-position: 0 -135px; }
 
 .comment {
     background: url('/static/images/comment-sprite.png') 0 0 no-repeat;
@@ -246,19 +245,20 @@ a.visit span {
     border: 1px solid #fff;
 }
 
-#reviews ul li p {
+.comments ul li .text {
     margin: 0;
     padding: 20px;
     margin-left: 20px;
+    line-height: 19px;
 }
 
-#reviews .meta {
+.comments .meta {
     padding: 20px 20px 0 20px;
     margin-left: 20px;
     font-style: italic;
 }
 
-#reviews ul li .comment-bottom {
+.comments ul li .comment-bottom {
     background: url('/static/images/comment-sprite.png') 0 -2866px no-repeat;
     display: block;
     height: 14px;
@@ -266,24 +266,24 @@ a.visit span {
 
 }
 
-#reviews .positive {
+.comments .positive {
     background-position: -514px 0;
 }
-#reviews .positive .comment-bottom {
+.comments .positive .comment-bottom {
     background-position: -514px -2866px;
 }
 
-#reviews .negative {
+.comments .neutral {
     background-position: -1028px 0;
 }
-#reviews .negative .comment-bottom {
+.comments .neutral .comment-bottom {
     background-position: -1028px -2866px;
 }
 
-#reviews .neutral {
+.comments .negative {
     background-position: -1542px 0;
 }
-#reviews .neutral .comment-bottom {
+.comments .negative .comment-bottom {
     background-position: -1542px -2866px;
 }
 
@@ -294,6 +294,7 @@ a.visit span {
 
 .ratings {
     margin-left: 22px;
+    padding-left: 12px;
     font-size: 85%;
 }
 
@@ -304,7 +305,6 @@ a.visit span {
     background: #fff;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    margin-left: 18px;
 }
 
 .ratings dl dt, .ratings dl dd {
@@ -313,11 +313,11 @@ a.visit span {
 }
 
 .ratings dl dt {
-    margin: 2px 0 0 10px;
+    margin: 1px 2px 0 3px;
 }
 
 .ratings dl dd {
-    margin: 1px 10px 0 2px;
+    margin: 0 5px 0 0;
 }
 
 .ratings dl dd span {
@@ -345,6 +345,7 @@ a.visit span {
     font-size: 80%;
     float: right;
     color: #999;
+    display: none;
 }
 
 .tools a {
@@ -407,3 +408,8 @@ a.visit span {
 .alt {
     background-color: #eee;
 }
+
+.hidden {
+    display: none;
+}
+

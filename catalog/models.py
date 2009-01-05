@@ -59,6 +59,15 @@ class Host(Common):
     def __unicode__(self):
         return self.name
 
+    def comments(self):
+        """Return a list of comments for this host. This method filters out
+        inactive comments and sorts the results by their karma"""
+
+        comments = Comment.objects.filter(host=self, active=True)
+        func = lambda x,y: cmp(y.karma(), x.karma())
+        sorted(comments, func)
+        return comments
+
     def rating(self):
         """Return the overall rating for a host"""
         comments = Comment.objects.filter(host=self)
@@ -69,25 +78,15 @@ class Host(Common):
     def ratings(self):
         """Return the overall ratings in each category"""
 
-        ratings = {}
-        for comment in Comment.objects.filter(host=self):
-            for rating in comment.ratings():
+        ratings = [comment.ratings() for comment in
+            Comment.objects.filter(host=self)]
 
-                if rating.type.name not in ratings:
-                    ratings[rating.type.name] = {
-                        'ratings': [],
-                        'max': rating.type.limit}
+        def func(name):
+            items = filter(lambda x: name in x, ratings)
+            values = map(lambda x: x[name], items)
+            return (name, sum(values) / len(values))
 
-                ratings[rating.type.name]['ratings'].append(rating.value)
-
-        for rating in ratings:
-            tmp = ratings[rating]['ratings']
-
-            ratings[rating] = (sum(tmp) / len(tmp), ratings[rating]['max'])
-
-        return ratings
-
-
+        return dict(map(func, ratings[0]))
 
 
 class Category(Common):
@@ -114,9 +113,13 @@ class Comment(models.Model):
     host = models.ForeignKey('Host')
     text = models.TextField()
 
+    date = models.DateTimeField(default=datetime.datetime.now())
+
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     website = models.URLField(max_length=255, blank=True)
+
+    active = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.text[0:50]
@@ -125,18 +128,15 @@ class Comment(models.Model):
         """Figure out the rating for the overall comment. This averages
         all of the ratingtype's and provides and overall rating"""
 
-        value = 0
-        total = 0
-        for rating in self.ratings():
-            value += rating.value
-            total += rating.type.limit
-
-        return value / total
+        values = self.ratings()
+        if len(values):
+            return sum(values.itervalues()) / len(values)
+        return -1
 
     def ratings(self):
         """Return the ratings for a comment"""
-        return Rating.objects.filter(comment=self)
-
+        ratings = Rating.objects.filter(comment=self)
+        return dict([(rating.type.name, rating.value) for rating in ratings])
 
     def karma(self):
         """Return the karma for the entire comment"""

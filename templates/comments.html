@@ -1,0 +1,46 @@
+<div id="comments-{{host.id}}" class="comments">
+    <h2><span class="icon"></span>{{ host.comments() | length }} {{host.name}} Web Hosting Reviews</h2>
+
+    <ul id="review-list">
+
+        {% for comment in host.comments() %}
+        <li class="
+            {%- call macros.get_rating_mood(comment.rating()) -%}
+                comment
+            {%- endcall -%}">
+                <div class="meta">
+                    <span class="author">
+                        <span class="name">
+                            {% if comment.website %}
+                                <a href="{{comment.website}}">
+                                    {{comment.name}}
+                                </a>
+                            {% else %}
+                                {{comment.name}}
+                            {% endif %}
+                        </span> Says:<br />
+                        {{ comment.date | datetimeformat('%B %d, %Y, %I:%M%p')  }}
+                    </span>
+                    <span class="tools">
+                        <a href="#">This review was helpful</a> or
+                        <a href="#">Report abuse</a>
+                    </span>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="text">{{comment.text}}</div>
+
+                <div class="ratings">
+                    <dl>
+                        {% call macros.Ratings(comment.ratings()) %}
+                        {% endcall %}
+                    </dl>
+                    <div class="clear"></div>
+                </div>
+                <span class="comment-bottom"></span>
+            </li>
+        {% endfor %}
+        <li class="comment">
+    </ul>
+
+</div>

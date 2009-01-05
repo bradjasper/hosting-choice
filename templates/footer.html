@@ -1,0 +1,21 @@
+                </div>
+            </div>
+        <div id="footer">
+            <span>&copy; 2009 Hosting Choice</span>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#rating_features').rating('rating_features_val', {
+                    maxvalue: 5
+                });
+                $('#rating_support').rating('rating_support_val', {maxvalue: 5});
+                $('#rating_uptime').rating('rating_uptime_val', {maxvalue: 5});
+            });
+
+            $('.comment').hover(
+                function(){ $(this).find(".tools").show() },
+                function(){ $(this).find(".tools").hide() });
+        </script>
+    </body>
+</html>
