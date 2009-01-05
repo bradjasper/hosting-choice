@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if host %}
+    <div class="host" id="host-{{host.id}}">
+        <h1>{{host.name}} Hosting Review</h1>
+
+        <div id="info">
+            <ul id="ratings">
+                <li>
+                    <span class="name">Features:</span>
+                    <span class="stars stars5"></span>
+                </li>
+                <li>
+                    <span class="name">Support:</span>
+                    <span class="stars stars05"></span>
+                </li>
+                <li>
+                    <span class="name">Uptime:</span>
+                    <span class="stars stars5"></span>
+                </li>
+            </ul>
+            <div clear="all"></div>
+            <a class="visit" href="#"><span>Idologic</span></a>
+        </div>
+
+        <p class="desc">{{host.description}}</p>
+        <p class="clear" id="purchase"><span class="arrow-point"></span>
+        <a href="#">
+            Purchase Web Hosting from <strong>{{host.name}}</strong> for only $9.99/month
+        </a></p>
+    </div>
+{% else %}
+    <p>Cannot find host.</p>
+{% endif %}
+{% endblock %}

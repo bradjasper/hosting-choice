@@ -5,13 +5,14 @@
         {% if category %}
             <h1>{{category.name}}</h1>
             <p class="desc">{{category.description}}</p>
-            <h2>Entries in {{category.name}}</h2>
+            <h2>Hosts in {{category.name}}</h2>
             <ul>
-                {% for entry in entries %}
-                    <a href="/entry/{{entry.slug}}.html">{{entry.name}}</a>
-                    <span>{{entry.url}}</span>
-                    <em>({{entry.user}} - {{entry.hits}} hits)</em>
-                    <p>{{entry.description}}</p>
+                {% for host in hosts %}
+
+                    <a href="/host/{{host.slug}}.html">{{host.name}}</a>
+                    <span>{{host.url}}</span>
+                    <em>({{host.user}} - {{host.hits}} hits)</em>
+                    <p>{{host.description}}</p>
                 {% endfor %}
             </ul>
         {% else %}

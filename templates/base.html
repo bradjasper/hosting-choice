@@ -1,27 +1,85 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+{% import 'macros.html' as macros with context %}
 
-<html>
-	<head>
-		<title>{% block title %}BizDir{% endblock %}</title>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>{% block title %}Hosting Choice{% endblock %}</title>
 
-		<link rel="stylesheet" type="text/css" href="/static/style.css" />
-	</head>
-	
-	<body>
-        {% if categories %}
-        <div id="categories">
-            <ul>
-            {% for category in categories %}
-                <li>
-                <a href="/category/{{category.slug}}.html">{{category.name}}</a>
-                </li>
-            {% endfor %}
-            </ul>
+        <link rel="stylesheet" href="/static/js/jquery/rating/rating.css" />
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script src="/static/js/jquery/rating/jquery.js"></script>
+        <script src="/static/js/jquery/rating/rating.js"></script>
+
+    </head>
+    <body>
+        <div id="outer">
+            <div id="inner">
+
+                <div id="header">
+                    <ul id="nav">
+                        <li class="about"><a href="#about"><span>About Us</span></a></li>
+                        <li class="reviews"><a href="#hosting"><span>Hosting Reviews</span></a></li>
+                        <li class="submit"><a href="#submit"><span>Submit A Host</span></a></li>
+                    </ul>
+                </div>
+
+                <div id="content">
+                    <div id="content-top"></div>
+                    <div id="content-inner">
+
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+                    <div id="sidebar">
+
+                        <h3>Top Rated Hosts</h3>
+                        <ul>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                        </ul>
+
+                        <h3>Recent Reviews</h3>
+                        <ul>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                        </ul>
+
+                        <h3>Site Links</h3>
+                        <ul>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                            <li><a href="#">The best host</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="clear"></div>
+                    <div id="content-bottom"></div>
+                </div>
+            </div>
         </div>
-        {% endif %}
-		{% block body %}
-				This is the base template. You shouldn't see this message.
-		{% endblock %}		
-	</body>
+        <div id="footer">
+            <span>&copy; 2009 Hosting Choice</span>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#rating_features').rating('rating_features_val', {
+                    maxvalue: 5
+                });
+                $('#rating_support').rating('rating_support_val', {maxvalue: 5});
+                $('#rating_uptime').rating('rating_uptime_val', {maxvalue: 5});
+            });
+        </script>
+    </body>
 </html>

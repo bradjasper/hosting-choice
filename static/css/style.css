@@ -1,0 +1,409 @@
+@import 'reset.css';
+
+a {
+    color: #92a11d;
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    margin-top: 0px;
+    background: url('/static/images/bg-tile.gif') top left;
+    font-family: Arial, Verdana, Tahoma, Sans-Serif;
+    font-size: 80%;
+    text-align: center;
+}
+
+#outer {
+    width: 813px;
+    margin: 0 auto;
+    background: url('/static/images/body-tile.png') repeat-y;
+    text-align: center;
+}
+
+#inner {
+    margin: 0 7px;
+    text-align: center;
+}
+
+
+#footer {
+    width: 813px;
+    margin: 0 auto;
+    background: url('/static/images/footer.png') bottom left no-repeat;
+    min-height: 30px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#footer span {
+    padding: 18px;
+    width: 100%;
+    display: block;
+    font-size: 80%;
+}
+
+#header {
+    height: 78px;
+    background: url('/static/images/header.png') top center no-repeat;
+    width: 770px;
+    margin: 0 auto;
+}
+
+#nav {
+    float: right;
+    height: 29px;
+    margin-right: 25px;
+}
+
+#nav li {
+    float: right;
+    height: 100%;
+    padding: 0;
+    background: url('/static/images/nav-sprite.png') 0 0 no-repeat;
+}
+
+#nav li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+#nav li a span {
+    display: none;
+}
+
+#nav .submit { width: 100px; }
+#nav .reviews { width: 93px; background-position: -110px 0; }
+#nav .about { width: 75px; background-position: -203px 0; }
+
+#content {
+    width: 778px;
+    background: url('/static/images/content-sprite.png') -778px repeat-y;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content-top {
+    height: 12px;
+    background: url('/static/images/content-sprite.png') 0 0 no-repeat;
+}
+
+#content-bottom {
+    height: 12px;
+    background: url('/static/images/content-sprite.png') -1556px 0 no-repeat;
+}
+
+#content-inner {
+    float: left;
+    width: 545px;
+    font-size: 100%;
+    padding: 0 10px 0 20px;
+}
+
+#sidebar {
+    float: right;
+    padding: 10px 0;
+    width: 180px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #aec023;
+    font-size: 170%;
+    padding: 5px 0 10px 0;
+}
+
+h2 { font-size: 150% }
+h3 { font-size: 135% }
+h4 { font-size: 120% }
+h5 { font-size: 105% }
+
+#sidebar h3 {
+    color: #aec023;
+    font-family: Arial, Verdana, "Sans-serif";
+    text-transform: uppercase;
+    font-size: 100%;
+    border-bottom: 3px solid #bcbcbc;
+    font-weight: bold;
+    padding: 0;
+}
+
+#sidebar ul {
+    padding: 5px 10px;
+    margin-bottom: 25px;
+}
+
+#sidebar ul li {
+    padding: 1px 0;
+}
+
+#sidebar ul li a {
+    display: block;
+    padding: 5px 0;
+    color: #333;
+}
+
+p {
+    line-height: 18px;
+    margin-bottom: 18px;
+}
+
+a.visit {
+    width: 113px;
+    height: 27px;
+    display: block;
+    background: url('/static/images/icon-sprite.png') 0 -17px no-repeat;
+    margin: 10px 0;
+}
+
+a.visit span {
+    display: none;
+}
+
+#reviews {
+    margin-top: 50px;
+}
+
+#reviews h3 {
+    font-size: 135%;
+}
+#reviews .icon {
+    background: url('/static/images/icon-sprite.png') 4px 3px no-repeat;
+    display: block;
+    width: 30px;
+    height: 19px;
+    font-size: 1%;
+    float: left;
+}
+
+.arrow-point {
+    background: #fff url('/static/images/icon-sprite.png') 0 -44px no-repeat;
+    display: block;
+    height: 15px;
+    width: 20px;
+    padding: 2px;
+    margin-top: 1px;
+    float: left;
+}
+
+#info {
+    float: right;
+    width: 125px;
+    margin-left: 10px;
+}
+
+
+#ratings {
+    background: url('/static/images/rating.png') top left no-repeat;
+    height: 120px;
+    width: 89px;
+    font-size: 85%;
+    padding-top: 3px;
+}
+
+#info .visit {
+}
+
+
+#ratings li {
+    padding: 4px 5px;
+    margin: 0;
+}
+
+#ratings li span {
+    display: block;
+    padding: 1px 0;
+}
+
+
+.stars {
+    background: url('/static/images/star-sprite.png') 0 0 no-repeat;
+    width: 60px;
+    height: 10px;
+    margin: 2px;
+    display: block !important;
+    font-size: 1%;
+}
+
+.stars05 { background-position: 0 -12px; }
+.stars1 { background-position: 0 -26px; }
+.stars15 { background-position: 0 -39px; }
+.stars2 { background-position: 0 -53px; }
+.stars25 { background-position: 0 -67px; }
+.stars3 { background-position: 0 -81px; }
+.stars35 { background-position: 0 -94px; }
+.stars4 { background-position: 0 -108px; }
+.stars45 { background-position: 0 -122px; }
+.stars5 { background-position: 0 -135px; }
+
+.comment {
+    background: url('/static/images/comment-sprite.png') 0 0 no-repeat;
+    width: 514px;
+    margin: 20px 0;
+    display: block;
+    border: 1px solid #fff;
+}
+
+#reviews ul li p {
+    margin: 0;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+#reviews .meta {
+    padding: 20px 20px 0 20px;
+    margin-left: 20px;
+    font-style: italic;
+}
+
+#reviews ul li .comment-bottom {
+    background: url('/static/images/comment-sprite.png') 0 -2866px no-repeat;
+    display: block;
+    height: 14px;
+    font-size: 1%;
+
+}
+
+#reviews .positive {
+    background-position: -514px 0;
+}
+#reviews .positive .comment-bottom {
+    background-position: -514px -2866px;
+}
+
+#reviews .negative {
+    background-position: -1028px 0;
+}
+#reviews .negative .comment-bottom {
+    background-position: -1028px -2866px;
+}
+
+#reviews .neutral {
+    background-position: -1542px 0;
+}
+#reviews .neutral .comment-bottom {
+    background-position: -1542px -2866px;
+}
+
+#purchase {
+    padding: 5px 0;
+    font-size: 120%;
+}
+
+.ratings {
+    margin-left: 22px;
+    font-size: 85%;
+}
+
+.ratings dl {
+    display: inline;
+    float: left;
+    padding: 5px 10px;
+    background: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    margin-left: 18px;
+}
+
+.ratings dl dt, .ratings dl dd {
+    display: inline;
+    float: left;
+}
+
+.ratings dl dt {
+    margin: 2px 0 0 10px;
+}
+
+.ratings dl dd {
+    margin: 1px 10px 0 2px;
+}
+
+.ratings dl dd span {
+    padding: 0;
+    margin: 0;
+    height: 13px;
+}
+
+.author .name {
+    color: #000;
+    font-size: 130%;
+}
+
+.author .name a {
+    color: #92a11d;
+}
+
+.author {
+    color: #aaa;
+    line-height: 20px;
+    float: left;
+}
+
+.tools {
+    font-size: 80%;
+    float: right;
+    color: #999;
+}
+
+.tools a {
+    color: inherit;
+}
+
+.rating {
+    margin: 0;
+}
+
+#comment-form {
+    font-size: 90%;
+}
+
+#comment-form table th, #comment-form table td {
+    padding: 4px 0;
+}
+
+#comment-form table th {
+    width: 8%;
+    vertical-align: middle !important;
+}
+
+#comment-form table td {
+    width: 35%;
+    vertical-align: middle !important;
+}
+
+#comment-form .rating {
+}
+
+#comment-form .textarea {
+    vertical-align: top !important;
+}
+
+#comment-form .optional {
+    color: grey;
+}
+
+
+#comment-form small {
+    color: grey;
+    font-size: 80%;
+}
+
+#leaderboard {
+    width: 100%;
+    font-size: 140%;
+}
+
+#leaderboard th {
+    padding: 5px;
+    font-size: 70%;
+}
+
+#leaderboard td {
+    padding: 15px;
+}
+
+.alt {
+    background-color: #eee;
+}

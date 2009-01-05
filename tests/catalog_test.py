@@ -8,8 +8,8 @@ class CatalogTest(unittest.TestCase):
         """Test karma"""
 
         try:
-            entry = models.Entry.objects.all()[0]
-            comment = models.Comment(text='test', entry=entry)
+            host = models.Host.objects.all()[0]
+            comment = models.Comment(text='test', host=host)
             comment.save()
 
             karma = models.Karma(comment=comment, value=2, ip='2345')
@@ -54,10 +54,10 @@ class CatalogTest(unittest.TestCase):
     def testCommentRating(self):
         """Test individual comment rating"""
 
-        entry = models.Entry.objects.all()[0]
+        host = models.Host.objects.all()[0]
 
 
-        comment = models.Comment(text='test', entry=entry)
+        comment = models.Comment(text='test', host=host)
         comment.save()
 
         types = models.RatingType.objects.all()
@@ -87,47 +87,100 @@ class CatalogTest(unittest.TestCase):
         comment.delete()
 
 
-    def testEntryRating(self):
-        """Test individual entry rating"""
+    def testHostRating(self):
+        """Test individual host rating"""
 
-        user = auth.User.objects.all()[0]
-        category = models.Category.objects.all()[0]
-        entry = models.Entry(user=user, category=category,
-            url='http://blah.com')
-        entry.save()
+        try:
+            user = auth.User.objects.all()[0]
+            category = models.Category.objects.all()[0]
+            host = models.Host(user=user, category=category,
+                url='http://blah.com')
+            host.save()
 
-        comment = models.Comment(text='test', entry=entry)
-        comment.save()
+            comment = models.Comment(text='test', host=host)
+            comment.save()
 
-        types = models.RatingType.objects.all()
+            types = models.RatingType.objects.all()
 
-        items = []
-        for value, type in zip([3, 4, 5], types):
-            tmp_obj = models.Rating(comment=comment, type=type, value=value)
-            tmp_obj.save()
-            items.append(tmp_obj)
+            items = []
+            for value, type in zip([3, 4, 5], types):
+                tmp_obj = models.Rating(comment=comment, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
 
-        assert comment.rating() == 0.8, comment.rating()
+            assert comment.rating() == 0.8, comment.rating()
 
-        comment2 = models.Comment(text='test', entry=entry)
-        comment2.save()
+            comment2 = models.Comment(text='test', host=host)
+            comment2.save()
 
-        for value, type in zip([3, 3, 3], types):
-            tmp_obj = models.Rating(comment=comment2, type=type, value=value)
-            tmp_obj.save()
-            items.append(tmp_obj)
+            for value, type in zip([3, 3, 3], types):
+                tmp_obj = models.Rating(comment=comment2, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
 
-        assert comment2.rating() == 0.6, comment2.rating()
+            assert comment2.rating() == 0.6, comment2.rating()
 
-        assert entry.rating() == 0.7, entry.rating()
+            assert host.rating() == 0.7, host.rating()
 
-        for tmp_obj in items:
-            tmp_obj.delete()
+        finally:
 
-        comment.delete()
-        comment2.delete()
-        entry.delete()
+            for tmp_obj in items:
+                tmp_obj.delete()
 
+            comment.delete()
+            comment2.delete()
+            host.delete()
+
+
+    def testRatingCategories(self):
+        """Test the different rating categories"""
+
+
+        try:
+            user = auth.User.objects.all()[0]
+            category = models.Category.objects.all()[0]
+            host = models.Host(user=user, category=category,
+                url='http://blah.com')
+            host.save()
+
+            comment = models.Comment(text='test', host=host)
+            comment.save()
+
+            types = models.RatingType.objects.all()
+
+            items = []
+            for value, type in zip([3, 4, 5], types):
+                tmp_obj = models.Rating(comment=comment, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
+
+            assert comment.rating() == 0.8, comment.rating()
+
+            comment2 = models.Comment(text='test', host=host)
+            comment2.save()
+
+            for value, type in zip([3, 3, 3], types):
+                tmp_obj = models.Rating(comment=comment2, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
+
+            assert comment2.rating() == 0.6, comment2.rating()
+
+            assert host.rating() == 0.7, host.rating()
+
+
+            ratings = host.ratings()
+            assert ratings['Support'] == (4.0, 5L)
+            assert ratings['Features'] == (3.0, 5L)
+            assert ratings['Uptime'] == (3.5, 5L)
+
+        finally:
+            for tmp_obj in items:
+                tmp_obj.delete()
+ 
+            comment.delete()
+            comment2.delete()
+            host.delete()
 
 
 

@@ -11,7 +11,7 @@ a {
 body {
     margin-top: 0px;
     background: url('images/bg-tile.gif') top left;
-    font-family: Verdana, Tahoma, Sans-Serif;
+    font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
 }
@@ -388,4 +388,22 @@ a.visit span {
 #comment-form small {
     color: grey;
     font-size: 80%;
+}
+
+#leaderboard {
+    width: 100%;
+    font-size: 140%;
+}
+
+#leaderboard th {
+    padding: 5px;
+    font-size: 70%;
+}
+
+#leaderboard td {
+    padding: 15px;
+}
+
+.alt {
+    background-color: #eee;
 }

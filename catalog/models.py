@@ -13,43 +13,90 @@ def slugify(data):
     data = re.sub('\s+', '-', data)
     return re.sub('[^a-z0-9\-]', '', data)
 
-class CommonBase(models.Model):
-    """Base class for holding meta data like dates and active"""
-
-    created_date  = models.DateTimeField(default=datetime.datetime.now())
-    modified_date = models.DateTimeField(default=datetime.datetime.now())
-    active        = models.BooleanField(default=1)
+class Common(models.Model):
+    """Common base for handling things like saving slugs.
+    We don't put fields in here because Django puts those in seperate
+    tables."""
 
     class Meta:
         abstract = True
 
     def save(self):
-        self.modified_date = datetime.datetime.now()
-        super(CommonBase, self).save()
+        if hasattr(self, 'slug'):
+            if self.slug is None or len(self.slug.strip()) == 0:
+                self.slug = slugify(self.name)
 
+        super(Common, self).save()
 
-class CommonElement(CommonBase):
+class Host(Common):
+
+    user = models.ForeignKey(auth.User)
+    category = models.ForeignKey('Category')
+
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, default=None, blank=True)
+
     description = models.TextField(blank=True)
-    tags = models.ManyToManyField('Tag', blank=True)
+    url = models.URLField(max_length=255)
 
-    def save(self):
-        if self.slug is None or len(self.slug.strip()) == 0:
-            self.slug = slugify(self.name)
+    links_back = models.BooleanField(default=False)
+    link_back_required = models.BooleanField(default=False)
+    link_back_url = models.URLField(max_length=255, blank=True)
 
-        super(CommonElement, self).save()
+    space = models.IntegerField(default=0, help_text='MB')
+    bandwidth = models.IntegerField(default=0, help_text='MB')
+    price = models.FloatField(default=0,
+        help_text='Per Month (Max 1 year contract)')
 
+    hits = models.IntegerField(default=0)
+    featured = models.IntegerField(default=0, blank=True)
+    active = models.BooleanField(default=1)
 
-class Tag(CommonBase):
-    public = models.BooleanField(default=True)
-    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='hosts', blank=True)
+
+    featured = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.name
 
+    def rating(self):
+        """Return the overall rating for a host"""
+        comments = Comment.objects.filter(host=self)
+        ratings = [comment.rating() for comment in comments]
 
-class Category(CommonElement):
+        return sum(ratings) / len(ratings)
+
+    def ratings(self):
+        """Return the overall ratings in each category"""
+
+        ratings = {}
+        for comment in Comment.objects.filter(host=self):
+            for rating in comment.ratings():
+
+                if rating.type.name not in ratings:
+                    ratings[rating.type.name] = {
+                        'ratings': [],
+                        'max': rating.type.limit}
+
+                ratings[rating.type.name]['ratings'].append(rating.value)
+
+        for rating in ratings:
+            tmp = ratings[rating]['ratings']
+
+            ratings[rating] = (sum(tmp) / len(tmp), ratings[rating]['max'])
+
+        return ratings
+
+
+
+
+class Category(Common):
+
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, default=None, blank=True)
+
+    description = models.TextField(blank=True)
+
     parent = models.ForeignKey('self', null=True, blank=True,
         related_name='children')
     order = models.IntegerField(default=0)
@@ -61,55 +108,15 @@ class Category(CommonElement):
         return self.name
 
 
-class Plan(CommonBase):
+class Comment(models.Model):
+    """Comment for storing reviews"""
 
-    space = models.IntegerField()
-    bandwidth = models.IntegerField()
-    price = models.FloatField()
-
-    cpanel = models.BooleanField(default=False)
-
-    def __unicode__(self):
-        return "%sMB - %sMB - $%s" % (self.space, self.bandwidth, self.price)
-
-
-class Entry(CommonElement):
-    user = models.ForeignKey(auth.User)
-    category = models.ForeignKey(Category)
-    plan = models.ForeignKey(Plan)
-
-    url = models.URLField(max_length=255)
-    link_back = models.URLField(max_length=255, blank=True)
-
-    hits = models.IntegerField(default=0)
-    featured = models.IntegerField(default=0, blank=True)
-
-
-    class Meta:
-        verbose_name_plural = "Entries"
-
-    def __unicode__(self):
-        return self.name
-
-    def rating(self):
-        """Return the rating for an entry"""
-        comments = Comment.objects.filter(entry=self, active=True)
-        ratings = [comment.rating() for comment in comments]
-
-        return sum(ratings) / len(ratings)
-
-
-class Comment(CommonBase):
-
-    user = models.ForeignKey(auth.User, blank=True, null=True)
-    entry = models.ForeignKey('Entry')
-
-    # anonymous comments
-    name = models.CharField(max_length=255, blank=True)
-    email = models.CharField(max_length=255, blank=True)
-    website = models.CharField(max_length=255, blank=True)
-
+    host = models.ForeignKey('Host')
     text = models.TextField()
+
+    name = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    website = models.URLField(max_length=255, blank=True)
 
     def __unicode__(self):
         return self.text[0:50]
@@ -120,11 +127,15 @@ class Comment(CommonBase):
 
         value = 0
         total = 0
-        for rating in Rating.objects.filter(comment=self, active=True):
+        for rating in self.ratings():
             value += rating.value
             total += rating.type.limit
 
         return value / total
+
+    def ratings(self):
+        """Return the ratings for a comment"""
+        return Rating.objects.filter(comment=self)
 
 
     def karma(self):
@@ -134,7 +145,7 @@ class Comment(CommonBase):
         return sum(map(lambda x: x.value, karmas))
 
 
-class Karma(CommonBase):
+class Karma(models.Model):
     comment = models.ForeignKey('Comment')
     ip = models.CharField(max_length=25)
     value = models.IntegerField(default=0)
@@ -144,10 +155,10 @@ class Karma(CommonBase):
 
 
 
-class Rating(CommonBase):
+class Rating(models.Model):
     comment = models.ForeignKey('Comment')
     type = models.ForeignKey('RatingType')
-    value = models.IntegerField()
+    value = models.FloatField()
 
     def save(self):
         if self.value > self.type.limit:
@@ -161,7 +172,7 @@ class Rating(CommonBase):
     def __unicode__(self):
         return "%s (%d/%d)" % (self.type, self.value, self.type.limit)
 
-class RatingType(CommonBase):
+class RatingType(models.Model):
     name = models.CharField(max_length=255)
     limit = models.IntegerField(default=5)
 

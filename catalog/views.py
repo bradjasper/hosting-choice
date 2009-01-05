@@ -2,7 +2,7 @@ from django import http
 from catalog import models
 import jinja2
 
-env = jinja2.Environment(loader=jinja2.PackageLoader('bizdir', 'templates'))
+env = jinja2.Environment(loader=jinja2.PackageLoader('hosting-choice', 'templates'))
 
 
 def render_to_response(template, context = None):
@@ -20,7 +20,7 @@ def render_to_response(template, context = None):
 def render(template, context):
     """Generic render method to render full pages"""
 
-    categories = models.Category.objects.filter(active=True)
+    categories = models.Category.objects.filter()
 
     context.update({
         'categories': categories})
@@ -28,16 +28,16 @@ def render(template, context):
     return render_to_response(template, context)
 
 
-def show_entry(request, slug):
-    """Return the view for an entry listing"""
+def show_host(request, slug):
+    """Return the view for an host listing"""
 
     try:
-        entry = models.Entry.objects.get(slug=slug)
-    except models.Entry.DoesNotExist:
-        entry = None
+        host = models.Host.objects.get(slug=slug)
+    except models.Host.DoesNotExist:
+        host = None
 
-    return render('entry.html', {
-        'entry': entry})
+    return render('host.html', {
+        'host': host})
 
     
 def show_category(request, slug):
@@ -45,11 +45,11 @@ def show_category(request, slug):
 
     try:
         category = models.Category.objects.get(slug=slug)
-        entries = models.Entry.objects.filter(category=category)
+        hosts = models.Host.objects.filter(category=category)
     except models.Category.DoesNotExist:
         category = None
-        entries = []
+        hosts = []
 
     return render('category.html', {
-        'entries': entries,
+        'hosts': hosts,
         'category': category})
