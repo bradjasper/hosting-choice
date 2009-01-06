@@ -5,17 +5,28 @@
         </div>
 
         <script type="text/javascript">
+
+            $('#errors').fadeIn(1500);
+            $('#success').fadeIn(1500);
+
             $(document).ready(function() {
-                $('#rating_features').rating('rating_features_val', {
-                    maxvalue: 5
-                });
-                $('#rating_support').rating('rating_support_val', {maxvalue: 5});
-                $('#rating_uptime').rating('rating_uptime_val', {maxvalue: 5});
+                var types = ['features', 'support', 'uptime']
+                for (key in types) {
+                    var name = 'id_rating_' + types[key];
+                    var val_name = name+'_val'
+
+                    var curvalue = $('#'+val_name).val()
+
+                    $('#'+name).rating(val_name, {maxvalue: 5, curvalue: curvalue});
+
+                }
+
             });
 
             $('.comment').hover(
                 function(){ $(this).find(".tools").show() },
                 function(){ $(this).find(".tools").hide() });
+
         </script>
     </body>
 </html>

@@ -31,10 +31,11 @@ body {
 
 #footer {
     width: 813px;
+    _width: 777px;
     margin: 0 auto;
     background: url('/static/images/footer.png') bottom left no-repeat;
     min-height: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: left;
 }
 
@@ -181,10 +182,8 @@ a.visit span {
 .arrow-point {
     background: #fff url('/static/images/icon-sprite.png') 0 -44px no-repeat;
     display: block;
-    height: 15px;
+    height: 16px;
     width: 20px;
-    padding: 2px;
-    margin-top: 1px;
     float: left;
 }
 
@@ -356,37 +355,37 @@ a.visit span {
     margin: 0;
 }
 
-#comment-form {
+.comment-form {
     font-size: 90%;
 }
 
-#comment-form table th, #comment-form table td {
+.comment-form table th, .comment-form table td {
     padding: 4px 0;
 }
 
-#comment-form table th {
+.comment-form table th {
     width: 8%;
     vertical-align: middle !important;
 }
 
-#comment-form table td {
+.comment-form table td {
     width: 35%;
     vertical-align: middle !important;
 }
 
-#comment-form .rating {
+.comment-form .rating {
 }
 
-#comment-form .textarea {
+.comment-form .textarea {
     vertical-align: top !important;
 }
 
-#comment-form .optional {
+.comment-form .optional {
     color: grey;
 }
 
 
-#comment-form small {
+.comment-form small {
     color: grey;
     font-size: 80%;
 }
@@ -413,3 +412,24 @@ a.visit span {
     display: none;
 }
 
+#errors, #success {
+    padding: 5px;
+    margin: 10px 0;
+    font-weight: bold;
+    border: 1px solid grey;
+    background-color: #eeecb6;
+}
+
+#errors li, #success li {
+    padding: 3px 0;
+}
+
+#errors {
+    color: red;
+    border-color: red;
+}
+
+#success {
+    color: green;
+    border-color: green;
+}

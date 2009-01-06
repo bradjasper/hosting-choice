@@ -1,5 +1,5 @@
 from django import http
-from catalog import models
+from catalog import models, forms
 import jinja2
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
@@ -38,13 +38,48 @@ def render(template, context):
 def show_host(request, slug):
     """Return the view for an host listing"""
 
+    messages = {'success': [], 'errors': []}
     try:
         host = models.Host.objects.get(slug=slug)
+
+        if request.method == 'POST':
+            form = forms.CommentForm(request.POST)
+            if form.is_valid():
+
+                name = form.cleaned_data['name']
+                email = form.cleaned_data['email']
+                website = form.cleaned_data.get('website', None)
+                text = form.cleaned_data['text']
+
+                comment = models.Comment(host=host, name=name,
+                    email=email, website=website, text=text, active=True)
+
+                comment.save()
+
+                for name in ['Features', 'Uptime', 'Support']:
+                    value = form.cleaned_data.get('rating_'+name.lower()+'_val', -1)
+                    type = models.RatingType.objects.get(name=name)
+                    rating = models.Rating(type=type, value=value,
+                        comment=comment)
+                    rating.save()
+
+                messages['success'].append(
+                    'Successfully added your review to the site')
+
+
+
+
+        else:
+            form = forms.CommentForm()
+
     except models.Host.DoesNotExist:
         host = None
+        form = None
 
     return render('host.html', {
-        'host': host})
+        'host': host,
+        'form': form,
+        'messages': messages})
 
     
 def show_category(request, slug):

@@ -30,17 +30,20 @@
 
                 <div class="text">{{comment.text}}</div>
 
-                <div class="ratings">
-                    <dl>
-                        {% call macros.Ratings(comment.ratings()) %}
-                        {% endcall %}
-                    </dl>
-                    <div class="clear"></div>
-                </div>
+                {% if comment.ratings() %}
+                    <div class="ratings">
+                        <dl>
+                            {% call macros.Ratings(comment.ratings()) %}
+                            {% endcall %}
+                        </dl>
+                        <div class="clear"></div>
+                    </div>
+                {% endif %}
                 <span class="comment-bottom"></span>
             </li>
         {% endfor %}
         <li class="comment">
     </ul>
-
 </div>
+
+{% include 'comment_form.html' %}

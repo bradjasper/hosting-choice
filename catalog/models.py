@@ -64,9 +64,9 @@ class Host(Common):
         inactive comments and sorts the results by their karma"""
 
         comments = Comment.objects.filter(host=self, active=True)
-        func = lambda x,y: cmp(y.karma(), x.karma())
-        sorted(comments, func)
-        return comments
+
+        func = lambda x,y: cmp(x.karma(), y.karma())
+        return sorted(comments, func, reverse=True)
 
     def rating(self):
         """Return the overall rating for a host"""
@@ -121,8 +121,19 @@ class Comment(models.Model):
 
     active = models.IntegerField(default=0)
 
+    class Meta:
+        unique_together = ('host', 'text', 'name', 'email')
+
     def __unicode__(self):
         return self.text[0:50]
+
+    def set_ratings(self, ratings):
+        """Set the ratings given a dictionary: {'Support': 5}"""
+
+        for name, value in ratings.iteritems():
+            type = RatingType.objects.get(name=name)
+            rating = Rating(type=type, value=value)
+            rating.save()
 
     def rating(self):
         """Figure out the rating for the overall comment. This averages
@@ -135,7 +146,7 @@ class Comment(models.Model):
 
     def ratings(self):
         """Return the ratings for a comment"""
-        ratings = Rating.objects.filter(comment=self)
+        ratings = Rating.objects.filter(comment=self).exclude(value=-1)
         return dict([(rating.type.name, rating.value) for rating in ratings])
 
     def karma(self):
