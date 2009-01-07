@@ -10,8 +10,13 @@ def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)
 
 env.filters['datetimeformat'] = datetimeformat
-env.filters['smart_round'] = lambda num: round(num / 0.5) * 0.5
+def smart_round(num):
+    try:
+        return round(num / 0.5) * 0.5
+    except TypeError:
+        assert False, num
 
+env.filters['smart_round'] = smart_round
 
 def render_to_response(template, context = None):
     global env
@@ -53,7 +58,8 @@ def show_host(request, slug):
                 text = form.cleaned_data['text']
 
                 comment = models.Comment(host=host, name=name,
-                    email=email, website=website, text=text, active=True)
+                    email=email, website=website, text=text, active=True,
+                    ip=request.META['REMOTE_ADDR'])
 
                 comment.save()
 

@@ -79,13 +79,13 @@ class Host(Common):
 
             return values / max
 
-        return -1
+        return 0
 
     def rating(self):
         """Return the overall rating for a host"""
 
         rank = self.rank()
-        if rank != -1:
+        if rank != 0:
             rank = rank * 5
 
         return rank
@@ -102,7 +102,7 @@ class Host(Common):
     def raw_ratings(self):
         """Return the raw value/count for each rating category"""
 
-        comments = [comment.ratings() for comment in
+        comments = [comment.raw_ratings() for comment in
             Comment.objects.filter(host=self, active=1)]
 
         final = {}
@@ -145,6 +145,7 @@ class Comment(models.Model):
     
     host = models.ForeignKey('Host')
     text = models.TextField()
+    ip = models.CharField(max_length=25)
 
     date = models.DateTimeField(default=datetime.datetime.now())
 
@@ -169,20 +170,22 @@ class Comment(models.Model):
             rating.save()
 
     def rating(self):
+        """Figure out an individual comment rating"""
+
+        ratings = self.ratings()
+        return sum(ratings.itervalues()) / len(ratings)
+
+    def ratings(self):
         """Figure out the rating for the overall comment. This averages
         all of the ratingtype's and provides and overall rating"""
 
-        ratings = self.ratings()
-        if len(ratings):
-            vals = [values[1][0] for values in ratings.iteritems()]
-            limit = [values[1][1] for values in ratings.iteritems()]
+        return dict([(rating[0], (rating[1][0] / rating[1][1]) * 5) for \
+            rating in self.raw_ratings().iteritems()])
 
-            return (sum(vals) / sum(limit) * 5)
-        return -1
 
-    def ratings(self):
+    def raw_ratings(self):
         """Return the ratings for a comment"""
-        ratings = Rating.objects.filter(comment=self)
+        ratings = Rating.objects.filter(comment=self).exclude(value=0)
         return dict([(rating.type.name, (rating.value, rating.type.limit)) for
             rating in ratings])
 

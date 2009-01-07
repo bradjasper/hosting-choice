@@ -6,6 +6,7 @@
         <h1>{{host.name}} Hosting Review</h1>
 
         <div id="info">
+            <p class="rank">{{ host.rank() | smart_round }}%</p>
             <ul id="ratings">
                 {%- call macros.Ratings(host.ratings()) %}
                 {% endcall -%}

@@ -73,7 +73,7 @@ class CatalogTest(unittest.TestCase):
                 tmp_obj.save()
                 items.append(tmp_obj)
 
-            assert comment.rating() == 4.0, comment.rating()
+            assert comment.rating() - 4.0 < .0001, comment.rating()
 
             for tmp_obj in items:
                 tmp_obj.delete()
@@ -114,7 +114,7 @@ class CatalogTest(unittest.TestCase):
                 tmp_obj.save()
                 items.append(tmp_obj)
 
-            assert comment.rating() == 4.0, comment.rating()
+            assert comment.rating() - 4 < .0001, comment.rating()
 
             comment2 = models.Comment(text='test', host=host)
             comment2.save()
@@ -124,7 +124,7 @@ class CatalogTest(unittest.TestCase):
                 tmp_obj.save()
                 items.append(tmp_obj)
 
-            assert comment2.rating() == 3.0, comment2.rating()
+            assert comment2.rating() - 3.0 < .0001, comment2.rating()
 
             assert host.rating() == 3.5, host.rating()
 
@@ -163,7 +163,7 @@ class CatalogTest(unittest.TestCase):
                 tmp_obj.save()
                 items.append(tmp_obj)
 
-            assert comment.rating() == 4.0, comment.rating()
+            assert comment.rating() - 4.0 < .0001, comment.rating()
 
             comment2 = models.Comment(text='test', host=host)
             comment2.save()
@@ -173,7 +173,7 @@ class CatalogTest(unittest.TestCase):
                 tmp_obj.save()
                 items.append(tmp_obj)
 
-            assert comment2.rating() == 3.0, comment2.rating()
+            assert comment2.rating() - 3.0 < .0001, comment2.rating()
 
             assert host.rating() == 3.5, host.rating()
 

@@ -22,7 +22,7 @@
     {% if ratings | length %}
     {% for name in ratings %}
         <dl>
-            <dt class="name">{{name}}:</dt>
+            <dt class="name">{{name}}: {{ratings[name]}}</dt>
             <dd>
                 <span class="
                     {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
