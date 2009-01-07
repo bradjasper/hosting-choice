@@ -132,7 +132,7 @@ jQuery.fn.rating = function(divid, options) {
 			var index = stars.index(el) + 1;
 			stars
 				.children('a').css('width', '100%').end()
-				.lt(index).addClass('hover').end();
+				.slice(0, index).addClass('hover').end();
 		},
 		drain: function() { // drain all the stars.
 			stars
@@ -140,7 +140,7 @@ jQuery.fn.rating = function(divid, options) {
 				.filter('.hover').removeClass('hover').end();
 		},
 		reset: function(){ // Reset the stars to the default index.
-			stars.lt(settings.curvalue).addClass('on').end();
+			stars.slice(0, settings.curvalue).addClass('on').end();
 		}
 	}        
 	event.reset();

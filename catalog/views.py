@@ -1,6 +1,7 @@
 from django import http
 from catalog import models, forms
 import jinja2
+import MySQLdb
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hosting-choice', 'templates'))
@@ -66,8 +67,7 @@ def show_host(request, slug):
                 messages['success'].append(
                     'Successfully added your review to the site')
 
-
-
+                form = forms.CommentForm()
 
         else:
             form = forms.CommentForm()
@@ -95,3 +95,36 @@ def show_category(request, slug):
     return render('category.html', {
         'hosts': hosts,
         'category': category})
+
+
+def report(request, id):
+    """Report a comment"""
+
+    comment = models.Comment.objects.get(id=id);
+    comment.active = -1
+    comment.save()
+
+    return http.HttpResponse()
+
+
+
+
+def helpful(request, id):
+    """Give a comment some karma"""
+
+    comment = models.Comment.objects.get(id=id);
+
+    try:
+        karma = models.Karma(comment=comment)
+        karma.value = 1
+        karma.ip = request.META['REMOTE_ADDR']
+        karma.save()
+    except MySQLdb.IntegrityError:
+        pass
+
+    return http.HttpResponse()
+
+
+
+
+    

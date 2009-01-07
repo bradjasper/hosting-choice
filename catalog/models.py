@@ -70,23 +70,28 @@ class Host(Common):
 
     def rating(self):
         """Return the overall rating for a host"""
-        comments = Comment.objects.filter(host=self)
+        comments = Comment.objects.filter(host=self, active=1)
         ratings = [comment.rating() for comment in comments]
 
-        return sum(ratings) / len(ratings)
+        if ratings:
+            return sum(ratings) / len(ratings)
+        return -1
 
     def ratings(self):
         """Return the overall ratings in each category"""
 
         ratings = [comment.ratings() for comment in
-            Comment.objects.filter(host=self)]
+            Comment.objects.filter(host=self, active=1)]
 
         def func(name):
             items = filter(lambda x: name in x, ratings)
             values = map(lambda x: x[name], items)
             return (name, sum(values) / len(values))
 
-        return dict(map(func, ratings[0]))
+        if ratings:
+            return dict(map(func, ratings[0]))
+        else:
+            return []
 
 
 class Category(Common):
@@ -119,7 +124,7 @@ class Comment(models.Model):
     email = models.EmailField(max_length=255)
     website = models.URLField(max_length=255, blank=True)
 
-    active = models.IntegerField(default=0)
+    active = models.IntegerField(default=1)
 
     class Meta:
         unique_together = ('host', 'text', 'name', 'email')
@@ -146,7 +151,7 @@ class Comment(models.Model):
 
     def ratings(self):
         """Return the ratings for a comment"""
-        ratings = Rating.objects.filter(comment=self).exclude(value=-1)
+        ratings = Rating.objects.filter(comment=self)
         return dict([(rating.type.name, rating.value) for rating in ratings])
 
     def karma(self):

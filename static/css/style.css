@@ -412,6 +412,11 @@ a.visit span {
     display: none;
 }
 
+.errorlist {
+    color: red;
+    padding: 7px 0 0 5px;
+}
+
 #errors, #success {
     padding: 5px;
     margin: 10px 0;

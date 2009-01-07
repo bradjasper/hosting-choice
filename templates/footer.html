@@ -9,6 +9,19 @@
             $('#errors').fadeIn(1500);
             $('#success').fadeIn(1500);
 
+            $('.tools a').livequery(function() {
+                var par = $(this).parent();
+
+                $(this).ajaxify({
+                    method: 'POST',
+                    onComplete: function(opt) {
+                        par.fadeOut(500, function() {
+                            $(this).remove();
+                        });
+                    }
+                });
+            });
+
             $(document).ready(function() {
                 var types = ['features', 'support', 'uptime']
                 for (key in types) {
@@ -16,6 +29,9 @@
                     var val_name = name+'_val'
 
                     var curvalue = $('#'+val_name).val()
+                    if (curvalue < 0) {
+                        curvalue = 0;
+                    }
 
                     $('#'+name).rating(val_name, {maxvalue: 5, curvalue: curvalue});
 

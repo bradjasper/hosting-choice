@@ -30,6 +30,10 @@
             </dd>
         </dl>
     {% endfor %}
+    {% else %}
+        <dl>
+            <dt class="name">No Ratings</dt>
+        </dl>
     {% endif %}
     {{ caller() }}
 {%- endmacro -%}

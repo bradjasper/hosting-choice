@@ -33,10 +33,13 @@ class CatalogTest(unittest.TestCase):
         except:
             raise
         finally:
-            karma.delete()
-            karma2.delete()
-            karma3.delete()
-            comment.delete()
+            try:
+                karma.delete()
+                karma2.delete()
+                karma3.delete()
+                comment.delete()
+            except UnboundLocalError:
+                pass
 
 
     def testRatingLimit(self):
@@ -44,47 +47,50 @@ class CatalogTest(unittest.TestCase):
 
         comment = models.Comment.objects.all()[0]
         type = models.RatingType.objects.all()[0]
-        val = type.limit + 10
-        rating = models.Rating(comment=comment, type=type, value=val)
-        rating.save()
-        assert rating.value == type.limit
-        rating.delete()
+        try:
+            val = type.limit + 10
+            rating = models.Rating(comment=comment, type=type, value=val)
+            rating.save()
+            assert rating.value == type.limit
+        finally:
+            rating.delete()
 
 
     def testCommentRating(self):
         """Test individual comment rating"""
 
-        host = models.Host.objects.all()[0]
+        try:
+            host = models.Host.objects.all()[0]
 
+            comment = models.Comment(text='test', host=host)
+            comment.save()
 
-        comment = models.Comment(text='test', host=host)
-        comment.save()
+            types = models.RatingType.objects.all()
 
-        types = models.RatingType.objects.all()
+            items = []
+            for value, type in zip([3, 4, 5], types):
+                tmp_obj = models.Rating(comment=comment, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
 
-        items = []
-        for value, type in zip([3, 4, 5], types):
-            tmp_obj = models.Rating(comment=comment, type=type, value=value)
-            tmp_obj.save()
-            items.append(tmp_obj)
+            assert comment.rating() == 4.0, comment.rating()
 
-        assert comment.rating() == 4.0, comment.rating()
+            for tmp_obj in items:
+                tmp_obj.delete()
 
-        for tmp_obj in items:
-            tmp_obj.delete()
+            items = []
+            for value, type in zip([3, 3], types):
+                tmp_obj = models.Rating(comment=comment, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
 
-        items = []
-        for value, type in zip([3, 3], types):
-            tmp_obj = models.Rating(comment=comment, type=type, value=value)
-            tmp_obj.save()
-            items.append(tmp_obj)
+            assert comment.rating() == 3.0, comment.rating()
 
-        assert comment.rating() == 3.0, comment.rating()
+        finally:
+            for tmp_obj in items:
+                tmp_obj.delete()
 
-        for tmp_obj in items:
-            tmp_obj.delete()
-
-        comment.delete()
+            comment.delete()
 
 
     def testHostRating(self):
@@ -173,9 +179,9 @@ class CatalogTest(unittest.TestCase):
 
 
             ratings = host.ratings()
-            assert ratings['Support'] == 4.0
+            assert ratings['Support'] == 3.5, ratings
             assert ratings['Features'] == 3.0
-            assert ratings['Uptime'] == 3.5
+            assert ratings['Uptime'] == 4.0
 
         finally:
             try:
