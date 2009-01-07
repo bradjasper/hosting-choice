@@ -20,7 +20,7 @@ class CommentAdmin(admin.ModelAdmin):
 class HostAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'category', 'links_back', 'link_back_required',
-        'hits', 'featured', 'active', 'rank')
+        'hits', 'featured', 'active', 'percentage')
     list_filter = ('links_back', 'link_back_required', 'featured', 'active')
     ordering = ('name', 'category')
     search_fields = ('name', 'category', 'space', 'bandwidth', 'price', 'image')

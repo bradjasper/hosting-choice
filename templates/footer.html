@@ -15,9 +15,18 @@
                 $(this).ajaxify({
                     method: 'POST',
                     onComplete: function(opt) {
-                        par.fadeOut(500, function() {
+                        par.html('<strong>Thanks!</strong>');
+                        par.fadeOut(5000, function() {
                             $(this).remove();
+                            //par.parent().parent().remove();
                         });
+
+                        if ($(this).attr('link').match('report')) {
+                            var grand = $(par).parent().parent()
+                            grand.fadeOut(1500, function() {
+                                $(this).remove();
+                            });
+                        }
                     }
                 });
             });

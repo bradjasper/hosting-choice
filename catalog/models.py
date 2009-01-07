@@ -68,25 +68,19 @@ class Host(Common):
         func = lambda x,y: cmp(x.karma(), y.karma())
         return sorted(comments, func, reverse=True)
 
-    def rank(self):
-        """Return the overall rank for a host. This is a percentage."""
+    def percentage(self):
+        """Return the rating as a percentage"""
+        return self.rating(100)
 
-        ratings = self.raw_ratings()
+    def rating(self, limit = None):
+        """Return the normalized rating for a host"""
 
-        if ratings:
-            values = sum([rating[0] for rating in ratings.itervalues()])
-            max = sum([rating[1] for rating in ratings.itervalues()])
+        if limit is None:
+            limit = 5
 
-            return values / max
-
-        return 0
-
-    def rating(self):
-        """Return the overall rating for a host"""
-
-        rank = self.rank()
+        rank = self.raw_rating()
         if rank != 0:
-            rank = rank * 5
+            rank = rank * limit 
 
         return rank
 
@@ -98,6 +92,19 @@ class Host(Common):
             final[name] = (rating[0] / rating[1]) * 5
 
         return final
+
+    def raw_rating(self):
+        """Return the overall rank for a host. This is a percentage."""
+
+        ratings = self.raw_ratings()
+
+        if ratings:
+            values = sum([rating[0] for rating in ratings.itervalues()])
+            max = sum([rating[1] for rating in ratings.itervalues()])
+
+            return values / max
+
+        return 0
 
     def raw_ratings(self):
         """Return the raw value/count for each rating category"""
@@ -173,7 +180,9 @@ class Comment(models.Model):
         """Figure out an individual comment rating"""
 
         ratings = self.ratings()
-        return sum(ratings.itervalues()) / len(ratings)
+        if ratings:
+            return sum(ratings.itervalues()) / len(ratings)
+        return 0
 
     def ratings(self):
         """Figure out the rating for the overall comment. This averages
