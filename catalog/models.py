@@ -68,30 +68,53 @@ class Host(Common):
         func = lambda x,y: cmp(x.karma(), y.karma())
         return sorted(comments, func, reverse=True)
 
-    def rating(self):
-        """Return the overall rating for a host"""
-        comments = Comment.objects.filter(host=self, active=1)
-        ratings = [comment.rating() for comment in comments]
+    def rank(self):
+        """Return the overall rank for a host. This is a percentage."""
+
+        ratings = self.raw_ratings()
 
         if ratings:
-            return sum(ratings) / len(ratings)
+            values = sum([rating[0] for rating in ratings.itervalues()])
+            max = sum([rating[1] for rating in ratings.itervalues()])
+
+            return values / max
+
         return -1
 
-    def ratings(self):
-        """Return the overall ratings in each category"""
+    def rating(self):
+        """Return the overall rating for a host"""
 
-        ratings = [comment.ratings() for comment in
+        rank = self.rank()
+        if rank != -1:
+            rank = rank * 5
+
+        return rank
+
+    def ratings(self):
+        """Return the normalized rating (5 stars)"""
+
+        final = {}
+        for name, rating in self.raw_ratings().iteritems():
+            final[name] = (rating[0] / rating[1]) * 5
+
+        return final
+
+    def raw_ratings(self):
+        """Return the raw value/count for each rating category"""
+
+        comments = [comment.ratings() for comment in
             Comment.objects.filter(host=self, active=1)]
 
-        def func(name):
-            items = filter(lambda x: name in x, ratings)
-            values = map(lambda x: x[name], items)
-            return (name, sum(values) / len(values))
+        final = {}
+        for comment in comments:
+            for name, rating in comment.iteritems():
+                if name in final:
+                    final[name][0] += rating[0]
+                    final[name][1] += rating[1]
+                else:
+                    final[name] = [rating[0], rating[1]]
 
-        if ratings:
-            return dict(map(func, ratings[0]))
-        else:
-            return []
+        return final
 
 
 class Category(Common):
@@ -115,6 +138,11 @@ class Category(Common):
 class Comment(models.Model):
     """Comment for storing reviews"""
 
+    STATUSES = (
+        (-1, 'Reported'),
+        (0, 'Disabled'),
+        (1, 'Approved'))
+    
     host = models.ForeignKey('Host')
     text = models.TextField()
 
@@ -124,7 +152,7 @@ class Comment(models.Model):
     email = models.EmailField(max_length=255)
     website = models.URLField(max_length=255, blank=True)
 
-    active = models.IntegerField(default=1)
+    active = models.IntegerField(default=1, choices=STATUSES)
 
     class Meta:
         unique_together = ('host', 'text', 'name', 'email')
@@ -144,15 +172,19 @@ class Comment(models.Model):
         """Figure out the rating for the overall comment. This averages
         all of the ratingtype's and provides and overall rating"""
 
-        values = self.ratings()
-        if len(values):
-            return sum(values.itervalues()) / len(values)
+        ratings = self.ratings()
+        if len(ratings):
+            vals = [values[1][0] for values in ratings.iteritems()]
+            limit = [values[1][1] for values in ratings.iteritems()]
+
+            return (sum(vals) / sum(limit) * 5)
         return -1
 
     def ratings(self):
         """Return the ratings for a comment"""
         ratings = Rating.objects.filter(comment=self)
-        return dict([(rating.type.name, rating.value) for rating in ratings])
+        return dict([(rating.type.name, (rating.value, rating.type.limit)) for
+            rating in ratings])
 
     def karma(self):
         """Return the karma for the entire comment"""
@@ -168,6 +200,9 @@ class Karma(models.Model):
 
     class Meta:
         unique_together = ('comment', 'ip',)
+
+    def __unicode__(self):
+        return "%s - %s - %s" % (self.comment, self.ip, self.value)
 
 
 

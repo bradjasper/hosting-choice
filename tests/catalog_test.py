@@ -196,5 +196,52 @@ class CatalogTest(unittest.TestCase):
 
 
 
+    def testHostPartialRating(self):
+        """Test parial host rating"""
+
+        try:
+            user = auth.User.objects.all()[0]
+            category = models.Category.objects.all()[0]
+            host = models.Host(user=user, category=category,
+                url='http://blah.com')
+            host.save()
+
+            comment = models.Comment(text='test', host=host)
+            comment.save()
+
+            types = models.RatingType.objects.all()
+
+            items = []
+            for value, type in zip([4, 5], types):
+                tmp_obj = models.Rating(comment=comment, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
+
+            assert comment.rating() == 4.5, comment.rating()
+
+            comment2 = models.Comment(text='test', host=host)
+            comment2.save()
+
+            for value, type in zip([3, 3, 3], types):
+                tmp_obj = models.Rating(comment=comment2, type=type, value=value)
+                tmp_obj.save()
+                items.append(tmp_obj)
+
+            assert comment2.rating() == 3.0, comment2.rating()
+
+            # python is stupid. it has trouble comparing floats sometimes
+            assert host.rating() - 3.6 < .001, host.rating
+
+        finally:
+
+            try:
+                for tmp_obj in items:
+                    tmp_obj.delete()
+
+                comment.delete()
+                comment2.delete()
+                host.delete()
+            except:
+                pass
 
 unittest.main()
