@@ -10,6 +10,7 @@ def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)
 
 env.filters['datetimeformat'] = datetimeformat
+
 def smart_round(num):
     try:
         return round(num / 0.5) * 0.5
@@ -30,13 +31,20 @@ def render_to_response(template, context = None):
     return http.HttpResponse(contents)
 
 
-def render(template, context):
+def render(template, context = None):
     """Generic render method to render full pages"""
 
+    if context is None:
+        context = {}
+
     categories = models.Category.objects.filter()
+    top_hosts = models.Host.objects.leaderboard()
+    recent_reviews = models.Comment.objects.filter(active=1).order_by('date')
 
     context.update({
-        'categories': categories})
+        'categories': categories,
+        'top_hosts': top_hosts,
+        'recent_reviews': recent_reviews})
 
     return render_to_response(template, context)
 
@@ -131,6 +139,11 @@ def helpful(request, id):
     return http.HttpResponse()
 
 
+
+def leaderboard(request):
+    """Display the leaderboard"""
+
+    return render('leaderboard.html')
 
 
     

@@ -5,18 +5,20 @@
 <div id="content">
     <div id="content-top"></div>
     <div id="content-inner">
-        {% if messages['success'] %}
-            <ul id="success">
-            {% for message in messages['success'] %}
-                 <li>{{ message }}</li>
-            {% endfor %}
+        {% if messages %}
+            {% if messages['success'] %}
+                <ul id="success">
+                {% for message in messages['success'] %}
+                     <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% elif messages['errors'] %}
+                <ul id="errors">
+                 {% for message in messages['success'] %}
+                     <li>{{ message }}</li>
+                {% endfor %}
             </ul>
-        {% elif messages['errors'] %}
-            <ul id="errors">
-             {% for message in messages['success'] %}
-                 <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
+            {% endif %}
         {% endif %}
 
         {% block content %}

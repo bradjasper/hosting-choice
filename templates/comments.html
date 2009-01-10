@@ -1,3 +1,4 @@
+<a name="comments" />
 <div id="comments-{{host.id}}" class="comments">
     <h2><span class="icon"></span>{{ host.comments() | length }} {{host.name}} Web Hosting Reviews</h2>
 
@@ -31,13 +32,10 @@
                 <div class="text">{{comment.text}}</div>
 
                 {% if comment.ratings() %}
-                    <div class="ratings">
-                        <dl>
-                            {% call macros.Ratings(comment.ratings()) %}
-                            {% endcall %}
-                        </dl>
-                        <div class="clear"></div>
-                    </div>
+                    <table class="ratings">
+                        {% call macros.Ratings(comment.ratings()) %}
+                        {% endcall %}
+                    </table>
                 {% endif %}
                 <span class="comment-bottom"></span>
             </li>

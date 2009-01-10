@@ -7,23 +7,30 @@
 
         <div id="info">
             <p class="rank">{{ host.percentage() | smart_round }}%</p>
-            <ul id="ratings">
+            <table>
+                {%- call macros.Features(host.feature_set.all()) %}
+                {% endcall -%}
                 {%- call macros.Ratings(host.ratings()) %}
                 {% endcall -%}
-            </ul>
-            <div clear="all"></div>
-            <a class="visit" href="#"><span>Idologic</span></a>
+            </table>
+            <div align="center">
+                <a class="visit" href="#"><span>Idologic</span></a>
+            </div>
         </div>
 
         <p class="desc">
         {%- if host.image -%}
             <img src="/static/media/hosts/{{host.image}}" class="logo" />
         {%- endif -%}
-        {{host.description}}</p>
-        <p class="clear" id="purchase"><span class="arrow-point"></span>
-        <a href="#">
-            Purchase Web Hosting from <strong>{{host.name}}</strong> for only $9.99/month
-        </a></p>
+        {{host.description}}
+           <p id="purchase"><span class="arrow-point"></span>
+            <a href="#">
+                Purchase Web Hosting from <strong>{{host.name}}</strong> for only $9.99/month
+            </a>
+          </p> 
+        </p>
+
+        <div class="clear"></div>
     </div>
 
     {%- include 'comments.html' -%}

@@ -28,6 +28,17 @@ class Common(models.Model):
 
         super(Common, self).save()
 
+class HostManager(models.Manager):
+
+    # Consider caching this
+    def leaderboard(self):
+        """Assign a rank to each host based on their rating. Return a list
+        sorted in this order with a number (rank) assigned to each."""
+
+        func = lambda x,y: cmp(x.percentage(), y.percentage())
+        return sorted(self.all(), func, reverse=True)
+
+
 class Host(Common):
 
     user = models.ForeignKey(auth.User)
@@ -43,11 +54,6 @@ class Host(Common):
     link_back_required = models.BooleanField(default=False)
     link_back_url = models.URLField(max_length=255, blank=True)
 
-    space = models.IntegerField(default=0, help_text='MB')
-    bandwidth = models.IntegerField(default=0, help_text='MB')
-    price = models.FloatField(default=0,
-        help_text='Per Month (Max 1 year contract)')
-
     hits = models.IntegerField(default=0)
     featured = models.IntegerField(default=0, blank=True)
     active = models.BooleanField(default=1)
@@ -55,6 +61,8 @@ class Host(Common):
     image = models.ImageField(upload_to='hosts', blank=True)
 
     featured = models.IntegerField(default=0)
+
+    objects = HostManager()
 
     def __unicode__(self):
         return self.name
@@ -67,6 +75,16 @@ class Host(Common):
 
         func = lambda x,y: cmp(x.karma(), y.karma())
         return sorted(comments, func, reverse=True)
+
+    def rank(self):
+        """Return this hosts rank in the leaderboard"""
+
+        # Consider caching this
+        for i, host in enumerate(Host.objects.leaderboard()):
+            if self == host:
+                # Increase by 1 for index starting at 0
+                return i+1
+        return 0
 
     def percentage(self):
         """Return the rating as a percentage"""
@@ -123,6 +141,7 @@ class Host(Common):
 
         return final
 
+    
 
 class Category(Common):
 
@@ -243,3 +262,20 @@ class RatingType(models.Model):
         return self.name
     
 
+class Feature(models.Model):
+    host = models.ForeignKey('Host')
+
+    type = models.ForeignKey('FeatureType')
+    value = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return "%s (%s)" % (self.type.name, self.value)
+
+class FeatureType(models.Model):
+    name = models.CharField(max_length=255)
+
+    prefix = models.CharField(max_length=255, blank=True)
+    suffix = models.CharField(max_length=255, blank=True)
+
+    def __unicode__(self):
+        return self.name

@@ -17,6 +17,9 @@ class CommentAdmin(admin.ModelAdmin):
     ]
 
 
+class FeaturesInline(admin.TabularInline):
+    model = models.Feature
+
 class HostAdmin(admin.ModelAdmin):
 
     list_display = ('name', 'category', 'links_back', 'link_back_required',
@@ -24,6 +27,10 @@ class HostAdmin(admin.ModelAdmin):
     list_filter = ('links_back', 'link_back_required', 'featured', 'active')
     ordering = ('name', 'category')
     search_fields = ('name', 'category', 'space', 'bandwidth', 'price', 'image')
+
+    inlines = [
+        FeaturesInline,
+    ]
 
 class KarmaAdmin(admin.ModelAdmin):
 
@@ -36,3 +43,5 @@ admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
 admin.site.register(models.Comment, CommentAdmin)
 admin.site.register(models.Karma, KarmaAdmin)
+admin.site.register(models.Feature)
+admin.site.register(models.FeatureType)

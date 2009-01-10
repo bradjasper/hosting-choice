@@ -19,22 +19,61 @@
 {%- endmacro -%}
 
 {%- macro Ratings(ratings) -%}
-    {% if ratings | length %}
     {% for name in ratings %}
-        <dl>
-            <dt class="name">{{name}}: {{ratings[name]}}</dt>
-            <dd>
-                <span class="
-                    {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
-                "></span>
-            </dd>
-        </dl>
+    <tr>
+        <th>{{name}}:</td>
+        <td>
+            <span class="
+                {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
+            "></span>
+        </td>
+    </tr>
     {% endfor %}
-    {% else %}
-        <dl>
-            <dt class="name">No Ratings</dt>
-        </dl>
-    {% endif %}
     {{ caller() }}
 {%- endmacro -%}
 
+{%- macro Features(features) -%}
+    {% for feature in features %}
+    <tr>
+        <th>{{feature.type.name}}:</th>
+        <td>
+         {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+         </td>
+     </tr>
+    {% endfor %}
+    {{ caller() }}
+{%- endmacro -%}
+
+
+{%- macro Leaderboard(hosts) -%}
+    <table class="leaderboard">
+        {% if hosts %}
+            <tr>
+                <th>#</th>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Features</th>
+            </tr>
+            {% for host in hosts %}
+            <tr class="{{ loop.cycle('odd', 'even') }}">
+                    <td class="rank">{{ loop.index }}.</td>
+                    <td>{{ host.percentage() }}%
+                        <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                                host.comment_set.filter(active=1) | length }}
+                                Reviews</a>)</span></td>
+                    <td><a href="/host/{{host.slug}}.html">{{ host.name }}</a></td>
+                    <td class="features">
+                        {% for feature in host.feature_set.all() %}
+                        <span><strong>{{feature.type.name}}:</strong>
+                            {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+                        </span>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            No Hosts!
+        {% endif %}
+    </table>
+    {{ caller() }}
+{%- endmacro -%}

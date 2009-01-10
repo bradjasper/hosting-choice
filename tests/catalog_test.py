@@ -2,9 +2,24 @@ import unittest
 from catalog import models
 from django.contrib.auth import models as auth
 
+def create_comment(host, ratings):
+    """Helper function for creating comments"""
+    comment2 = models.Comment(text='test', host=host)
+    comment2.save()
+
+    types = models.RatingType.objects.all()
+
+    items = []
+    for value, type in zip(ratings, types):
+        tmp_obj = models.Rating(comment=comment2, type=type, value=value)
+        tmp_obj.save()
+        items.append(tmp_obj)
+
+    return items
+
 class CatalogTest(unittest.TestCase):
 
-    def testKarma(self):
+    def _testKarma(self):
         """Test karma"""
 
         try:
@@ -42,7 +57,7 @@ class CatalogTest(unittest.TestCase):
                 pass
 
 
-    def testRatingLimit(self):
+    def _testRatingLimit(self):
         """Test the rating limit"""
 
         comment = models.Comment.objects.all()[0]
@@ -56,7 +71,7 @@ class CatalogTest(unittest.TestCase):
             rating.delete()
 
 
-    def testCommentRating(self):
+    def _testCommentRating(self):
         """Test individual comment rating"""
 
         try:
@@ -93,7 +108,7 @@ class CatalogTest(unittest.TestCase):
             comment.delete()
 
 
-    def testHostRating(self):
+    def _testHostRating(self):
         """Test individual host rating"""
 
         try:
@@ -143,7 +158,7 @@ class CatalogTest(unittest.TestCase):
                 pass
 
 
-    def testRatingCategories(self):
+    def _testRatingCategories(self):
         """Test the different rating categories"""
 
 
@@ -179,7 +194,6 @@ class CatalogTest(unittest.TestCase):
 
             assert host.rating() == 3.5, host.rating()
 
-
             ratings = host.ratings()
             assert ratings['Support'] == 3.5, ratings
             assert ratings['Features'] == 3.0
@@ -201,6 +215,33 @@ class CatalogTest(unittest.TestCase):
     def testHostLeaderboard(self):
         """Test the host leaderboard. This assigns a rank to every
         host in the system using their overall rating"""
+
+        try:
+
+            hosts = models.Host.objects.leaderboard()
+            host1, host2 = hosts[0], hosts[1]
+
+            comments = []
+
+            for x in xrange(2):
+                comments.extend(create_comment(host2, [5, 5, 5]))
+
+            # Verify host2 is now in the #1 position
+            hosts = models.Host.objects.leaderboard()
+            assert host2 == hosts[0], (host2, hosts[0])
+
+
+            assert host2.rank() == 1, host2.rank()
+
+
+        finally:
+
+            try:
+                for comment in comments:
+                    comment.delete()
+            except UnboundLocalError:
+                pass
+
 
 
 unittest.main()

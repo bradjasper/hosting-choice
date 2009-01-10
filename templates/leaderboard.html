@@ -1,0 +1,9 @@
+{%- extends 'base.html' -%}
+
+{%- block content -%}
+    <h1>Top Web Hosts</h1>
+    <p>Below you will find our list of the <strong>best web hosts</strong>. </p>
+
+    {% call macros.Leaderboard(top_hosts) %}
+    {% endcall %}
+{%- endblock -%}
