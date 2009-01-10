@@ -1,4 +1,5 @@
 # Django settings for bizdir project.
+import socket
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -78,4 +79,5 @@ INSTALLED_APPS = (
     'hosting-choice.catalog',
 )
 
-from settings_dev import *
+if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
+    from settings_dev import *
