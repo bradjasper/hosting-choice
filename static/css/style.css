@@ -214,12 +214,18 @@ a.visit span {
     padding: 6px;
 }
 
+#info table tr {
+    background: url('/images/dots.png') bottom left repeat-x;
+}
+
 #info table td, #info table th {
-    padding: 3px 7px;
+    padding: 0 7px;
+    vertical-align: middle;
 }
 
 #info table th {
     text-align: right;
+    font-weight: bold;
 }
 
 #info table td {
@@ -413,7 +419,7 @@ a.visit span {
     display: block;
     font-size: 55%;
     padding: 2px;
-    color: grey;
+    color: gr1y;
     margin: 2px 0;
 }
 
@@ -485,19 +491,28 @@ a.visit span {
 .logo {
     padding: 3px;
     border: 1px solid #ddd;
-    margin-right: 5px;
+    margin-left: 5px;
     width: 100px;
-    float: left;
+    float: right;
 }
 
 .rank span {
     font-size: 35% !important;
+    font-weight: normal !important;
 }
 
 #breadcrumbs {
-    padding-bottom: 7px;
+    padding: 1px 0 9px 0;
 }
 
 .dots {
     background: url('/images/dots.png') left bottom repeat-x;
+}
+
+.desc {
+    line-height: 19px;
+}
+
+.nodots {
+    background-image: none !important;
 }

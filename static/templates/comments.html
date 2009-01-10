@@ -1,21 +1,6 @@
-<a name="comments" />
+<a name="comments"></a>
 <div id="comments-{{host.id}}" class="comments">
     <h2><span class="icon"></span>{{ host.comments() | length }} {{host.name}} Web Hosting Reviews</h2>
-    {% if messages %}
-        {% if messages['success'] %}
-            <ul id="success">
-            {% for message in messages['success'] %}
-                 <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% elif messages['errors'] %}
-            <ul id="errors">
-             {% for message in messages['success'] %}
-                 <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    {% endif %}
 
     <ul id="review-list">
 
@@ -55,6 +40,7 @@
                 <span class="comment-bottom"></span>
             </li>
         {% endfor %}
+        <li class="comment">
     </ul>
 </div>
 

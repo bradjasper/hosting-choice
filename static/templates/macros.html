@@ -20,7 +20,7 @@
 
 {%- macro Ratings(ratings) -%}
     {% for name in ratings %}
-    <tr>
+    <tr class="{% if loop.last %}nodots{% endif %}">
         <th>{{name}}:</th>
         <td>
             <span class="
