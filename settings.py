@@ -77,3 +77,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'hosting-choice.catalog',
 )
+
+from settings_dev import *
