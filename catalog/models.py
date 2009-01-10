@@ -182,7 +182,7 @@ class Comment(models.Model):
     active = models.IntegerField(default=1, choices=STATUSES)
 
     class Meta:
-        unique_together = ('host', 'text', 'name', 'email')
+        unique_together = ('host', 'name', 'email')
 
     def __unicode__(self):
         return self.text[0:50]

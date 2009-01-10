@@ -1,7 +1,7 @@
 from django import http, shortcuts
 
 def index(request):
-    return shortcuts.render_to_response('index.html')
+    assert False, 'boom'
 
 def page(request, slug):
     assert False, (slug, request)

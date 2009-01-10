@@ -10,7 +10,7 @@ a {
 
 body {
     margin-top: 0px;
-    background: url('/static/images/bg-tile.gif') top left;
+    background: url('/images/bg-tile.gif') top left;
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
@@ -19,7 +19,7 @@ body {
 #outer {
     width: 813px;
     margin: 0 auto;
-    background: url('/static/images/body-tile.png') repeat-y;
+    background: url('/images/body-tile.png') repeat-y;
     text-align: center;
 }
 
@@ -33,7 +33,7 @@ body {
     width: 813px;
     _width: 777px;
     margin: 0 auto;
-    background: url('/static/images/footer.png') bottom left no-repeat;
+    background: url('/images/footer.png') bottom left no-repeat;
     min-height: 30px;
     margin-bottom: 30px;
     text-align: left;
@@ -48,7 +48,7 @@ body {
 
 #header {
     height: 78px;
-    background: url('/static/images/header.png') top center no-repeat;
+    background: url('/images/header.png') top center no-repeat;
     width: 770px;
     margin: 0 auto;
 }
@@ -63,7 +63,7 @@ body {
     float: right;
     height: 100%;
     padding: 0;
-    background: url('/static/images/nav-sprite.png') 0 0 no-repeat;
+    background: url('/images/nav-sprite.png') 0 0 no-repeat;
 }
 
 #nav li a {
@@ -82,19 +82,19 @@ body {
 
 #content {
     width: 778px;
-    background: url('/static/images/content-sprite.png') -778px repeat-y;
+    background: url('/images/content-sprite.png') -778px repeat-y;
     margin: 0 auto;
     text-align: left;
 }
 
 #content-top {
     height: 12px;
-    background: url('/static/images/content-sprite.png') 0 0 no-repeat;
+    background: url('/images/content-sprite.png') 0 0 no-repeat;
 }
 
 #content-bottom {
     height: 12px;
-    background: url('/static/images/content-sprite.png') -1556px 0 no-repeat;
+    background: url('/images/content-sprite.png') -1556px 0 no-repeat;
 }
 
 #content-inner {
@@ -129,7 +129,7 @@ h5 { font-size: 105% }
     font-weight: bold;
     padding-bottom: 13px;
     padding-left: 8px;
-    background: url('/static/images/sidebar_sep.png') bottom left no-repeat;
+    background: url('/images/sidebar_sep.png') bottom left no-repeat;
 }
 
 
@@ -141,7 +141,7 @@ h5 { font-size: 105% }
 #sidebar ul li {
     padding: 1px 0;
     list-style-type: square;
-    list-style-image: url('/static/images/sidebar_bullet.png');
+    list-style-image: url('/images/sidebar_bullet.png');
     margin: 2px 0 0 10px;
 }
 
@@ -161,7 +161,7 @@ a.visit {
     width: 113px;
     height: 27px;
     display: block;
-    background: url('/static/images/icon-sprite.png') 0 -17px no-repeat;
+    background: url('/images/icon-sprite.png') 0 -17px no-repeat;
     margin: 10px 0;
 }
 
@@ -177,7 +177,7 @@ a.visit span {
     font-size: 135%;
 }
 .comments .icon {
-    background: url('/static/images/icon-sprite.png') 4px 3px no-repeat;
+    background: url('/images/icon-sprite.png') 4px 3px no-repeat;
     display: block;
     width: 30px;
     height: 19px;
@@ -186,7 +186,7 @@ a.visit span {
 }
 
 .arrow-point {
-    background: #fff url('/static/images/icon-sprite.png') 0 -44px no-repeat;
+    background: #fff url('/images/icon-sprite.png') 0 -44px no-repeat;
     display: block;
     height: 16px;
     width: 20px;
@@ -202,7 +202,7 @@ a.visit span {
 
 
 #info table {
-    background: url('/static/images/rating.png') top left no-repeat;
+    background: url('/images/rating.png') top left no-repeat;
     width: 100%;
     height: 128px;
     font-size: 85%;
@@ -222,7 +222,7 @@ a.visit span {
 }
 
 .stars {
-    background: url('/static/images/star-sprite.png') 0 0 no-repeat;
+    background: url('/images/star-sprite.png') 0 0 no-repeat;
     width: 60px;
     height: 13px;
     display: block !important;
@@ -241,7 +241,7 @@ a.visit span {
 .stars50 { background-position: 0 -135px; }
 
 .comment {
-    background: url('/static/images/comment-sprite.png') 0 0 no-repeat;
+    background: url('/images/comment-sprite.png') 0 0 no-repeat;
     width: 514px;
     margin: 20px 0;
     display: block;
@@ -262,7 +262,7 @@ a.visit span {
 }
 
 .comments ul li .comment-bottom {
-    background: url('/static/images/comment-sprite.png') 0 -2866px no-repeat;
+    background: url('/images/comment-sprite.png') 0 -2866px no-repeat;
     display: block;
     height: 14px;
     font-size: 1%;
