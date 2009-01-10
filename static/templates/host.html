@@ -1,0 +1,57 @@
+{%- extends 'base.html' -%}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <a href="/category/{{host.category.slug}}.html" title="{{host.category.name}}
+        Reviews">{{host.category.name}}</a>
+    &raquo;
+    <strong>{{host.name}} Reviews</strong>
+{% endblock %}
+{%- block content -%}
+{% if host %}
+    <div class="host" id="host-{{host.id}}">
+        <h1>{{host.name}} Hosting Review</h1>
+        
+        <p class="desc">
+           {%- if host.image -%}
+           <a href="{{host.url}}" title="Visit {{host.name}}">
+               <img src="/images/{{host.image}}" class="logo" size="50%" />
+            </a>
+           {%- endif -%}
+           {{host.description}}
+           <p id="purchase"><span class="arrow-point"></span>
+            <a href="#">
+                Purchase Web Hosting from <strong>{{host.name}}</strong> for only $9.99/month
+            </a>
+          </p> 
+        </p>
+
+    </div>
+    <div id="info">
+        <div class="rank">
+            {{ host.percentage() | smart_round }}%
+        
+            <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                                host.comment_set.filter(active=1) | length }}
+                                Reviews</a>)</span>
+
+        </div>
+        <table>
+            {%- call macros.Features(host.feature_set.all()) %}
+            {% endcall -%}
+            {%- call macros.Ratings(host.ratings()) %}
+            {% endcall -%}
+        </table>
+        <div>
+            <a class="visit" href="#"><span>Idologic</span></a>
+        </div>
+    </div>
+
+
+    <div class="clear"></div>
+    {%- include 'comments.html' -%}
+{% else %}
+    <p>Cannot find host.</p>
+{% endif %}
+{%- endblock -%}

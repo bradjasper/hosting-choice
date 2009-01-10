@@ -4,7 +4,7 @@ import jinja2
 import MySQLdb
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
-        loader=jinja2.PackageLoader('hosting-choice', 'templates'))
+        loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
 
 def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)

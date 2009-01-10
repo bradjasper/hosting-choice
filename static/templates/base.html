@@ -1,0 +1,23 @@
+{% import 'macros.html' as macros with context %}
+
+{% include 'header.html' %}
+
+<div id="content">
+    <div id="content-top"></div>
+    <div id="content-inner">
+        <div id="breadcrumbs" class="dots">
+            {% block breadcrumbs %}
+                <a href="/" title="Hosting Choice Home Page">Hosting Choice</a>
+            {% endblock %}
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% include 'sidebar.html' %}
+
+    <div class="clear"></div>
+    <div id="content-bottom"></div>
+</div>
+
+{% include 'footer.html' %}

@@ -162,11 +162,12 @@ a.visit {
     height: 27px;
     display: block;
     background: url('/images/icon-sprite.png') 0 -17px no-repeat;
-    margin: 10px 0;
+    margin: 9px 0;
 }
 
 a.visit span {
-    display: none;
+    display: none !important;
+    font-size: 1%;
 }
 
 .comments {
@@ -194,6 +195,10 @@ a.visit span {
     float: left;
 }
 
+.host {
+    float: left;
+    width: 340px;
+}
 #info {
     float: right;
     width: 169px;
@@ -219,6 +224,11 @@ a.visit span {
 
 #info table td {
     width: 48%;
+}
+
+#info div {
+    text-align: center;
+    padding: 7px 0;
 }
 
 .stars {
@@ -293,7 +303,7 @@ a.visit span {
 #purchase {
     padding: 5px 0;
     font-size: 120%;
-    line-height: 20px;
+    line-height: 22px;
 }
 
 .ratings {
@@ -399,7 +409,7 @@ a.visit span {
     background-color: #dedede;
 }
 
-.leaderboard td span {
+.leaderboard td span, #info div span {
     display: block;
     font-size: 55%;
     padding: 2px;
@@ -464,14 +474,30 @@ a.visit span {
 }
 
 .rank {
-    font-size: 250%;
+    font-size: 240%;
+    font-weight: bold;
     text-align: center;
     color: #616b13;
     padding: 3px;
+    margin: 11px 0;
 }
 
 .logo {
-    float: right;
-    padding: 0 0 5px 5px;
-    border: 0;
+    padding: 3px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    width: 100px;
+    float: left;
+}
+
+.rank span {
+    font-size: 35% !important;
+}
+
+#breadcrumbs {
+    padding-bottom: 7px;
+}
+
+.dots {
+    background: url('/images/dots.png') left bottom repeat-x;
 }

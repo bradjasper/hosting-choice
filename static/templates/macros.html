@@ -21,7 +21,7 @@
 {%- macro Ratings(ratings) -%}
     {% for name in ratings %}
     <tr>
-        <th>{{name}}:</td>
+        <th>{{name}}:</th>
         <td>
             <span class="
                 {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
@@ -51,7 +51,7 @@
             <tr>
                 <th>#</th>
                 <th>Rank</th>
-                <th>Name</th>
+                <th>Host Name</th>
                 <th>Features</th>
             </tr>
             {% for host in hosts %}

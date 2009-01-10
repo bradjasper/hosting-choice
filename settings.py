@@ -67,7 +67,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'hosting-choice.urls'
 
 TEMPLATE_DIRS = (
-    '/home/bjasper/hosting-choice/templates/',
+    '/home/bjasper/hosting-choice/static/templates/',
 )
 
 INSTALLED_APPS = (
@@ -80,4 +80,4 @@ INSTALLED_APPS = (
 )
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
-    from settings_dev import *
+	from settings_dev import *
