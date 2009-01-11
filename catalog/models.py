@@ -5,6 +5,7 @@ import datetime
 
 from django.db import models
 from django.contrib.auth import models as auth
+from django.core.cache import cache
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -35,8 +36,16 @@ class HostManager(models.Manager):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
+        items = cache.get('leaderboard')
+        if items:
+            return items
+
         func = lambda x,y: cmp(x.percentage(), y.percentage())
-        return sorted(self.all(), func, reverse=True)
+        items = sorted(self.all(), func, reverse=True)
+
+        cache.set('leaderboard', items, 500)
+
+        return items
 
 
 class Host(Common):
@@ -86,12 +95,20 @@ class Host(Common):
     def rank(self):
         """Return this hosts rank in the leaderboard"""
 
-        # Consider caching this
+        value = cache.get((self.id, 'rank'))
+        if value:
+            return value
+
         for i, host in enumerate(Host.objects.leaderboard()):
             if self == host:
                 # Increase by 1 for index starting at 0
-                return i+1
-        return 0
+                value = i+1
+                break
+        value = 0
+
+        cache.set((self.id, 'rank'), value, 500)
+
+        return value
 
     def percentage(self):
         """Return the rating as a percentage"""

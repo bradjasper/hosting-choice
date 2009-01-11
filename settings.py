@@ -58,11 +58,13 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.load_template_source',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-)
+    'django.middleware.cache.FetchFromCacheMiddleware',
+]
 
 ROOT_URLCONF = 'hosting-choice.urls'
 
@@ -70,7 +72,7 @@ TEMPLATE_DIRS = (
     '/home/bjasper/hosting-choice/static/templates/',
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -78,7 +80,12 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'hosting-choice.catalog',
 	'hosting-choice.main',
-)
+]
+
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHE_MIDDLEWARE_SECONDS = 60
+CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *
