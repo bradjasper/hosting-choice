@@ -45,7 +45,7 @@
 {%- endmacro -%}
 
 
-{%- macro Leaderboard(hosts) -%}
+{%- macro Leaderboard(hosts, limit) -%}
     <table class="leaderboard">
         {% if hosts %}
             <tr>
@@ -70,6 +70,8 @@
                         {% endfor %}
                     </td>
                 </tr>
+
+                {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
             {% endfor %}
         {% else %}
             No Hosts!

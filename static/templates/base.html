@@ -5,11 +5,13 @@
 <div id="content">
     <div id="content-top"></div>
     <div id="content-inner">
-        <div id="breadcrumbs" class="dots">
-            {% block breadcrumbs %}
-                <a href="/" title="Hosting Choice Home Page">Hosting Choice</a>
-            {% endblock %}
-        </div>
+        {% block breadcrumbsdiv %}
+            <div id="breadcrumbs" class="dots">
+                {% block breadcrumbs %}
+                    <a href="/" title="Home">Home</a>
+                {% endblock %}
+            </div>
+        {% endblock %}
         {% block content %}
         {% endblock %}
     </div>

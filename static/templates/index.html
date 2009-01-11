@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
-{% block body %}
-    Home
+{% block breadcrumbsdiv %}
+{% endblock %}
+
+{% block content %}
+    <div id="home">
+        <h1>Top 10 Web Hosts</h1>
+        <p>Below you'll find our pick for the <strong>Top 10 Web
+            Hosts</strong>.</p>
+
+        {% call macros.Leaderboard(top_hosts, 1) %}
+        {% endcall %}
+    </div>
 {% endblock %}

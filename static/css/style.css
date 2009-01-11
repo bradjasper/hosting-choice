@@ -41,9 +41,9 @@ body {
 
 #footer span {
     padding: 18px;
-    width: 100%;
     display: block;
     font-size: 80%;
+    float: left;
 }
 
 #header {
@@ -51,6 +51,7 @@ body {
     background: url('/images/header.png') top center no-repeat;
     width: 770px;
     margin: 0 auto;
+    position: relative;
 }
 
 #nav {
@@ -76,9 +77,15 @@ body {
     display: none;
 }
 
-#nav .submit { width: 100px; }
-#nav .reviews { width: 93px; background-position: -110px 0; }
-#nav .about { width: 75px; background-position: -203px 0; }
+#nav #tophosts { width: 92px; background-position: -127px 0; }
+#nav #submit { width: 127px; }
+#nav #about { width: 85px; background-position: -219px 0; }
+#nav #directory { width: 112px; background-position: -302px 0; }
+
+#nav .active {
+    padding-bottom: 2px;
+    border-bottom: 2px solid #ff9c00;
+}
 
 #content {
     width: 778px;
@@ -113,7 +120,7 @@ body {
 h1, h2, h3, h4, h5 {
     color: #aec023;
     font-size: 170%;
-    padding: 5px 0 10px 0;
+    padding: 7px 0 10px 0;
 }
 
 h2 { font-size: 150% }
@@ -151,6 +158,7 @@ h5 { font-size: 105% }
     padding: 5px 0;
     color: #333;
 }
+
 
 p {
     line-height: 18px;
@@ -211,7 +219,6 @@ a.visit span {
     width: 100%;
     height: 128px;
     font-size: 85%;
-    padding: 6px;
 }
 
 #info table tr {
@@ -246,15 +253,15 @@ a.visit span {
 }
 
 .stars05 { background-position: 0 -12px; }
-.stars10 { background-position: 0 -26px; }
+.stars1 { background-position: 0 -26px; }
 .stars15 { background-position: 0 -39px; }
-.stars20 { background-position: 0 -53px; }
+.stars2 { background-position: 0 -53px; }
 .stars25 { background-position: 0 -67px; }
-.stars30 { background-position: 0 -81px; }
+.stars3 { background-position: 0 -81px; }
 .stars35 { background-position: 0 -94px; }
-.stars40 { background-position: 0 -108px; }
+.stars4 { background-position: 0 -108px; }
 .stars45 { background-position: 0 -122px; }
-.stars50 { background-position: 0 -135px; }
+.stars5 { background-position: 0 -135px; }
 
 .comment {
     background: url('/images/comment-sprite.png') 0 0 no-repeat;
@@ -441,7 +448,6 @@ a.visit span {
 }
 
 .odd {
-    background-color: #fff;
 }
 
 .alt {
@@ -515,4 +521,85 @@ a.visit span {
 
 .nodots {
     background-image: none !important;
+}
+
+#logo {
+    position: absolute;
+    top: 9px;
+    left: 28px;
+    width: 236px;
+    height: 60px;
+}
+
+#logo span {
+    display: none !important;
+    font-size: 1%;
+}
+
+.category {
+    padding: 15px;
+}
+.category h3 {
+    float: left;
+    margin: 0 0 10px;
+    padding: 0;
+    line-height: 18px;
+}
+
+
+.category span {
+    padding: 4px 6px;
+    display: block;
+    float: left;
+    color: #666;
+    font-size: 80%;
+}
+
+
+.top_hosts {
+    padding: 5px 10px;
+    margin-bottom: 25px;
+    margin-left: -8px;
+    width: 100%;
+}
+
+.top_hosts tr {
+    padding: 1px 0;
+    background: url('/images/sidebar_bullet.png') 0 7px no-repeat;
+}
+
+.top_hosts th {
+    padding-left: 23px;
+}
+
+.top_hosts th a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 6px 0;
+}
+
+.top_hosts tr td {
+    padding: 8px;
+    color: #333;
+    text-align: right;
+    font-size: 80%;
+}
+
+#footer ul {
+    float: right;
+    padding: 18px;
+    display: block;
+    font-size: 80%;
+}
+
+#footer ul li {
+    display: inline;
+    float: left;
+    padding: 0 15px;
+    border-right: 1px solid #ccc;
+}
+
+.noborder {
+    border-width: 0px !important;
 }

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalog import models
+import models
 
 class RatingsInline(admin.TabularInline):
     model = models.Rating

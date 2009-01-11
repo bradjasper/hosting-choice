@@ -1,53 +1,8 @@
 from django import http
 from catalog import models, forms
-import jinja2
 import MySQLdb
 
-env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
-        loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
-
-def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
-    return value.strftime(format)
-
-env.filters['datetimeformat'] = datetimeformat
-
-def smart_round(num):
-    try:
-        return round(num / 0.5) * 0.5
-    except TypeError:
-        assert False, num
-
-env.filters['smart_round'] = smart_round
-
-def render_to_response(template, context = None):
-    global env
-
-    if context is None:
-        context = {}
-
-    obj = env.get_template(template)
-    contents = obj.render(**context)
-
-    return http.HttpResponse(contents)
-
-
-def render(template, context = None):
-    """Generic render method to render full pages"""
-
-    if context is None:
-        context = {}
-
-    categories = models.Category.objects.filter()
-    top_hosts = models.Host.objects.leaderboard()
-    recent_reviews = models.Comment.objects.filter(active=1).order_by('date')
-
-    context.update({
-        'categories': categories,
-        'top_hosts': top_hosts,
-        'recent_reviews': recent_reviews})
-
-    return render_to_response(template, context)
-
+import response
 
 def show_host(request, slug):
     """Return the view for an host listing"""
@@ -91,10 +46,11 @@ def show_host(request, slug):
         host = None
         form = None
 
-    return render('host.html', {
+    return response.render('host.html', {
         'host': host,
         'form': form,
-        'messages': messages})
+        'messages': messages,
+        'request': request})
 
     
 def show_category(request, slug):
@@ -102,14 +58,26 @@ def show_category(request, slug):
 
     try:
         category = models.Category.objects.get(slug=slug)
-        hosts = models.Host.objects.filter(category=category)
+        hosts = models.Host.objects.leaderboard()
+
     except models.Category.DoesNotExist:
         category = None
         hosts = []
 
-    return render('category.html', {
+
+    return response.render('category.html', {
         'hosts': hosts,
-        'category': category})
+        'category': category,
+        'request': request})
+
+def show_categories(request):
+    """Return an overall view of the categories"""
+
+    categories = models.Category.objects.filter(parent=0)
+
+    return response.render('categories.html', {
+        'categories': categories,
+        'request': request})
 
 
 def report(request, id):
@@ -120,8 +88,6 @@ def report(request, id):
     comment.save()
 
     return http.HttpResponse()
-
-
 
 
 def helpful(request, id):
@@ -144,7 +110,15 @@ def helpful(request, id):
 def leaderboard(request):
     """Display the leaderboard"""
 
-    return render('leaderboard.html')
+    return response.render('leaderboard.html', {
+        'request': request})
 
 
     
+def visit(request, slug):
+    """Visit a site, recording a hit"""
+    host = models.Host.objects.get(slug=slug)
+    host.hits += 1
+    host.save()
+
+    return http.HttpResponseRedirect(host.url)

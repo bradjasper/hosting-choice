@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <strong>{{page.name}}</strong>
+{% endblock %}
+
+{% block content %}
+    <div class="page" id="page-{{page.slug}}">
+        <h1>{{page.name}}</h1>
+        <p class="desc">{{page.text}}</p>
+    </div>
+{% endblock %}

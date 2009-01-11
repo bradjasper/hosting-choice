@@ -1,22 +1,18 @@
 {% extends 'base.html' %}
 
-{% block body %}
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <a href="/hosts.html" title="Hosts">Hosts</a>
+    &raquo;
+    <strong>{{category.name}}</strong>
+{% endblock %}
+{% block content %}
     <div id="category">
-        {% if category %}
-            <h1>{{category.name}}</h1>
-            <p class="desc">{{category.description}}</p>
-            <h2>Hosts in {{category.name}}</h2>
-            <ul>
-                {% for host in hosts %}
+        <h1>Top <strong>{{category.name}}</strong> Web Hosts</h1>
+        <p class="desc">{{category.description}}</p>
 
-                    <a href="/host/{{host.slug}}.html">{{host.name}}</a>
-                    <span>{{host.url}}</span>
-                    <em>({{host.user}} - {{host.hits}} hits)</em>
-                    <p>{{host.description}}</p>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <h1>Cannot find category</h1>
-        {% endif %}
+        {% call macros.Leaderboard(hosts) %}
+        {% endcall %}
     </div>
 {% endblock %}

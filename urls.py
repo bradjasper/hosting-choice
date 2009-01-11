@@ -13,18 +13,16 @@ urlpatterns = patterns('',
 
     (r'^category/(?P<slug>.*).html$', 'catalog.views.show_category'),
     (r'^host/(?P<slug>.*).html$', 'catalog.views.show_host'),
+    (r'^hosts/(?P<slug>.*).html$', 'catalog.views.show_category'),
+    (r'^hosts.html$', 'catalog.views.show_categories'),
+
     (r'^leaderboard.html$', 'catalog.views.leaderboard'),
+    (r'^visit/(?P<slug>.*).html$', 'catalog.views.visit'),
 
     (r'^comment/helpful/(?P<id>.*).html$', 'catalog.views.helpful'),
     (r'^comment/report/(?P<id>.*).html$', 'catalog.views.report'),
 
     (r'^$|index.html$', 'main.views.index'),
 
-    (r'^design/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': '/Users/bjasper/Sites/hosting-choice/design',
-        'show_indexes': True}),
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': '/Users/bjasper/Sites/hosting-choice/static',
-        'show_indexes': True}),
-
+    (r'^(?P<slug>(.*)).html', 'main.views.get_page'),
 )

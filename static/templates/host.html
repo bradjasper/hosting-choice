@@ -3,10 +3,12 @@
 {% block breadcrumbs %}
     {{ super() }}
     &raquo;
-    <a href="/category/{{host.category.slug}}.html" title="{{host.category.name}}
+    <a href="/hosts.html" title="Hosts">Hosts</a>
+    &raquo;
+    <a href="/hosts/{{host.category.slug}}.html" title="{{host.category.name}}
         Reviews">{{host.category.name}}</a>
     &raquo;
-    <strong>{{host.name}} Reviews</strong>
+    <strong>{{host.name}}</strong>
 {% endblock %}
 {%- block content -%}
 {% if host %}

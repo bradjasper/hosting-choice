@@ -19,11 +19,33 @@
     <body>
         <div id="outer">
             <div id="inner">
-
                 <div id="header">
+                    <a href="/" id="logo" title="Home"><span>Hosting Choice Home</span></a>
+
                     <ul id="nav">
-                        <li class="about"><a href="#about"><span>About Us</span></a></li>
-                        <li class="reviews"><a href="#hosting"><span>Hosting Reviews</span></a></li>
-                        <li class="submit"><a href="#submit"><span>Submit A Host</span></a></li>
+                        <li class="
+                            {%- if active_page == 'about' %}
+                                active
+                            {% endif %}" id="about">
+                            <a href="/about.html"><span>About Us</span></a>
+                        </li>
+                        <li class="
+                            {%- if active_page == 'submit' %}
+                                active
+                            {% endif %}" id="submit">
+                            <a href="/submit.html"><span>Submit A Host</span></a>
+                        </li>
+                        <li class="
+                            {%- if active_page == 'directory' %}
+                                active
+                            {% endif %}" id="directory">
+                            <a href="/hosts.html"><span>Host Directory</span></a>
+                        </li>
+                        <li class="
+                            {%- if active_page == 'leaderboard' %}
+                                active
+                            {% endif %}" id="tophosts">
+                            <a href="/leaderboard.html"><span>Top 10 Web Hosts</span></a>
+                        </li>
                     </ul>
                 </div>

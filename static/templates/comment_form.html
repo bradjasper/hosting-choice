@@ -1,6 +1,6 @@
 <a name="comment-form"></a>
 <div id="comment-form-{{host.id}}" class="comment-form">
-   <h3>Create A New Review For Idologic</h3>
+    <h3>Create A New Review For {{host.name}}</h3>
     <p>Do you have experience using
     <strong>{{host.name}} Web Hosting</strong>?
     Write a review for <strong>{{host.name}}</strong> 
@@ -71,8 +71,6 @@
                 <th class="textarea"><label for="id_text">Review:</label></th>
                 <td colspan="3">
                     {{ form.text }}
-                    <br /><small>Simple HTML is allowed,
-                        &lt;b&gt;, &lt;i&gt;, &lt;u&gt;, &lt;p&gt;.</small>
                     {{ form.text.errors }}
                 </td>
             </tr>

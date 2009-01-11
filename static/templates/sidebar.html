@@ -1,11 +1,14 @@
 <div id="sidebar">
 
     <h3>Top Rated Hosts</h3>
-    <ul>
+    <table class="top_hosts">
         {% for host in top_hosts %}
-        <li><a href="/host/{{host.slug}}.html">{{host.name}}</a></li>
+            <tr>
+                <th><a href="/host/{{host.slug}}.html">{{host.name}}</a></th>
+                <td>{{host.percentage() | smart_round}}%</</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 
     <h3>Recent Activity</h3>
     <ul>
@@ -18,6 +21,8 @@
 
     <h3>Site Links</h3>
     <ul>
+        <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
+        <li><a href="/hosts.html">Hosting Directory</a></li>
         <li><a href="/submit.html">Submit A Host</a></li>
         <li><a href="/about.html">About Us</a></li>
     </ul>

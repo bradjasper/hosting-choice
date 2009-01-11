@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'hosting-choice.catalog',
+	'hosting-choice.main',
 )
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
