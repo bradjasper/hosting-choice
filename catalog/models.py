@@ -67,6 +67,13 @@ class Host(Common):
     def __unicode__(self):
         return self.name
 
+    def features(self):
+        """Return a dictionary of features"""
+
+        func = lambda x: (x.type.name, "%s%s%s" % (x.type.prefix, x.value,
+            x.type.suffix))
+        return dict(map(func, Feature.objects.filter(host=self)))
+
     def comments(self):
         """Return a list of comments for this host. This method filters out
         inactive comments and sorts the results by their karma"""

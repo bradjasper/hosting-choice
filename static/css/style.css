@@ -175,7 +175,7 @@ a.visit {
 
 a.visit span {
     display: none !important;
-    font-size: 1%;
+    font-size: 1% !important;
 }
 
 .comments {
@@ -556,30 +556,30 @@ a.visit span {
 }
 
 
-.top_hosts {
+#sidebar table {
     padding: 5px 10px;
     margin-bottom: 25px;
     margin-left: -8px;
     width: 100%;
 }
 
-.top_hosts tr {
+#sidebar table tr {
     padding: 1px 0;
     background: url('/images/sidebar_bullet.png') 0 7px no-repeat;
 }
 
-.top_hosts th {
+#sidebar table th {
     padding-left: 23px;
 }
 
-.top_hosts th a {
+#sidebar table th a {
     display: block;
     width: 100%;
     height: 100%;
     padding: 6px 0;
 }
 
-.top_hosts tr td {
+#sidebar table tr td {
     padding: 8px;
     color: #333;
     text-align: right;
@@ -602,4 +602,12 @@ a.visit span {
 
 .noborder {
     border-width: 0px !important;
+}
+
+#recent_activity li a {
+    display: inline !important;
+}
+
+#recent_activity li {
+    line-height: 25px;
 }
