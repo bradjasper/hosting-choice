@@ -5,19 +5,33 @@
     &raquo;
     <strong>Hosts</strong>
 {% endblock %}
+
+{% block title %}
+    {% if categories %}
+        Web Hosting Reviews - Top 10 Hosting Reviews -
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
+
 {% block content %}
     <div id="categories">
         <h1>Web Hosting Reviews</h1>
         {% if categories %}
-            <p>Below you'll find different types of hosting providers.</p>
+            <p>Below you'll find different types of <strong>web hosting</strong> providers.</p>
             {% for category in categories %}
                 <div class="category {{ loop.cycle('even', 'odd') }}">
+
                     <h3><a href="/hosts/{{category.slug}}.html">
                            {{ category.name }} Reviews</a></h3>
+
                    <span>({{category.host_set.filter(active=1)|length}}
                        Hosts)</span>
+
                    <div class="clear"></div>
+
                     <p class="desc">{{ category.description }}</p>
+
                     <div class="topranked">
                         <strong>Top Hosts:</strong>
                         {% for host in category.host_set.leaderboard() %}
@@ -29,6 +43,7 @@
                             {% if loop.index == 3 %}{% break %}{% endif %}
                         {% endfor %}
                     </div>
+
                 </div>
             {% endfor %}
         {% endif %}

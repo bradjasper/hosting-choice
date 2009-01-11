@@ -10,11 +10,11 @@
         {% endfor %}
     </table>
 
-    <h3>Recent Activity</h3>
-    <ul id="recent_activity">
+    <h3>Recent Reviews</h3>
+    <ul id="recent_reviews">
         {% for review in recent_reviews %}
         <li>
-            <a href="/host/{{review.host.slug}}.html">
+            On <a href="/host/{{review.host.slug}}.html">
                 {{review.host.name}}</a>
             by {{review.name}}
         </li>

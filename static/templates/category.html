@@ -7,11 +7,19 @@
     &raquo;
     <strong>{{category.name}}</strong>
 {% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} Reviews - Top 10 {{category.name }} Reviews -
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
+
 {% block content %}
     <div id="category">
         <h1>Top <strong>{{category.name}}</strong> Web Hosts</h1>
         <p class="desc">{{category.description}}</p>
-
         {% call macros.Leaderboard(hosts) %}
         {% endcall %}
     </div>

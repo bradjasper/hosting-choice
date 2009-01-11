@@ -10,8 +10,23 @@
     &raquo;
     <strong>{{host.name}}</strong>
 {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script src="/js/host_init.js"></script>
+{% endblock %}
+
+{% block title %}
+    {% if host %}
+        {{ host.name }} Web Hosting Reviews - {{host.name }} Reviews -
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
 {%- block content -%}
 {% if host %}
+
+
     <div class="host" id="host-{{host.id}}">
         <h1>{{host.name}} Hosting Review</h1>
         
@@ -27,7 +42,7 @@
                 Purchase <strong>Web Hosting</strong> from
                 <strong>{{host.name}}</strong>
                 {%- if host.features()['Price'] %}
-                    for only {{host.features()['Price']}}/month
+                    for only {{host.features()['Price']}}
                 {%- endif -%}
             </a>
           </p> 

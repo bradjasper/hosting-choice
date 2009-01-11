@@ -10,55 +10,13 @@
             </ul>
             <div class="clear"></div>
         </div>
-
         <script type="text/javascript">
-
-            $('#errors').fadeIn(1500);
-            $('#success').fadeIn(1500);
-
-            $('.tools a').livequery(function() {
-                var par = $(this).parent();
-
-                $(this).ajaxify({
-                    method: 'POST',
-                    onComplete: function(opt) {
-                        par.html('<strong>Thanks!</strong>');
-                        par.fadeOut(5000, function() {
-                            $(this).remove();
-                            //par.parent().parent().remove();
-                        });
-
-                        if ($(this).attr('link').match('report')) {
-                            var grand = $(par).parent().parent()
-                            grand.fadeOut(1500, function() {
-                                $(this).remove();
-                            });
-                        }
-                    }
-                });
-            });
-
-            $(document).ready(function() {
-                var types = ['features', 'support', 'uptime']
-                for (key in types) {
-                    var name = 'id_rating_' + types[key];
-                    var val_name = name+'_val'
-
-                    var curvalue = $('#'+val_name).val()
-                    if (curvalue < 0) {
-                        curvalue = 0;
-                    }
-
-                    $('#'+name).rating(val_name, {maxvalue: 5, curvalue: curvalue});
-
-                }
-
-            });
-
-            $('.comment').hover(
-                function(){ $(this).find(".tools").show() },
-                function(){ $(this).find(".tools").hide() });
-
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+            try {
+                var pageTracker = _gat._getTracker("UA-6961171-1");
+                pageTracker._trackPageview();
+            } catch(err) {}
         </script>
     </body>
 </html>

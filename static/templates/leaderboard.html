@@ -5,6 +5,15 @@
     &raquo;
     <strong>Top Web Hosting Reviews</strong>
 {% endblock %}
+
+{% block title %}
+    {% if top_hosts %}
+        Top 10 Web Hosts - Top 10 Web Hosting
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
+
 {%- block content -%}
     <h1>Top Web Hosts</h1>
     <p>Below you will find our list of the <strong>best web hosts</strong>. </p>

@@ -205,7 +205,7 @@ a.visit span {
 
 .host {
     float: left;
-    width: 340px;
+    width: 350px;
 }
 #info {
     float: right;
@@ -376,11 +376,11 @@ a.visit span {
 }
 
 .comment-form table th, .comment-form table td {
-    padding: 4px 0;
+    padding: 5px 0;
 }
 
 .comment-form table th {
-    width: 8%;
+    width: 6%;
     vertical-align: middle !important;
 }
 
@@ -390,6 +390,7 @@ a.visit span {
 }
 
 .comment-form .rating {
+    margin: 0;
 }
 
 .comment-form .textarea {
@@ -563,7 +564,7 @@ a.visit span {
     width: 100%;
 }
 
-#sidebar table tr {
+#sidebar table th {
     padding: 1px 0;
     background: url('/images/sidebar_bullet.png') 0 7px no-repeat;
 }
@@ -604,10 +605,10 @@ a.visit span {
     border-width: 0px !important;
 }
 
-#recent_activity li a {
+#recent_reviews li a {
     display: inline !important;
 }
 
-#recent_activity li {
+#recent_reviews li {
     line-height: 25px;
 }
