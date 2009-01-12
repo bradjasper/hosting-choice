@@ -1,3 +1,4 @@
+import MySQLdb
 import jinja2
 from django import http
 import catalog.models
@@ -66,11 +67,15 @@ def render(template, context = None):
                 new_obj = main.models.Email(value=email,
                     ip=context['request'].META['REMOTE_ADDR'])
 
-                new_obj.save()
-
-                context['email_messages'] = {'success':
-                    'Successfully added your name to the list. You will now'
-                        + ' receive offers from our partners'}
+                try:
+                    new_obj.save()
+                except MySQLdb.IntegrityError:
+                    context['email_messages'] = {'error':
+                        'This email is already in our database'}
+                else:
+                    context['email_messages'] = {'success':
+                        'Successfully added your name to the list. You will now'
+                            + ' receive offers from our partners'}
 
 
         else:

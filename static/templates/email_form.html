@@ -12,7 +12,10 @@
 
         <p>Receive <strong>hosting discount coupons</strong> by
             entering your email address below:</p>
-        <form action=".#email_form" method="post">
+            <form action="{%-
+                if host %}{{host.get_absolute_url()}}
+                {%- elif category -%}{{category.get_absolute_url()}}
+                {%- endif -%}#email_form" method="post">
             {{ email_form.value }}
             {{ email_form.value.errors }}
             <br />&nbsp;<br />

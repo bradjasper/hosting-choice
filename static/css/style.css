@@ -463,6 +463,15 @@ a.visit span {
 
 }
 
+.leaderboard td.percentage {
+    font-weight: bold;
+    color: #111;
+}
+
+.leaderboard td.percentage span {
+    font-weight: normal;
+}
+
 .even {
     background-color: #f1f1f1;
 }
@@ -495,7 +504,7 @@ a.visit span {
     padding: 3px 0;
 }
 
-.errors {
+.error {
     color: red !important;
     border-color: red !important;
 }
@@ -596,4 +605,12 @@ a.visit span {
 
 .strong {
     font-weight: bold !important;
+}
+
+#twitter {
+    position: absolute;
+    right: 35px;
+    bottom: 7px;
+    padding: 5px 5px 5px 33px;
+    background: url('/images/icons/twitter.png') top left no-repeat;
 }
