@@ -4,8 +4,11 @@ import re
 import datetime
 
 from django.db import models
+from django.contrib import sitemaps
 from django.contrib.auth import models as auth
 from django.core.cache import cache
+
+import sitemap
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -36,14 +39,8 @@ class HostManager(models.Manager):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
-        items = cache.get('leaderboard')
-        if items:
-            return items
-
         func = lambda x,y: cmp(x.percentage(), y.percentage())
         items = sorted(self.all(), func, reverse=True)
-
-        cache.set('leaderboard', items, 500)
 
         return items
 
@@ -81,7 +78,7 @@ class Host(Common):
 
         func = lambda x: (x.type.name, "%s%s%s" % (x.type.prefix, x.value,
             x.type.suffix))
-        return dict(map(func, Feature.objects.filter(host=self)))
+        return dict(map(func, Feature.objects.filter(host=self).order_by('type')))
 
     def comments(self):
         """Return a list of comments for this host. This method filters out
@@ -113,6 +110,9 @@ class Host(Common):
     def percentage(self):
         """Return the rating as a percentage"""
         return self.rating(100)
+
+    def get_absolute_url(self):
+        return "/host/%s.html" % self.slug
 
     def rating(self, limit = None):
         """Return the normalized rating for a host"""
@@ -166,7 +166,6 @@ class Host(Common):
         return final
 
     
-
 class Category(Common):
 
     name = models.CharField(max_length=255)
@@ -183,6 +182,9 @@ class Category(Common):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return "/hosts/%s.html" % self.slug
 
 
 class Comment(models.Model):
@@ -237,7 +239,7 @@ class Comment(models.Model):
 
     def raw_ratings(self):
         """Return the ratings for a comment"""
-        ratings = Rating.objects.filter(comment=self).exclude(value=0)
+        ratings = Rating.objects.filter(comment=self).exclude(value=0).order_by('type')
         return dict([(rating.type.name, (rating.value, rating.type.limit)) for
             rating in ratings])
 

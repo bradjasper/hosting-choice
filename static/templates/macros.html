@@ -37,11 +37,8 @@
     <tr>
         <th>{{feature.type.name}}:</th>
         <td>
-            {%- if feature.value == '0' %}
-                Unlimited
-            {% else %}
-                 {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
-            {% endif %}
+            {%- call get_feature(feature) %}
+            {% endcall -%}
          </td>
      </tr>
     {% endfor %}
@@ -55,13 +52,13 @@
             <tr>
                 <th>#</th>
                 <th>Rank</th>
-                <th>Host Name</th>
+                <th>Host</th>
                 <th>Features</th>
             </tr>
             {% for host in hosts %}
             <tr class="{{ loop.cycle('odd', 'even') }}">
                     <td class="rank">{{ loop.index }}.</td>
-                    <td>{{ host.percentage() }}%
+                    <td>{{ host.percentage() | smart_round }}%
                         <span>(<a href="/host/{{host.slug}}.html#comments">{{
                                 host.comment_set.filter(active=1) | length }}
                                 Reviews</a>)</span></td>
@@ -69,7 +66,8 @@
                     <td class="features">
                         {% for feature in host.feature_set.all() %}
                         <span><strong>{{feature.type.name}}:</strong>
-                            {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+                            {%- call get_feature(feature) %}
+                            {% endcall -%}
                         </span>
                         {% endfor %}
                     </td>
@@ -81,5 +79,18 @@
             No Hosts!
         {% endif %}
     </table>
+    {{ caller() }}
+{%- endmacro -%}
+
+{%- macro get_feature(feature) -%}
+    {% if feature.type.suffix == 'MB' %}
+        {% if feature.value == '0' %}
+            Unlimited
+        {% else %}
+            {{ feature.value | normalize_size }}
+        {% endif %}
+    {% else %}
+        {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+    {% endif %}
     {{ caller() }}
 {%- endmacro -%}

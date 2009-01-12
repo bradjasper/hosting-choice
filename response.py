@@ -8,20 +8,23 @@ env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
 def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
     return value.strftime(format)
 
-env.filters['datetimeformat'] = datetimeformat
 
 def smart_round(num):
-    try:
-        new_num = round(num / 0.5) * 0.5
-        # Cheap way to remove rounding zero. Find better way to do this.
-        if str(new_num).endswith('.0'):
-            return int(str(new_num).split('.')[0])
+    new_num = roudn(round(num / 0.5) * 0.5)
 
-        return new_num
-    except TypeError:
-        assert False, num
+    # Cheap way to remove rounding zero. Find better way to do this.
+    if str(new_num).endswith('.0'):
+        new_num = int(str(new_num).split('.')[0])
 
-env.filters['smart_round'] = smart_round
+    return new_num
+
+def normalize_size(size):
+    for i, type in enumerate(['MB', 'GB', 'TB']):
+        tmp_size = int(size) / (1000 ** i)
+        if tmp_size < 1000:
+            return "%d%s" % (tmp_size, type)
+    return size
+
 
 def render_to_response(template, context = None):
     global env
@@ -35,6 +38,10 @@ def render_to_response(template, context = None):
     return http.HttpResponse(contents)
 
 
+env.filters['smart_round'] = smart_round
+env.filters['datetimeformat'] = datetimeformat
+env.filters['normalize_size'] = normalize_size
+
 def render(template, context = None):
     """Generic render method to render full pages"""
 
@@ -42,7 +49,7 @@ def render(template, context = None):
         context = {}
 
     categories = models.Category.objects.filter()
-    top_hosts = models.Host.objects.leaderboard()
+    top_hosts = models.Host.objects.leaderboard()[0:10]
     recent_reviews = models.Comment.objects.filter(active=1).order_by('date')
 
     if 'request' in context:

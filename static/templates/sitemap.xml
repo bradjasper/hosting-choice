@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for host in hosts %}
+  <url>
+      <loc>http://hosting-choice.com{{ host.get_absolute_url() }}</loc>
+      <changefreq>hourly</changefreq>
+      <priority>1.0</priority>
+   </url>
+{% endfor -%}
+
+{%- for category in categories %}
+  <url>
+      <loc>http://hosting-choice.com{{ category.get_absolute_url() }}</loc>
+      <changefreq>hourly</changefreq>
+      <priority>0.7</priority>
+   </url>
+{% endfor -%}
+    <url>
+        <loc>http://hosting-choice.com/hosts.html</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>http://hosting-choice.com/leaderboard.html</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://hosting-choice.com/</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.0</priority>
+    </url>
+</urlset>

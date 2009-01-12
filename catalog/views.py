@@ -73,7 +73,7 @@ def show_category(request, slug):
 def show_categories(request):
     """Return an overall view of the categories"""
 
-    categories = models.Category.objects.filter(parent=0)
+    categories = models.Category.objects.filter(parent=0).order_by('name')
 
     return response.render('categories.html', {
         'categories': categories,
@@ -122,3 +122,15 @@ def visit(request, slug):
     host.save()
 
     return http.HttpResponseRedirect(host.url)
+
+def sitemap(request):
+    """Display sitemap for search engine"""
+
+    hosts = models.Host.objects.leaderboard()
+    categories = models.Category.objects.all()
+
+    return response.render('sitemap.xml', {
+        'hosts': hosts,
+        'categories': categories})
+
+

@@ -22,6 +22,8 @@ urlpatterns = patterns('',
     (r'^comment/helpful/(?P<id>.*).html$', 'catalog.views.helpful'),
     (r'^comment/report/(?P<id>.*).html$', 'catalog.views.report'),
 
+    (r'^sitemap.xml$', 'catalog.views.sitemap'),
+
     (r'^$|index.html$', 'main.views.index'),
 
     (r'^(?P<slug>(.*)).html', 'main.views.get_page'),

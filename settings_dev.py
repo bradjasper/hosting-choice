@@ -1,7 +1,7 @@
 
 DATABASE_USER='root'
 DATABASE_PASSWORD=''
-DATABASE_NAME='bizdev'
+DATABASE_NAME='hostingchoice'
 
 MEDIA_ROOT = '/home/bjasper/Sites/hosting-choice/'
 MEDIA_URL = '/media/'
@@ -11,7 +11,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
@@ -25,7 +25,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'hosting-choice.catalog',
 	'hosting-choice.main',
-    'debug_toolbar',
+    #'debug_toolbar',
+)
+
+TEMPLATE_DIRS = (
+    '/Users/bjasper/Sites/hosting-choice/static/templates/',
 )
 
 ADMIN_MEDIA_PREFIX = '/media/admin_dev/'

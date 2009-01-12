@@ -38,7 +38,7 @@
            {%- endif -%}
            {{host.description}}
            <p id="purchase"><span class="arrow-point"></span>
-            <a href="#">
+           <a href="/visit/{{host.slug}}.html">
                 Purchase <strong>Web Hosting</strong> from
                 <strong>{{host.name}}</strong>
                 {%- if host.features()['Price'] %}
@@ -59,7 +59,7 @@
 
         </div>
         <table>
-            {%- call macros.Features(host.feature_set.all()) %}
+            {%- call macros.Features(host.feature_set.all().order_by('type')) %}
             {% endcall -%}
             {%- call macros.Ratings(host.ratings()) %}
             {% endcall -%}

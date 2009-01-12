@@ -1,17 +1,15 @@
 <div id="sidebar">
 
-    <h3>Top Rated Hosts</h3>
-    <table class="top_hosts">
+    <h3>Top 10 Hosts</h3>
+    <ul id="top_hosts">
         {% for host in top_hosts %}
-            <tr>
-                <th><a href="/host/{{host.slug}}.html">{{host.name}}</a></th>
-                <td>{{host.percentage() | smart_round}}%</</td>
-            </tr>
+            <li{% if loop.index == 1 %} class="strong"{% endif %}><a href="/host/{{host.slug}}.html">{{host.name}}</a>
+                <span>({{host.percentage() | smart_round}}%)</span></li>
         {% endfor %}
-    </table>
+    </ul>
 
     <h3>Recent Reviews</h3>
-    <ul id="recent_reviews">
+    <ul>
         {% for review in recent_reviews %}
         <li>
             On <a href="/host/{{review.host.slug}}.html">
