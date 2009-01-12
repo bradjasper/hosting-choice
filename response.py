@@ -1,6 +1,8 @@
 import jinja2
 from django import http
-from catalog import models
+import catalog.models
+import main.models
+from main import forms
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
@@ -48,12 +50,32 @@ def render(template, context = None):
     if context is None:
         context = {}
 
-    categories = models.Category.objects.filter()
-    top_hosts = models.Host.objects.leaderboard()[0:10]
-    recent_reviews = models.Comment.objects.filter(active=1).order_by('date')
+    categories = catalog.models.Category.objects.filter()
+    top_hosts = catalog.models.Host.objects.leaderboard()[0:10]
+    recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('date')
 
     if 'request' in context:
         context['active_page'] = get_section(context['request'].META['PATH_INFO'])
+
+        if context['request'].method == 'POST':
+            form = forms.EmailForm(context['request'].POST)
+            context['email_form'] = form
+
+            if form.is_valid():
+                email = form.data['value']
+                new_obj = main.models.Email(value=email,
+                    ip=context['request'].META['REMOTE_ADDR'])
+
+                new_obj.save()
+
+                context['email_messages'] = {'success':
+                    'Successfully added your name to the list. You will now'
+                        + ' receive offers from our partners'}
+
+
+        else:
+            context['email_form'] = forms.EmailForm()
+
         del context['request']
 
     context.update({

@@ -1,0 +1,22 @@
+{%- if email_form -%}
+    <a name="email_form"></a>
+    <h3>Hosting Discounts</h3>
+    <div>
+        {% if email_messages %}
+            {% if email_messages['success'] %}
+                <p class="success">{{ email_messages['success'] }}</p>
+            {% elif email_messages['error'] %}
+                <p class="error">{{ email_messages['error'] }}</p>
+            {% endif %}
+        {% endif %}
+
+        <p>Receive <strong>hosting discount coupons</strong> by
+            entering your email address below:</p>
+        <form action=".#email_form" method="post">
+            {{ email_form.value }}
+            {{ email_form.value.errors }}
+            <br />&nbsp;<br />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+{%- endif -%}

@@ -11,4 +11,9 @@ class Page(models.Model):
     def __unicode__(self):
         return "/%s.html - %s" % (self.slug, self.name)
 
+class Email(models.Model):
+    """Emails gathered for the newsletter"""
 
+    value = models.EmailField(max_length=255, unique=True)
+    ip = models.CharField(max_length=25)
+    active = models.BooleanField(default=True)

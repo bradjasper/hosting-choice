@@ -140,10 +140,19 @@ h5 { font-size: 105% }
 }
 
 
-#sidebar ul {
+#sidebar ul, #sidebar div {
     margin-bottom: 25px;
     width: 100%;
     font-size: 95%;
+}
+
+#sidebar div {
+    padding: 7px;
+    padding-bottom: 15px;
+}
+
+#sidebar div ul {
+    margin-bottom: 0px !important;
 }
 
 #sidebar ul li {
@@ -470,11 +479,11 @@ a.visit span {
 }
 
 .errorlist {
-    color: red;
-    padding: 7px 0 0 5px;
+    color: red !important;
+    padding: 7px 0 0 5px !important;
 }
 
-#errors, #success {
+.errors, .success {
     padding: 5px;
     margin: 10px 0;
     font-weight: bold;
@@ -482,18 +491,18 @@ a.visit span {
     background-color: #eeecb6;
 }
 
-#errors li, #success li {
+.errors li, .success li {
     padding: 3px 0;
 }
 
-#errors {
-    color: red;
-    border-color: red;
+.errors {
+    color: red !important;
+    border-color: red !important;
 }
 
-#success {
-    color: green;
-    border-color: green;
+.success {
+    color: green !important;
+    border-color: green !important;
 }
 
 .rank {

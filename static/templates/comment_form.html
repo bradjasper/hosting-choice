@@ -9,13 +9,13 @@
 
     {% if messages %}
         {% if messages['success'] %}
-            <ul id="success">
+            <ul class="success">
             {% for message in messages['success'] %}
                  <li>{{ message }}</li>
             {% endfor %}
             </ul>
         {% elif messages['errors'] or form.errors %}
-            <ul id="errors">
+            <ul class="errors">
              {% for message in messages['success'] %}
                  <li>{{ message }}</li>
             {% endfor %}
