@@ -37,7 +37,11 @@
     <tr>
         <th>{{feature.type.name}}:</th>
         <td>
-         {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+            {%- if feature.value == '0' %}
+                Unlimited
+            {% else %}
+                 {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+            {% endif %}
          </td>
      </tr>
     {% endfor %}

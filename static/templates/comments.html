@@ -4,6 +4,7 @@
 
     <ul id="review-list">
 
+        {% if host.comments() %}
         {% for comment in host.comments() %}
         <li class="
             {%- call macros.get_rating_mood(comment.rating()) -%}
@@ -40,6 +41,11 @@
                 <span class="comment-bottom"></span>
             </li>
         {% endfor %}
+        {% else %}
+            <li><p>There aren't any reviews for <strong>{{host.name}}</strong> yet, they must be new.
+            Do you have experience with <strong>{{host.name}}</strong>?
+            Share them by <a href="#comment-form">writing a review</a> below.</p></li>
+        {% endif %}
     </ul>
 </div>
 
