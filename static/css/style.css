@@ -77,10 +77,11 @@ body {
     display: none;
 }
 
-#nav #tophosts { width: 92px; background-position: -127px 0; }
-#nav #submit { width: 127px; }
-#nav #about { width: 85px; background-position: -219px 0; }
-#nav #directory { width: 112px; background-position: -302px 0; }
+#nav #tophosts { width: 79px; background-position: -100px 0; }
+#nav #directory { width: 103px; background-position: -254px 0; }
+#nav #faq { width: 48px; background-position: -358px 0; }
+#nav #submit { width: 102px; }
+#nav #about { width: 75px; background-position: -181px 0; }
 
 #nav .active {
     padding-bottom: 2px;
@@ -595,7 +596,7 @@ a.visit span {
 #footer ul li {
     display: inline;
     float: left;
-    padding: 0 15px;
+    padding: 0 7px;
     border-right: 1px solid #ccc;
 }
 
@@ -607,10 +608,24 @@ a.visit span {
     font-weight: bold !important;
 }
 
-#twitter {
+.nav-text {
     position: absolute;
     right: 35px;
     bottom: 7px;
     padding: 5px 5px 5px 33px;
+}
+
+#twitter {
     background: url('/images/icons/twitter.png') top left no-repeat;
 }
+
+ul.normal, ul.normal li ul {
+    padding: 5px 0 10px 35px;
+}
+
+ul.normal li {
+    padding: 5px 0;
+    list-style: square;
+}
+
+ul.normal li ul {

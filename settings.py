@@ -1,7 +1,7 @@
 # Django settings for bizdir project.
 import socket
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -83,10 +83,10 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
 ]
 
-#CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
-#CACHE_MIDDLEWARE_SECONDS = 60
-#CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
-#CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHE_MIDDLEWARE_SECONDS = 60
+CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *

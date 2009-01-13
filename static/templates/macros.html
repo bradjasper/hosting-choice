@@ -62,7 +62,12 @@
                         <span>(<a href="/host/{{host.slug}}.html#comments">{{
                                 host.comment_set.filter(active=1) | length }}
                                 Reviews</a>)</span></td>
-                    <td class="name"><a href="/host/{{host.slug}}.html">{{ host.name }}</a></td>
+                    <td class="name"><a href="/host/{{host.slug}}.html">
+                    {%- if loop.index == 1 %}
+                    <strong>{{ host.name }}</strong>
+                    {%- else -%}
+                        {{host.name}}
+                        {%- endif -%}</a></td>
                     <td class="features">
                         {% for feature in host.feature_set.all() %}
                         <span><strong>{{feature.type.name}}:</strong>

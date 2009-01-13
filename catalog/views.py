@@ -1,6 +1,7 @@
 from django import http
 from catalog import models, forms
 import MySQLdb
+from django.views.decorators.cache import cache_page
 
 import response
 
@@ -123,13 +124,23 @@ def visit(request, slug):
 
     return http.HttpResponseRedirect(host.url)
 
-def sitemap(request):
+def sitemap_xml(request):
     """Display sitemap for search engine"""
 
     hosts = models.Host.objects.leaderboard()
     categories = models.Category.objects.all()
 
     return response.render('sitemap.xml', {
+        'hosts': hosts,
+        'categories': categories})
+
+def sitemap(request):
+    """Display sitemap for search engine"""
+
+    hosts = models.Host.objects.leaderboard()
+    categories = models.Category.objects.all()
+
+    return response.render('sitemap.html', {
         'hosts': hosts,
         'categories': categories})
 

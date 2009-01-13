@@ -39,6 +39,12 @@
                             <a href="/submit.html"><span>Submit A Host</span></a>
                         </li>
                         <li class="
+                            {%- if active_page == 'faq' -%}
+                                active
+                            {%- endif %}" id="faq">
+                            <a href="/faq.html"><span>FAQ</span></a>
+                        </li>
+                        <li class="
                             {%- if active_page == 'directory' -%}
                                 active
                             {%- endif %}" id="directory">
@@ -51,8 +57,9 @@
                             <a href="/leaderboard.html"><span>Top 10 Web Hosts</span></a>
                         </li>
                     </ul>
-                    <a id="twitter" href="http://twitter.com/hostingchoice">Follow us on
-                        twitter</a>
+                    <a class="nav-text" id="twitter" href="http://twitter.com/hostingchoice">
+                        Follow <strong>HostingChoice</strong> on twitter
+                    </a>
                 </div>
 
 

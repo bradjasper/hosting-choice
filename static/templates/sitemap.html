@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <strong>Sitemap</strong>
+{% endblock %}
+
+{% block title %}
+    {% if page %}
+        Sitemap - 
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="page" id="sitemap">
+        <h1>Sitemap</h1>
+        <p class="desc">Below you'll find and outline of the site.</p>
+        <ul class="normal">
+            <li><a href="/">Home Page</a></li>
+            <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
+            <li><a href="/faq.html">Frequently Asked Questions</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/submit.html">Submit A Host</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><strong><a href="/hosts.html">Hosting Directory</a>
+                </strong>
+                {% if categories %}
+                <ul>
+                {%- for category in categories %}
+                    <li><a href="{{ category.get_absolute_url() }}">
+                        {{ category.name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+
+            <li><strong>Hosting Providers</strong>
+                {% if hosts %}
+                <ul>
+                    {%- for host in hosts %}
+                        <li><a href="{{ host.get_absolute_url() }}">
+                            {{ host.name }} Reviews</a>
+                        </li>
+                    {% endfor -%}
+                </ul>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+{%- endblock %}
