@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <strong>404 Error</strong>
+{% endblock %}
+
+{% block title %}
+    {% if page %}
+        404 Error
+        {{ super() }}
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="page" id="404error">
+        <h1>404 Error: Page Not Found</h1>
+        <p><strong>Oops!</strong>. We messed up.
+        There was an error while finding the page <strong>{{request_path}}</strong>.
+        We do our best to prevent this, but we're human. Accept our apologies and take
+        a look at our <a href="/sitemap.html">Sitemap</a>, <a href="/faq.html">FAQ</a>,
+        or <a href="/leaderboard.html">Top 10 Web Hosts</a>.</p>
+
+        <p>The good news is the webmaster has been notified and will take care
+        of this shortly. Thanks for helping out!</p>
+
+
+
+
+
+    </div>
+{% endblock %}

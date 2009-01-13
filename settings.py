@@ -88,5 +88,7 @@ CACHE_MIDDLEWARE_SECONDS = 60
 CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
+#handler404 = 'main.views.custom_404'
+
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *
