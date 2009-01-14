@@ -4,6 +4,7 @@ from django import http
 import catalog.models
 import main.models
 from main import forms
+import markdown
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
@@ -40,10 +41,14 @@ def render_to_response(template, context = None):
 
     return http.HttpResponse(contents)
 
+def markup(text):
+    return markdown.markdown(text)
+
 
 env.filters['smart_round'] = smart_round
 env.filters['datetimeformat'] = datetimeformat
 env.filters['normalize_size'] = normalize_size
+env.filters['markup'] = markup
 
 def render(template, context = None):
     """Generic render method to render full pages"""

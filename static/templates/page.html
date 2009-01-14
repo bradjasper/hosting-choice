@@ -17,6 +17,6 @@
 {% block content %}
     <div class="page" id="page-{{page.slug}}">
         <h1>{{page.name}}</h1>
-        <p class="desc">{{page.text}}</p>
+        <p class="desc">{{page.text | markup}}</p>
     </div>
 {% endblock %}
