@@ -25,3 +25,17 @@ def get_page(request, slug):
             'request': request})
             
 
+
+def show_blog(request):
+    entries = models.Entry.objects.all()
+    return response.render('blog.html', {
+        'entries': entries,
+        'request': request})
+
+def show_entry(request, slug):
+    entry = shortcuts.get_object_or_404(models.Entry, slug=slug)
+
+    return response.render('article.html', {
+        'entry': entry,
+        'request': request})
+

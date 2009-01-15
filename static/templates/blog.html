@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    &raquo;
+    <strong>Blog</strong>
+{% endblock %}
+
+{% block title %}
+    Hosting Choice Blog -
+    {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="page blog" id="blog">
+        <h1>Recent Blog Entries</h1>
+
+        {% if entries %}
+            {% for entry in entries %}
+                 {% call macros.BlogEntry(entry) %}
+                 {% endcall %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -9,8 +9,7 @@ a {
 }
 
 body {
-    margin-top: 0px;
-    background: url('/media/images/bg-tile.gif') top left;
+    background: url('/media/images/bg-tile.gif') top center;
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
@@ -19,12 +18,13 @@ body {
 #outer {
     width: 813px;
     margin: 0 auto;
-    background: url('/media/images/body-tile.png') repeat-y;
+    background: url('/media/images/body-tile.png') top center repeat-y;
     text-align: center;
+    padding: 0;
+    border-width: 0;
 }
 
 #inner {
-    margin: 0 7px;
     text-align: center;
 }
 
@@ -33,10 +33,10 @@ body {
     width: 813px;
     _width: 777px;
     margin: 0 auto;
-    background: url('/media/images/footer.png') bottom left no-repeat;
-    min-height: 30px;
+    background: url('/media/images/footer.png') top center no-repeat;
     margin-bottom: 30px;
     text-align: left;
+    border: 0;
 }
 
 #footer span {
@@ -138,17 +138,17 @@ h5 { font-size: 105% }
     padding-bottom: 13px;
     padding-left: 8px;
     background: url('/media/images/sidebar_sep.png') bottom left no-repeat;
+    margin-top: 25px;
 }
 
 
 #sidebar ul, #sidebar div {
-    margin-bottom: 25px;
-    width: 100%;
+    width: 90%;
     font-size: 95%;
+    padding: 5px 10px;
 }
 
 #sidebar div {
-    padding: 7px;
     padding-bottom: 15px;
 }
 
@@ -166,8 +166,8 @@ h5 { font-size: 105% }
 
 
 #sidebar ul li a {
-    padding: 5px 0;
     color: #222;
+    line-height: 18px;
 }
 
 #top_hosts li {
@@ -441,6 +441,7 @@ a.visit span {
     font-size: 60%;
     color: #444;
     background-color: #dedede;
+    text-align: left;
 }
 
 .leaderboard td span, #info div span {
@@ -461,7 +462,7 @@ a.visit span {
     font-size: 60%;
     padding: 15px 10px;
     color: grey;
-
+    width: 12%;
 }
 
 .leaderboard td.percentage {
@@ -628,4 +629,7 @@ ul.normal li {
     list-style: square;
 }
 
-ul.normal li ul {
+
+.nomargin {
+    margin: 0 !important;
+}

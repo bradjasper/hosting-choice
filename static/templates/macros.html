@@ -99,3 +99,16 @@
     {% endif %}
     {{ caller() }}
 {%- endmacro -%}
+
+{% macro BlogEntry(entry, single) %}
+
+    <div class="entry" id="entry-{{entry.slug}}">
+        {% if single %}
+            <h1>{{entry.title}}</h1>
+        {% else %}
+            <h2><a href="/article/{{entry.slug}}.html">{{entry.title}}</a></h2>
+        {% endif %}
+        <p class="desc">{{entry.text|markup}}</p>
+    </div>
+    {{ caller() }}
+{% endmacro %}

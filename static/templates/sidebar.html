@@ -1,6 +1,6 @@
 <div id="sidebar">
 
-    <h3>Top 10 Hosts</h3>
+    <h3 class="nomargin">Top 10 Hosts</h3>
     <ul id="top_hosts">
         {% for host in top_hosts %}
             <li{% if loop.index == 1 %} class="strong"{% endif %}><a href="/host/{{host.slug}}.html">{{host.name}}</a>
@@ -21,11 +21,23 @@
         {% endfor %}
     </ul>
 
+    <h3>Recent Articles</h3>
+    <ul>
+        {% for article in articles %}
+        <li>
+            <a href="/article/{{article.slug}}.html">{{article.title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
     <h3>Site Links</h3>
     <ul>
         <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
         <li><a href="/hosts.html">Hosting Directory</a></li>
         <li><a href="/submit.html">Submit A Host</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/sitemap.html">Sitemap</a></li>
         <li><a href="/about.html">About Us</a></li>
     </ul>
 </div>
