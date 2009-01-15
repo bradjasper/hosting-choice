@@ -10,7 +10,7 @@ a {
 
 body {
     margin-top: 0px;
-    background: url('/images/bg-tile.gif') top left;
+    background: url('/media/images/bg-tile.gif') top left;
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
@@ -19,7 +19,7 @@ body {
 #outer {
     width: 813px;
     margin: 0 auto;
-    background: url('/images/body-tile.png') repeat-y;
+    background: url('/media/images/body-tile.png') repeat-y;
     text-align: center;
 }
 
@@ -33,7 +33,7 @@ body {
     width: 813px;
     _width: 777px;
     margin: 0 auto;
-    background: url('/images/footer.png') bottom left no-repeat;
+    background: url('/media/images/footer.png') bottom left no-repeat;
     min-height: 30px;
     margin-bottom: 30px;
     text-align: left;
@@ -48,7 +48,7 @@ body {
 
 #header {
     height: 78px;
-    background: url('/images/header.png') top center no-repeat;
+    background: url('/media/images/header.png') top center no-repeat;
     width: 770px;
     margin: 0 auto;
     position: relative;
@@ -64,7 +64,7 @@ body {
     float: right;
     height: 100%;
     padding: 0;
-    background: url('/images/nav-sprite.png') 0 0 no-repeat;
+    background: url('/media/images/nav-sprite.png') 0 0 no-repeat;
 }
 
 #nav li a {
@@ -90,19 +90,19 @@ body {
 
 #content {
     width: 778px;
-    background: url('/images/content-sprite.png') -778px repeat-y;
+    background: url('/media/images/content-sprite.png') -778px repeat-y;
     margin: 0 auto;
     text-align: left;
 }
 
 #content-top {
     height: 12px;
-    background: url('/images/content-sprite.png') 0 0 no-repeat;
+    background: url('/media/images/content-sprite.png') 0 0 no-repeat;
 }
 
 #content-bottom {
     height: 12px;
-    background: url('/images/content-sprite.png') -1556px 0 no-repeat;
+    background: url('/media/images/content-sprite.png') -1556px 0 no-repeat;
 }
 
 #content-inner {
@@ -137,7 +137,7 @@ h5 { font-size: 105% }
     font-weight: bold;
     padding-bottom: 13px;
     padding-left: 8px;
-    background: url('/images/sidebar_sep.png') bottom left no-repeat;
+    background: url('/media/images/sidebar_sep.png') bottom left no-repeat;
 }
 
 
@@ -159,7 +159,7 @@ h5 { font-size: 105% }
 #sidebar ul li {
     padding: 4px 0;
     list-style-type: square;
-    list-style-image: url('/images/sidebar_bullet.png');
+    list-style-image: url('/media/images/sidebar_bullet.png');
     margin: 2px 0 0 25px;
     color: #777;
 }
@@ -189,7 +189,7 @@ a.visit {
     width: 113px;
     height: 27px;
     display: block;
-    background: url('/images/icon-sprite.png') 0 -17px no-repeat;
+    background: url('/media/images/icon-sprite.png') 0 -17px no-repeat;
     margin: 9px 0;
 }
 
@@ -206,7 +206,7 @@ a.visit span {
     font-size: 135%;
 }
 .comments .icon {
-    background: url('/images/icon-sprite.png') 4px 3px no-repeat;
+    background: url('/media/images/icon-sprite.png') 4px 3px no-repeat;
     display: block;
     width: 30px;
     height: 19px;
@@ -215,7 +215,7 @@ a.visit span {
 }
 
 .arrow-point {
-    background: #fff url('/images/icon-sprite.png') 0 -44px no-repeat;
+    background: #fff url('/media/images/icon-sprite.png') 0 -44px no-repeat;
     display: block;
     height: 16px;
     width: 20px;
@@ -235,14 +235,14 @@ a.visit span {
 
 
 #info table {
-    background: url('/images/rating.png') top left no-repeat;
+    background: url('/media/images/rating.png') top left no-repeat;
     width: 100%;
     height: 128px;
     font-size: 85%;
 }
 
 #info table tr {
-    background: url('/images/dots.png') bottom left repeat-x;
+    background: url('/media/images/dots.png') bottom left repeat-x;
 }
 
 #info table td, #info table th {
@@ -265,7 +265,7 @@ a.visit span {
 }
 
 .stars {
-    background: url('/images/star-sprite.png') 0 0 no-repeat;
+    background: url('/media/images/star-sprite.png') 0 0 no-repeat;
     width: 60px;
     height: 13px;
     display: block !important;
@@ -284,7 +284,7 @@ a.visit span {
 .stars5 { background-position: 0 -135px; }
 
 .comment {
-    background: url('/images/comment-sprite.png') 0 0 no-repeat;
+    background: url('/media/images/comment-sprite.png') 0 0 no-repeat;
     width: 514px;
     margin: 20px 0;
     display: block;
@@ -305,7 +305,7 @@ a.visit span {
 }
 
 .comments ul li .comment-bottom {
-    background: url('/images/comment-sprite.png') 0 -2866px no-repeat;
+    background: url('/media/images/comment-sprite.png') 0 -2866px no-repeat;
     display: block;
     height: 14px;
     font-size: 1%;
@@ -542,7 +542,7 @@ a.visit span {
 }
 
 .dots {
-    background: url('/images/dots.png') left bottom repeat-x;
+    background: url('/media/images/dots.png') left bottom repeat-x;
 }
 
 .desc {
@@ -616,7 +616,7 @@ a.visit span {
 }
 
 #twitter {
-    background: url('/images/icons/twitter.png') top left no-repeat;
+    background: url('/media/images/icons/twitter.png') top left no-repeat;
 }
 
 ul.normal, ul.normal li ul {

@@ -13,7 +13,7 @@
 
 {% block head %}
     {{ super() }}
-    <script src="/js/host_init.js"></script>
+    <script src="/media/js/host_init.js"></script>
 {% endblock %}
 
 {% block title %}
@@ -33,7 +33,7 @@
         <p class="desc">
            {%- if host.image -%}
            <a href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
-               <img src="/images/{{host.image}}" class="logo" size="50%" />
+               <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
            {{host.description}}
