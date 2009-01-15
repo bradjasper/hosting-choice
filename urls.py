@@ -24,6 +24,9 @@ urlpatterns = patterns('',
 
     (r'^sitemap.html$', 'catalog.views.sitemap'),
     (r'^sitemap.xml$', 'catalog.views.sitemap_xml'),
+    
+    (r'^blog.html$', 'main.views.show_blog'),
+    (r'^article/(?P<slug>.*).html$', 'main.views.show_entry'),
 
     (r'^$|index.html$', 'main.views.index'),
 

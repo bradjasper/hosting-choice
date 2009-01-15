@@ -9,7 +9,11 @@ import markdown
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
 
-def datetimeformat(value, format='%H:%M / %d-%m-%Y'):
+def datetimeformat(value, format=None):
+
+    if format is None:
+        format = '%M %d, %Y, %H:%M'
+
     return value.strftime(format)
 
 
@@ -59,6 +63,7 @@ def render(template, context = None):
     categories = catalog.models.Category.objects.filter()
     top_hosts = catalog.models.Host.objects.leaderboard()[0:10]
     recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')
+    articles = main.models.Entry.objects.all().order_by('-pub_date')
 
     if 'request' in context:
         context['active_page'] = get_section(context['request'].META['PATH_INFO'])
@@ -91,7 +96,8 @@ def render(template, context = None):
     context.update({
         'categories': categories,
         'top_hosts': top_hosts,
-        'recent_reviews': recent_reviews})
+        'recent_reviews': recent_reviews,
+        'articles': articles})
 
     return render_to_response(template, context)
 

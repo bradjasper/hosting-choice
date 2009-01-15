@@ -89,6 +89,7 @@ INSTALLED_APPS = [
 #CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 #handler404 = 'main.views.custom_404'
+FORCE_SCRIPT_NAME = ''
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *

@@ -3,16 +3,14 @@ DATABASE_USER='root'
 DATABASE_PASSWORD=''
 DATABASE_NAME='hostingchoice'
 
-MEDIA_ROOT = '/home/bjasper/Sites/hosting-choice/'
+MEDIA_ROOT = '/Users/bjasper/Sites/hosting-choice/static/'
 MEDIA_URL = '/media/'
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     #'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)

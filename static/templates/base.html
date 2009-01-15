@@ -62,25 +62,24 @@
                     </a>
                 </div>
 
+                <div id="content">
+                    <div id="content-top"></div>
+                    <div id="content-inner">
+                        {% block breadcrumbsdiv %}
+                            <div id="breadcrumbs" class="dots">
+                                {% block breadcrumbs %}
+                                    <a href="/" title="Home">Home</a>
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                        {% block content %}
+                        {% endblock %}
+                    </div>
 
-<div id="content">
-    <div id="content-top"></div>
-    <div id="content-inner">
-        {% block breadcrumbsdiv %}
-            <div id="breadcrumbs" class="dots">
-                {% block breadcrumbs %}
-                    <a href="/" title="Home">Home</a>
-                {% endblock %}
-            </div>
-        {% endblock %}
-        {% block content %}
-        {% endblock %}
-    </div>
+                    {% include 'sidebar.html' %}
 
-    {% include 'sidebar.html' %}
-
-    <div class="clear"></div>
-    <div id="content-bottom"></div>
-</div>
+                    <div class="clear"></div>
+                    <div id="content-bottom"></div>
+                </div>
 
 {% include 'footer.html' %}
