@@ -25,6 +25,16 @@
             <li><a href="/terms.html">Terms of Service</a></li>
             <li><a href="/privacy.html">Privacy Policy</a></li>
             <li><a href="/submit.html">Submit A Host</a></li>
+            <li><a href="/blog.html">Blog</a>
+            {% if articles %}
+             <ul>
+                {% for article in articles %}
+                    <li><a
+                        href="/article/{{article.slug}}.html">{{article.title}}</a></li>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endif %}</li>
             <li><a href="/about.html">About</a></li>
             <li><strong><a href="/hosts.html">Hosting Directory</a>
                 </strong>
