@@ -13,6 +13,7 @@ body {
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
+    behavior: url(iepngfix.htc);
 }
 
 #outer {
