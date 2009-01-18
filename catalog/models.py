@@ -33,6 +33,15 @@ class Common(models.Model):
 
         super(Common, self).save()
 
+
+class RankTime(models.Model):
+    """Stores a rank for a given host at a given time. Used for trending"""
+
+    date = models.DateTimeField(default=datetime.datetime.now())
+    host = models.ForeignKey('Host')
+    rank = models.IntegerField()
+
+
 class HostManager(models.Manager):
 
     # Consider caching this
@@ -47,6 +56,15 @@ class HostManager(models.Manager):
         items = sorted(items, percentages, reverse=True)
 
         return items
+
+    def rank_snapshot(self):
+        """rank_snapshot() takes a current view of the leaderboard and records
+        all of the hosts ranks. This is done so we can archive trending and
+        actually have data when we launch"""
+
+        for i, host in enumerate(self.leaderboard()):
+            rank_time = RankTime(host=host, rank=i+1)
+            rank_time.save()
 
 
 class Host(Common):
