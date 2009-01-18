@@ -475,6 +475,10 @@ a.visit span {
     font-weight: normal;
 }
 
+.leaderboard td.bigname {
+    font-size: 120%;
+}
+
 .even {
     background-color: #f1f1f1;
 }

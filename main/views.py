@@ -8,6 +8,11 @@ def index(request):
     return response.render('index.html', {
         'request': request})
 
+def alt_index(request):
+    return response.render('variations/alt_index.html', {
+        'request': request})
+
+
 def custom_404(request, template_name='404.html'):
     return response.render('404.html', {
         'request_path': request.path})

@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^blog.html$', 'main.views.show_blog'),
     (r'^article/(?P<slug>.*).html$', 'main.views.show_entry'),
 
+    (r'^alt_index.html$', 'main.views.alt_index'),
     (r'^$|index.html$', 'main.views.index'),
 
     (r'^(?P<slug>(.*)).html', 'main.views.get_page'),

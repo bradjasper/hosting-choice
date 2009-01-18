@@ -3,17 +3,17 @@
 {% block breadcrumbsdiv %}
 {% endblock %}
 
-{% block title %}
-    Web Hosting Reviews - Top 10 Web Hosts -
-    {{ super() }}
-{% endblock %}
+{% block title -%}
+    Best Web Hosting - {{ super() }}
+{%- endblock %}
 
 {% block content %}
     <div id="home">
-        <h1>Top 10 Web Hosts</h1>
-        <p>Hosting Choice is a <strong>web hosting review</strong> site.
+        <h1>Best Web Hosting</h1>
+        <p>Hosting Choice helps you find the <strong>best web hosting</strong>.
         If you're looking for a host, you've found the right place. We help
-        you sort through the noise and find the host thats perfect for you.</p>
+        you sort through the noise and find the <strong>best web
+            hosting</strong> thats perfect for you.</p>
 
 
         <p>Our <a href="/faq.html">FAQ</a> page is a great place to start if you've
@@ -24,8 +24,8 @@
 
         {% call macros.Leaderboard(top_hosts, 10) %}
         <br />&nbsp;<br />
-         <p><strong><a href="/hosts/shared-hosting.html" title="Web Hosting
-                Reviews">See More Web Hosts</a></strong></p>
+         <p><strong><a href="/hosts/shared-hosting.html" title="Best Web
+                 Hosting">See More Web Hosts</a></strong></p>
        {% endcall %}
     </div>
 {% endblock %}

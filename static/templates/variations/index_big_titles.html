@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbsdiv %}
+{% endblock %}
+
+{% block title -%}
+    Best Web Hosting - {{ super() }}
+{%- endblock %}
+
+{% block content %}
+    <div id="home">
+        <h1>Best Web Hosting</h1>
+        <p>Hosting Choice helps you find the <strong>best web hosting</strong>.
+        If you're looking for a host, you've found the right place. We help
+        you sort through the noise and find the <strong>best web
+            hosting</strong> thats perfect for you.</p>
+
+
+        <p>Our <a href="/faq.html">FAQ</a> page is a great place to start if you've
+        still have questions.</p>
+        
+        <p>Here is our pick for the <strong>Top 10 Web
+            Hosts</strong>.</p>
+
+        <table class="leaderboard">
+            {% if top_hosts %}
+                <tr>
+                    <th>#</th>
+                    <th>Rank</th>
+                    <th>Host</th>
+                    <th>Features</th>
+                </tr>
+                {% for host in top_hosts %}
+                <tr class="{{ loop.cycle('odd', 'even') }}">
+                        <td class="rank">{{ loop.index }}.</td>
+                        <td class="percentage">{{ host.percentage() | smart_round }}%
+                            <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                                    host.comment_set.filter(active=1) | length }}
+                                    Reviews</a>)</span></td>
+                        <td class="bigname"><a href="/host/{{host.slug}}.html">
+                        {%- if loop.index == 1 %}
+                        <strong>{{ host.name }}</strong>
+                        {%- else -%}
+                            {{host.name}}
+                            {%- endif -%}</a></td>
+                        <td class="features">
+                            {% for feature in host.feature_set.all() %}
+                            <span><strong>{{feature.type.name}}:</strong>
+                                {%- call macros.get_feature(feature) %}
+                                {% endcall -%}
+                            </span>
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                    {% if loop.index == 10 %}{% break %}{% endif %}
+                {% endfor %}
+            {% else %}
+                No Hosts!
+            {% endif %}
+        </table>
+
+        <br />&nbsp;<br />
+         <p><strong><a href="/hosts/shared-hosting.html" title="Best Web
+                 Hosting">See More Web Hosts</a></strong></p>
+    </div>
+{% endblock %}
+
