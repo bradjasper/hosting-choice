@@ -8,13 +8,16 @@
     <strong>{{category.name}}</strong>
 {% endblock %}
 
-{% block title %}
+{% block title -%}
     {% if category %}
         {{ category.name }} Reviews - Top 10 {{category.name }} Reviews -
         {{ super() }}
     {% endif %}
-{% endblock %}
+{%- endblock %}
 
+{% block meta_keyword -%}
+    {{ category.name }} Reviews, {{ category.name }} Hosting Reviews, {{ super() }}
+{%- endblock %}
 
 {% block content %}
     <div id="category">

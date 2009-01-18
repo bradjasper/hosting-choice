@@ -4,7 +4,7 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
-        {% block head %}
+        {%- block head %}
             <title>{%- block title -%}Hosting Choice{%- endblock -%}</title>
 
             <link rel="stylesheet" href="/media/css/style.css" />
@@ -16,8 +16,14 @@
             <script src="/media/js/jquery/ajaxify/jquery.ajaxify.js" type="text/javascript"></script>
             <script src="/media/js/jquery/ajaxify/jquery.history.fixed.js" type="text/javascript"></script>
             <script src="/media/js/jquery/ajaxify/jquery.metadata.min.js" type="text/javascript"></script>
-        {% endblock %}
 
+            <meta name="keywords" content="{% block meta_keywords -%}
+                web hosting reviews, top 10 web hosts, web hosts,
+                top web hosting, hosting reviews
+                {%- endblock %}" />
+
+            <meta name="description" content="Hosting Choice helps you find a quality host at a good price. There are too many hosts to choose from. Let Hosting Choice help. We'll sort through the confusion and recommend our favorite picks." />
+        {% endblock -%}
     </head>
     <body>
         <div id="outer">

@@ -7,11 +7,11 @@
 {%- endmacro -%}
 
 {%- macro get_rating_mood(rating) -%}
-    {%- if rating == -1 -%}
+    {%- if rating == 0 -%}
         unrated
-    {%- elif rating < 1.67 -%}
+    {%- elif rating < 2.35 -%}
         negative
-    {%- elif rating > 3.3 -%}
+    {%- elif rating > 3.7 -%}
         positive
     {%- else -%}
         neutral
@@ -110,5 +110,34 @@
         {% endif %}
         <p class="desc">{{entry.text|markup}}</p>
     </div>
+    {{ caller() }}
+{% endmacro %}
+
+{% macro RatingToRank(rating) %}
+    {{ rating }}
+    {{ caller() }}
+{% endmacro %}
+
+{% macro Matrix(hosts) %}
+    <table id="matrix">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Overall</th>
+            <th>Support</th>
+            <th>Features</th>
+            <th>Uptime</th>
+        </tr>
+        {% for host in hosts %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ host.name }}</td>
+                <td>{{ host.percentage() }}</td>
+                <td>{{ host.ratings_rank()['Support'] }}</td>
+                <td>{{ host.ratings_rank()['Features'] }}</td>
+                <td>{{ host.ratings_rank()['Uptime'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
     {{ caller() }}
 {% endmacro %}

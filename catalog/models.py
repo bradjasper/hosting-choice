@@ -9,6 +9,7 @@ from django.contrib.auth import models as auth
 from django.core.cache import cache
 
 import sitemap
+import format
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -39,8 +40,11 @@ class HostManager(models.Manager):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
-        func = lambda x,y: cmp(x.percentage(), y.percentage())
-        items = sorted(self.all(), func, reverse=True)
+        percentages = lambda x,y: cmp(x.percentage(), y.percentage())
+        num_comments = lambda x,y: cmp(len(x.comments()), len(y.comments()))
+
+        items = sorted(self.all(), num_comments, reverse=True)
+        items = sorted(items, percentages, reverse=True)
 
         return items
 
@@ -109,10 +113,16 @@ class Host(Common):
 
     def percentage(self):
         """Return the rating as a percentage"""
-        return self.rating(100)
+        return format.smart_round(self.rating(100))
 
     def get_absolute_url(self):
         return "/host/%s.html" % self.slug
+
+    def ratings_rank(self):
+        """Return the rating categories as a rank (percentage)"""
+
+        func = lambda (x,y): (x, format.smart_round(y / 5) * 100)
+        return dict(map(func, self.ratings().iteritems()))
 
     def rating(self, limit = None):
         """Return the normalized rating for a host"""

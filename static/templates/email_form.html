@@ -16,6 +16,8 @@
                 if host %}{{host.get_absolute_url()}}
                 {%- elif category -%}{{category.get_absolute_url()}}
                 {%- endif -%}#email_form" method="post">
+
+                <input type="hidden" name="form_submit" value="email" />
             {{ email_form.value }}
             {{ email_form.value.errors }}
             <br />&nbsp;<br />

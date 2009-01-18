@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^hosts.html$', 'catalog.views.show_categories'),
 
     (r'^leaderboard.html$', 'catalog.views.leaderboard'),
+    (r'^matrix.html$', 'catalog.views.matrix'),
     (r'^visit/(?P<slug>.*).html$', 'catalog.views.visit'),
 
     (r'^comment/helpful/(?P<id>.*).html$', 'catalog.views.helpful'),

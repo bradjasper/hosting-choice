@@ -6,13 +6,12 @@
     <strong>Hosts</strong>
 {% endblock %}
 
-{% block title %}
+{% block title -%}
     {% if categories %}
         Web Hosting Reviews - Top 10 Hosting Reviews -
         {{ super() }}
     {% endif %}
-{% endblock %}
-
+{%- endblock %}
 
 {% block content %}
     <div id="categories">

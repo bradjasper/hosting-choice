@@ -1,38 +1,14 @@
 import MySQLdb
 import jinja2
 from django import http
+
 import catalog.models
 import main.models
 from main import forms
-import markdown
+import format
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
-
-def datetimeformat(value, format=None):
-
-    if format is None:
-        format = '%M %d, %Y, %H:%M'
-
-    return value.strftime(format)
-
-
-def smart_round(num):
-    new_num = round(round(num / 0.5) * 0.5)
-
-    # Cheap way to remove rounding zero. Find better way to do this.
-    if str(new_num).endswith('.0'):
-        new_num = int(str(new_num).split('.')[0])
-
-    return new_num
-
-def normalize_size(size):
-    for i, type in enumerate(['MB', 'GB', 'TB']):
-        tmp_size = int(size) / (1000 ** i)
-        if tmp_size < 1000:
-            return "%d%s" % (tmp_size, type)
-    return size
-
 
 def render_to_response(template, context = None):
     global env
@@ -45,14 +21,11 @@ def render_to_response(template, context = None):
 
     return http.HttpResponse(contents)
 
-def markup(text):
-    return markdown.markdown(text)
 
-
-env.filters['smart_round'] = smart_round
-env.filters['datetimeformat'] = datetimeformat
-env.filters['normalize_size'] = normalize_size
-env.filters['markup'] = markup
+env.filters['smart_round'] = format.smart_round
+env.filters['datetimeformat'] = format.datetimeformat
+env.filters['normalize_size'] = format.normalize_size
+env.filters['markup'] = format.markup
 
 def render(template, context = None):
     """Generic render method to render full pages"""
@@ -62,30 +35,30 @@ def render(template, context = None):
 
     categories = catalog.models.Category.objects.filter()
     top_hosts = catalog.models.Host.objects.leaderboard()[0:10]
-    recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')
-    articles = main.models.Entry.objects.all().order_by('-pub_date')
+    recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')[0:10]
+    articles = main.models.Entry.objects.all().order_by('-pub_date')[0:10]
 
     if 'request' in context:
-        context['active_page'] = get_section(context['request'].META['PATH_INFO'])
+        request = context['request']
+        context['active_page'] = get_section(request.META['PATH_INFO'])
 
-        if context['request'].method == 'POST':
-            form = forms.EmailForm(context['request'].POST)
-            context['email_form'] = form
+        form = forms.EmailForm(request.POST)
+        context['email_form'] = form
 
-            if form.is_valid():
-                email = form.data['value']
-                new_obj = main.models.Email(value=email,
-                    ip=context['request'].META['REMOTE_ADDR'])
+        if form.is_valid():
+            email = form.data['value']
+            new_obj = main.models.Email(value=email,
+                ip=request.META['REMOTE_ADDR'])
 
-                try:
-                    new_obj.save()
-                except MySQLdb.IntegrityError:
-                    context['email_messages'] = {'error':
-                        'This email is already in our database'}
-                else:
-                    context['email_messages'] = {'success':
-                        'Successfully added your name to the list. You will now'
-                            + ' receive offers from our partners'}
+            try:
+                new_obj.save()
+            except MySQLdb.IntegrityError:
+                context['email_messages'] = {'error':
+                    'This email is already in our database'}
+            else:
+                context['email_messages'] = {'success':
+                    'Successfully added your name to the list. You will now'
+                        + ' receive offers from our partners'}
 
 
         else:

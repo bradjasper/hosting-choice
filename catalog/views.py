@@ -12,8 +12,9 @@ def show_host(request, slug):
     try:
         host = models.Host.objects.get(slug=slug)
 
-        if request.method == 'POST':
+        if request.method == 'POST' and request.POST.get('form_submit') == 'comment':
             form = forms.CommentForm(request.POST)
+
             if form.is_valid():
 
                 name = form.cleaned_data['name']
@@ -110,10 +111,14 @@ def helpful(request, id):
 
 def leaderboard(request):
     """Display the leaderboard"""
-
     return response.render('leaderboard.html', {
         'request': request})
 
+
+def matrix(request):
+    """Display the leaderboard as a matrix"""
+    return response.render('matrix.html', {
+        'request': request})
 
     
 def visit(request, slug):

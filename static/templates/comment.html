@@ -1,0 +1,35 @@
+<li class="
+    {%- call macros.get_rating_mood(comment.rating()) -%}
+        comment
+    {%- endcall -%}">
+    <div class="meta">
+        <span class="author">
+            <span class="name">
+                {% if comment.website %}
+                    <a href="{{comment.website}}">
+                        {{comment.name}}
+                    </a>
+                {% else %}
+                    {{comment.name}}
+                {% endif %}
+            </span> Says:<br />
+            {{ comment.date | datetimeformat('%B %d, %Y, %I:%M%p')  }}
+        </span>
+        <span class="tools">
+            <a rel="nofollow" href="/comment/helpful/{{comment.id}}.html">This review was helpful</a> or
+            <a rel="nofollow" href="/comment/report/{{comment.id}}.html">Report abuse</a>
+        </span>
+        <div class="clear"></div>
+    </div>
+
+    <div class="text">{{comment.text|markup}}</div>
+
+    {% if comment.ratings() %}
+        <table class="ratings">
+            {% call macros.Ratings(comment.ratings()) %}
+            {% endcall %}
+        </table>
+    {% endif %}
+    <span class="comment-bottom"></span>
+</li>
+

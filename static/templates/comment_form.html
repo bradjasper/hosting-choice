@@ -29,6 +29,7 @@
 
 
     <form action="/host/{{host.slug}}.html#comment-form" method="post">
+        <input type="hidden" name="form_submit" value="comment" />
         {{ form.rating_features_val }}
         {{ form.rating_uptime_val }}
         {{ form.rating_support_val }}

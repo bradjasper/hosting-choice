@@ -16,12 +16,16 @@
     <script src="/media/js/host_init.js"></script>
 {% endblock %}
 
-{% block title %}
+{% block meta_keywords -%}
+    {{ host.name }} Reviews, {{ host.name }} Web Hosting Reviews, {{ host.name }} Review, {{ super() }}
+{%- endblock %}
+
+{% block title -%}
     {% if host %}
         {{ host.name }} Web Hosting Reviews - {{host.name }} Reviews -
         {{ super() }}
     {% endif %}
-{% endblock %}
+{%- endblock %}
 
 {%- block content -%}
 {% if host %}
@@ -36,7 +40,7 @@
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
-           {{host.description}}
+           {{host.description | markup}}
            <p id="purchase"><span class="arrow-point"></span>
            <a href="/visit/{{host.slug}}.html">
                 Purchase <strong>Web Hosting</strong> from

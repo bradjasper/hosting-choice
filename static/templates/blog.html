@@ -11,6 +11,10 @@
     {{ super() }}
 {% endblock %}
 
+{% block meta_keywords %}
+    {{ entry.title }}
+    {{ super() }}
+{% endblock %}
 
 {% block content %}
     <div class="page blog" id="blog">
