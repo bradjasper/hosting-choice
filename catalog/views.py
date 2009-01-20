@@ -37,7 +37,9 @@ def show_host(request, slug):
 
                 messages['success'].append(
                     'Successfully added your review to the site.'
-                    + ' Scroll up to see it. Thanks for helping!')
+                    + ' Scroll up to see it. Thanks for helping! If you don\'t'
+                    + ' see your comment please wait a few minutes, we\'re'
+                    + ' caching some pages')
 
                 form = forms.CommentForm()
 

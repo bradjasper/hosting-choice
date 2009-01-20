@@ -32,7 +32,7 @@ def get_page(request, slug):
 
 
 def show_blog(request):
-    entries = models.Entry.objects.all()
+    entries = models.Entry.objects.all(reverse=True)
     return response.render('blog.html', {
         'entries': entries,
         'request': request})
