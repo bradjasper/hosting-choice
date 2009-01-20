@@ -1,7 +1,22 @@
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+String.prototype.ltrim = function() {
+	return this.replace(/^\s+/,"");
+}
+String.prototype.rtrim = function() {
+	return this.replace(/\s+$/,"");
+}
+
 $(document).ready(function() {
 
     $('#errors').fadeIn(1500);
     $('#success').fadeIn(1500);
+
+    read_more = function(link) {
+        $('.read').hide();
+        $('.more').show();
+    }
 
     /* Add Tools to each Comment */
     $('.comment .meta').each(function() {

@@ -44,6 +44,9 @@ class Email(models.Model):
     ip = models.CharField(max_length=25)
     active = models.BooleanField(default=True)
 
+    def __unicode__(self):
+        return self.value
+
 
 class Entry(Common):
     """Blog Entry"""

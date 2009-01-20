@@ -29,3 +29,17 @@ def normalize_size(size):
 def markup(text):
     return markdown.markdown(text)
 
+
+def read_more(text, limit=300):
+    """Inject a JS read_more link into a text paragraph"""
+
+    if len(text) > limit:
+        part1 = text[0:limit]
+        link = """<span class="read">...
+            <a href="javascript:read_more()">Read More</a>
+            </span>"""
+
+        part2 = '%s<span class="more">%s</span>' % (link, text[limit:])
+        text = part1 + part2
+
+    return text

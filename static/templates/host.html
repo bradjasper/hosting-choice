@@ -2,13 +2,9 @@
 
 
 {% block breadcrumbs %}
-    {{ super() }}
-    &raquo;
-    <a href="/hosts.html" title="Hosts">Hosts</a>
-    &raquo;
-    <a href="/hosts/{{host.category.slug}}.html" title="{{host.category.name}}
-        Reviews">{{host.category.name}}</a>
-    &raquo;
+    {{ super() }} &raquo; <a href="/hosts.html" title="Hosts">Hosts</a>
+    &raquo; <a href="/hosts/{{host.category.slug}}.html" title="{{host.category.name}}
+        Reviews">{{host.category.name}}</a> &raquo;
     <strong>{{host.name}}</strong>
 {% endblock %}
 
@@ -40,13 +36,13 @@
     <div class="host" id="host-{{host.id}}">
         <h1>{{host.name}} Hosting Review</h1>
         
-        <p class="desc">
+        <div class="desc">
            {%- if host.image -%}
            <a rel="external" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
-           {{host.description | markup}}
+           <div class="text">{{host.description | markup | read_more }}</div>
            <p id="purchase"><span class="arrow-point"></span>
            <a href="/visit/{{host.slug}}.html" rel="external">
                 Purchase <strong>Web Hosting</strong> from
@@ -56,7 +52,7 @@
                 {%- endif -%}
             </a>
           </p> 
-        </p>
+        </div>
 
     </div>
     <div id="info">

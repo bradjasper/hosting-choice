@@ -655,3 +655,7 @@ ul.normal li {
 .entry ol {
     list-style-type: decimal;
 }
+
+.more {
+    display: none;
+}

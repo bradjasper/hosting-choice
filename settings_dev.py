@@ -3,7 +3,7 @@ DATABASE_USER='root'
 DATABASE_PASSWORD=''
 DATABASE_NAME='hostingchoice'
 
-MEDIA_ROOT = '/Users/bjasper/Sites/hosting-choice/static/'
+MEDIA_ROOT = '/Users/bjasper/Sites/hostingchoice/static/'
 MEDIA_URL = '/media/'
 
 MIDDLEWARE_CLASSES = (
@@ -21,13 +21,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'hosting-choice.catalog',
-	'hosting-choice.main',
+    'hostingchoice.catalog',
+	'hostingchoice.main',
     #'debug_toolbar',
 )
 
 TEMPLATE_DIRS = (
-    '/Users/bjasper/Sites/hosting-choice/static/templates/',
+    '/Users/bjasper/Sites/hostingchoice/static/templates/',
 )
 
 ADMIN_MEDIA_PREFIX = '/media/admin_dev/'
