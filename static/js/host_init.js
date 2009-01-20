@@ -3,6 +3,17 @@ $(document).ready(function() {
     $('#errors').fadeIn(1500);
     $('#success').fadeIn(1500);
 
+    /* Add Tools to each Comment */
+    $('.comment .meta').each(function() {
+        var comment_id = $(this).parent().attr('id').split('-')[1];
+        $(this).html($(this).html()+'\
+            <span class="tools">\
+                <a href="/comment/helpful/'+comment_id+'.html">This review was helpful</a> or\
+                <a href="/comment/report/'+comment_id+'.html">Report abuse</a>\
+            </span>\
+            <div class="clear"></div>');
+    });
+
     /* Hover Effect for tools on comments. Brings up "I liked this" links */
     $('.tools a').livequery(function() {
         var par = $(this).parent();
@@ -13,7 +24,6 @@ $(document).ready(function() {
                 par.html('<strong>Thanks!</strong>');
                 par.fadeOut(5000, function() {
                     $(this).remove();
-                    //par.parent().parent().remove();
                 });
 
                 if ($(this).attr('link').match('report')) {

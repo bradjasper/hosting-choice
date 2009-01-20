@@ -1,22 +1,16 @@
 {% extends 'base.html' %}
 
-{% block breadcrumbs %}
+{% block breadcrumbs -%}
     {{ super() }}
     &raquo;
     <strong>Blog</strong>
-{% endblock %}
+{%- endblock %}
 
-{% block title %}
-    Hosting Choice Blog -
-    {{ super() }}
-{% endblock %}
+{% block title -%}
+    Hosting Choice Blog - {{ super() }}
+{%- endblock %}
 
-{% block meta_keywords %}
-    {{ entry.title }}
-    {{ super() }}
-{% endblock %}
-
-{% block content %}
+{% block content -%}
     <div class="page blog" id="blog">
         <h1>Recent Blog Entries</h1>
 
@@ -27,4 +21,4 @@
             {% endfor %}
         {% endif %}
     </div>
-{% endblock %}
+{%- endblock %}

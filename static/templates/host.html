@@ -1,5 +1,6 @@
 {%- extends 'base.html' -%}
 
+
 {% block breadcrumbs %}
     {{ super() }}
     &raquo;
@@ -11,38 +12,43 @@
     <strong>{{host.name}}</strong>
 {% endblock %}
 
+
 {% block head %}
     {{ super() }}
     <script src="/media/js/host_init.js"></script>
 {% endblock %}
 
+
 {% block meta_keywords -%}
     {{ host.name }} Reviews, {{ host.name }} Web Hosting Reviews, {{ host.name }} Review, {{ super() }}
 {%- endblock %}
 
+
 {% block title -%}
-    {% if host %}
+    {% if host -%}
         {{ host.name }} Web Hosting Reviews - {{host.name }} Reviews -
-        {{ super() }}
-    {% endif %}
+    {%- endif %} {{ super() }}
+{%- endblock %}
+
+
+{% block meta_description -%}
+    {{ host.description | truncate }}
 {%- endblock %}
 
 {%- block content -%}
 {% if host %}
-
-
     <div class="host" id="host-{{host.id}}">
         <h1>{{host.name}} Hosting Review</h1>
         
         <p class="desc">
            {%- if host.image -%}
-           <a href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
+           <a rel="external" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
            {{host.description | markup}}
            <p id="purchase"><span class="arrow-point"></span>
-           <a href="/visit/{{host.slug}}.html">
+           <a href="/visit/{{host.slug}}.html" rel="external">
                 Purchase <strong>Web Hosting</strong> from
                 <strong>{{host.name}}</strong>
                 {%- if host.features()['Price'] %}
@@ -69,7 +75,7 @@
             {% endcall -%}
         </table>
         <div>
-            <a class="visit" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
+            <a class="visit" rel="external" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
                 <span>{{host.name}}</span></a>
         </div>
     </div>

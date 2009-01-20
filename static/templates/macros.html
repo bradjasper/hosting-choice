@@ -108,7 +108,7 @@
         {% else %}
             <h2><a href="/article/{{entry.slug}}.html">{{entry.title}}</a></h2>
         {% endif %}
-        <p class="desc">{{entry.text|markup}}</p>
+        <div class="desc">{{entry.text|markup}}</div>
     </div>
     {{ caller() }}
 {% endmacro %}

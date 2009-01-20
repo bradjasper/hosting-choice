@@ -10,8 +10,23 @@ def slugify(data):
     data = re.sub('\s+', '-', data)
     return re.sub('[^a-z0-9\-]', '', data)
 
+class Common(models.Model):
+    """Common base for handling things like saving slugs.
+    We don't put fields in here because Django puts those in seperate
+    tables (sometimes?)."""
 
-class Page(models.Model):
+    class Meta:
+        abstract = True
+
+    def save(self):
+        if hasattr(self, 'slug'):
+            if self.slug is None or len(self.slug.strip()) == 0:
+                self.slug = slugify(self.name)
+
+        super(Common, self).save()
+
+
+class Page(Common):
     """Store abitrary pages like About/Privacy/TOS in the database for easy updating"""
     name = models.CharField(max_length=255)
     slug = models.SlugField('Slug', max_length=255, unique=True)
