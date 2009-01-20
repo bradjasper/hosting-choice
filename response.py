@@ -8,7 +8,7 @@ from main import forms
 import format
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
-        loader=jinja2.PackageLoader('hosting-choice', 'static/templates'))
+        loader=jinja2.PackageLoader('hostingchoice', 'static/templates'))
 
 def render_to_response(template, context = None):
     global env
