@@ -656,6 +656,23 @@ ul.normal li {
     list-style-type: decimal;
 }
 
-.more {
+.more, .read {
     display: none;
+}
+
+.quotes {
+    font-size: 120%;
+    margin-bottom: 10px;
+}
+
+.quotes li {
+    padding: 10px;
+}
+
+.quotes li a {
+    font-size: 80%;
+}
+
+.quotes li.alt {
+    background: #f2f2f2;
 }

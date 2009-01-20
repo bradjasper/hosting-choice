@@ -14,8 +14,16 @@ $(document).ready(function() {
     $('#success').fadeIn(1500);
 
     read_more = function(link) {
-        $('.read').hide();
-        $('.more').show();
+        $('.dotdots').fadeOut(400, function() {
+            $(this).remove();
+        });
+        $('.read').fadeOut(400, function() {
+            $(this).remove();
+            $('.more').fadeIn(500, function() {
+                $(this).show();
+            });
+        });
+
     }
 
     /* Add Tools to each Comment */
@@ -55,6 +63,10 @@ $(document).ready(function() {
         function(){ $(this).find(".tools").show() },
         function(){ $(this).find(".tools").hide() });
 
+
+    $('.text').hover(
+        function() { $(this).find(".read").show() },
+        function() { $(this).find(".read").hide() });
 
     /* Set default items for star ratings (comment error) */
     var types = ['features', 'support', 'uptime']

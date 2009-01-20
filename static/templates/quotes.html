@@ -1,0 +1,12 @@
+{% set quotes = host.quotes() %}
+{% if quotes %}
+    <strong>Customer Reviews</strong>
+   <ul class="quotes">
+    {% for quote in quotes %}
+        <li class="{{ loop.cycle('alt', '') }}">
+            <strong>"</strong>{{ quote.value }}<strong>"</strong>
+            - <a href="#comment-{{quote.comment.id}}">{{ quote.comment.name }}</a>
+        </li>
+    {% endfor %}
+   </ul>
+{% endif %}

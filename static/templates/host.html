@@ -42,7 +42,9 @@
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
-           <div class="text">{{host.description | markup | read_more }}</div>
+           <div class="text">{{host.description | read_more }}</div>
+
+           <br />
            <p id="purchase"><span class="arrow-point"></span>
            <a href="/visit/{{host.slug}}.html" rel="external">
                 Purchase <strong>Web Hosting</strong> from
@@ -52,6 +54,8 @@
                 {%- endif -%}
             </a>
           </p> 
+
+           {% include 'quotes.html' %}
         </div>
 
     </div>

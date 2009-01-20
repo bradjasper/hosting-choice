@@ -102,6 +102,14 @@ class Host(Common):
             x.type.suffix))
         return dict(map(func, Feature.objects.filter(host=self).order_by('type')))
 
+    def quotes(self):
+        """Return a list of quotes for a given host. These segments of comments
+        that are highlighted"""
+
+        quotes = Quote.objects.filter(host=self, active=True).order_by('-weight')
+        return quotes
+
+
     def comments(self):
         """Return a list of comments for this host. This method filters out
         inactive comments and sorts the results by their karma"""
@@ -215,6 +223,18 @@ class Category(Common):
         return "/hosts/%s.html" % self.slug
 
 
+class Quote(models.Model):
+    """Excerpt of a Comment, highlights a hosts' good or bad qualities"""
+
+    host = models.ForeignKey('Host')
+    comment = models.ForeignKey('Comment')
+    value = models.CharField(max_length=255)
+    weight = models.IntegerField(default=0)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return "(%s) %s" % (self.host, self.value)
+
 class Comment(models.Model):
     """Comment for storing reviews"""
 
@@ -239,7 +259,7 @@ class Comment(models.Model):
         unique_together = ('host', 'name', 'email')
 
     def __unicode__(self):
-        return self.text[0:50]
+        return "%s - %s - %s" % (self.host, self.name, self.text[0:50])
 
     def set_ratings(self, ratings):
         """Set the ratings given a dictionary: {'Support': 5}"""

@@ -16,4 +16,14 @@
     </ul>
 </div>
 
+<p id="purchase"><span class="arrow-point"></span>
+<a href="/visit/{{host.slug}}.html" rel="external">
+    Purchase <strong>Web Hosting</strong> from
+    <strong>{{host.name}}</strong>
+    {%- if host.features()['Price'] %}
+        for only {{host.features()['Price']}}
+    {%- endif -%}
+</a>
+</p> 
+
 {% include 'comment_form.html' %}
