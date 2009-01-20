@@ -1,22 +1,22 @@
 {% extends 'base.html' %}
 
 {% block breadcrumbs %}
-    {{ super() }}
-    &raquo;
-    <a href="/blog.html">Blog</a>
-    &raquo;
+    {{ super() }} &raquo; <a href="/blog.html">Blog</a> &raquo;
     <strong>{{ entry.name }}</strong>
 {% endblock %}
 
-{% block title %}
-    {{ entry.name }}
-    {{ super() }}
-{% endblock %}
+{% block title -%}
+    {{ entry.name }} - {{ super() }}
+{%- endblock %}
+
+{% block meta_description -%}
+    {{ entry.text | striptags | truncate }}
+{%- endblock %}
 
 
-{% block content %}
+{% block content -%}
 <div class="page blog" id="blog-{{entry.slug}}">
      {% call macros.BlogEntry(entry, true) %}
      {% endcall %}
 </div>
-{% endblock %}
+{%- endblock %}
