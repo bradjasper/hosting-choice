@@ -5,11 +5,11 @@
     &raquo;
     <a href="/blog.html">Blog</a>
     &raquo;
-    <strong>{{ entry.name}}</strong>
+    <strong>{{ entry.name }}</strong>
 {% endblock %}
 
 {% block title %}
-    {{ entry.title }}
+    {{ entry.name }}
     {{ super() }}
 {% endblock %}
 
