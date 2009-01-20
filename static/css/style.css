@@ -641,11 +641,11 @@ ul.normal li {
 }
 
 .entry ul, .entry ol {
-    margin: 5px 0 5px 25px;
+    margin-left: 25px;
 }
 
 .entry ul li, .entry ol li {
-    padding: 2px 0;
+    padding: 6px 0;
 }
 
 .entry ul {

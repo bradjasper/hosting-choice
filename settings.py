@@ -17,6 +17,12 @@ DATABASE_PASSWORD = 'LJ12oiu23.sl2'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
+# Caching Information
+CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
+CACHE_MIDDLEWARE_SECONDS = 120
+CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -36,7 +42,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/var/www/hosting-choice.com/static/images/'
+MEDIA_ROOT = '/var/www/hostingchoice.com/static/images/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -67,10 +73,10 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
-ROOT_URLCONF = 'hosting-choice.urls'
+ROOT_URLCONF = 'hostingchoice.urls'
 
 TEMPLATE_DIRS = (
-    '/home/bjasper/hosting-choice/static/templates/',
+    '/home/bjasper/hostingchoice/static/templates/',
 )
 
 INSTALLED_APPS = [
@@ -79,15 +85,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'hosting-choice.catalog',
-	'hosting-choice.main',
+    'hostingchoice.catalog',
+    'hostingchoice.main',
     'django.contrib.sitemaps',
 ]
-
-#CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
-#CACHE_MIDDLEWARE_SECONDS = 60
-#CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
-#CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 #handler404 = 'main.views.custom_404'
 FORCE_SCRIPT_NAME = ''
