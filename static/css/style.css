@@ -639,3 +639,19 @@ ul.normal li {
 .nomargin {
     margin: 0 !important;
 }
+
+.entry ul, .entry ol {
+    margin: 5px 0 5px 25px;
+}
+
+.entry ul li, .entry ol li {
+    padding: 2px 0;
+}
+
+.entry ul {
+    list-style-type: square;
+}
+
+.entry ol {
+    list-style-type: decimal;
+}

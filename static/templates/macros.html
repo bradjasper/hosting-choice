@@ -100,13 +100,12 @@
     {{ caller() }}
 {%- endmacro -%}
 
-{% macro BlogEntry(entry, single) %}
-
+{% macro BlogEntry(entry, single) -%}
     <div class="entry" id="entry-{{entry.slug}}">
         {% if single %}
-            <h1>{{entry.title}}</h1>
+            <h1>{{entry.name}}</h1>
         {% else %}
-            <h2><a href="/article/{{entry.slug}}.html">{{entry.title}}</a></h2>
+            <h2><a href="/article/{{entry.slug}}.html">{{entry.name}}</a></h2>
         {% endif %}
         <div class="desc">{{entry.text|markup}}</div>
     </div>

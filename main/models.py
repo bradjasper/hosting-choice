@@ -1,5 +1,7 @@
 import datetime
 import base64
+import re
+
 from django.db import models
 from django.contrib.auth import models as auth
 
@@ -43,15 +45,15 @@ class Email(models.Model):
     active = models.BooleanField(default=True)
 
 
-class Entry(models.Model):
+class Entry(Common):
     """Blog Entry"""
 
-    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     user = models.ForeignKey(auth.User)
-    slug = models.SlugField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True, default=None, blank=True)
     text = models.TextField()
 
     pub_date = models.DateTimeField(default=datetime.datetime.now())
 
     def __unicode__(self):
-        return "%s - %s" % (self.title, self.user)
+        return "%s - %s" % (self.name, self.user)
