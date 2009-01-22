@@ -1,9 +1,11 @@
 from django import http
 from catalog import models, forms
+from django.core.cache import cache
 import MySQLdb
 from django.views.decorators.cache import cache_page
 
 import response
+import settings
 
 def show_host(request, slug):
     """Return the view for an host listing"""
@@ -77,7 +79,10 @@ def show_category(request, slug):
 def show_categories(request):
     """Return an overall view of the categories"""
 
-    categories = models.Category.objects.filter(parent=0).order_by('name')
+    categories = cache.get('categories')
+    if not categories:
+        categories = models.Category.objects.filter(parent=0).order_by('name')
+        cache.set('categories', categories, settings.CACHE_TIME)
 
     return response.render('categories.html', {
         'categories': categories,

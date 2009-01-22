@@ -22,6 +22,7 @@ CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
 CACHE_MIDDLEWARE_SECONDS = 120
 CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_TIMEOUT = 300
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -65,13 +66,13 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = [
-#    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'hostingchoice.profiler_middlware.ProfileMiddleware',
-#    'django.middleware.cache.FetchFromCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'hostingchoice.urls'

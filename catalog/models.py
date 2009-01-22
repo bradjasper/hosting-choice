@@ -10,7 +10,8 @@ from django.core.cache import cache
 
 import sitemap
 import format
-import cache
+import settings
+
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -50,11 +51,18 @@ class HostManager(cache.CacheManager):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
+        cached = cache.get('leaderboard')
+        if cached:
+            return cached
+
         percentages = lambda x,y: cmp(x.percentage(), y.percentage())
         num_comments = lambda x,y: cmp(len(x.comments()), len(y.comments()))
 
         items = sorted(self.all(), num_comments, reverse=True)
         items = sorted(items, percentages, reverse=True)
+
+
+        cache.set('leaderboard', items, settings.CACHE_TIMEOUT)
 
         return items
 
@@ -190,7 +198,12 @@ class Host(Common):
     def raw_ratings(self):
         """Return the raw value/count for each rating category"""
 
-        comments = [comment.raw_ratings() for comment in
+        key = "%s-%s" % ('raw_ratings', self.slug)
+        cached = cache.get(key)
+        if cached:
+            return cached
+
+        comments = [comment.raw_ratings() for comment in \
             Comment.objects.filter(host=self, active=1)]
 
         final = {}
@@ -201,6 +214,8 @@ class Host(Common):
                     final[name][1] += rating[1]
                 else:
                     final[name] = [rating[0], rating[1]]
+
+        cache.set(key, final, settings.CACHE_TIMEOUT)
 
         return final
 
