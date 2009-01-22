@@ -5,10 +5,11 @@ from django.db.models.fields import FieldDoesNotExist
 from django.db.models.options import Options
 from django.db.models import signals
 from django.db.models.loading import register_models, get_model
-from django.dispatch import dispatcher
+import django.dispatch
 from django.utils.functional import curry
 from django.conf import settings
 
+signal = django.dispatch.Signal()
 from django.core.cache import cache
 
 import types
@@ -144,7 +145,7 @@ class CachedModel(Model):
         cls.add_to_class('objects', CacheManager())
         cls.add_to_class('nocache', Manager())
         cls.add_to_class('_default_manager', cls.nocache)
-        dispatcher.send(signal=signals.class_prepared, sender=cls)
+        signal.send(signal=signals.class_prepared, sender=cls)
     
     @staticmethod
     def _get_cache_key_for_pk(model, pk):
