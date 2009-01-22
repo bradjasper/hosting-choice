@@ -46,16 +46,16 @@
 {%- endmacro -%}
 
 
-{%- macro Leaderboard(hosts, limit) -%}
+{%- macro Leaderboard(hosts, limit, more_link) -%}
     <table class="leaderboard">
-        {% if hosts %}
+        {%- if hosts -%}
             <tr>
                 <th>#</th>
                 <th>Rank</th>
                 <th>Host</th>
                 <th>Features</th>
             </tr>
-            {% for host in hosts %}
+            {%- for host in hosts %}
             <tr class="{{ loop.cycle('odd', 'even') }}">
                     <td class="rank">{{ loop.index }}.</td>
                     <td class="percentage">{{ host.percentage() | smart_round }}%
@@ -67,7 +67,10 @@
                     <strong>{{ host.name }}</strong>
                     {%- else -%}
                         {{host.name}}
-                        {%- endif -%}</a></td>
+                        {%- endif -%}</a>
+                    {%- if loop.index == 10 -%}
+                        <a name="more"></a>
+                    {%- endif %}</td>
                     <td class="features">
                         {% for feature in host.feature_set.all() %}
                         <span><strong>{{feature.type.name}}:</strong>
@@ -80,6 +83,16 @@
 
                 {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
             {% endfor %}
+            {%- if more_link | default(true) -%}
+                <tr>
+                    <td colspan="4" class="see_more">
+                        <strong><a
+                            href="/hosts/shared-hosting.html#more"
+                            title="Web Hosting Reviews">See More Top Web Hosts</a>
+                        </strong>
+                    </td>
+                </tr>
+            {% endif %}
         {% else %}
             No Hosts!
         {% endif %}

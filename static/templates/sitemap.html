@@ -6,12 +6,9 @@
     <strong>Sitemap</strong>
 {% endblock %}
 
-{% block title %}
-    {% if page %}
-        Sitemap - 
-        {{ super() }}
-    {% endif %}
-{% endblock %}
+{% block title -%}
+    Sitemap - {{ super() }}
+{%- endblock %}
 
 
 {% block content %}

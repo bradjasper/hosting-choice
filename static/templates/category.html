@@ -23,7 +23,7 @@
     <div id="category">
         <h1>Top <strong>{{category.name}}</strong> Web Hosts</h1>
         <p class="desc">{{category.description}}</p>
-        {% call macros.Leaderboard(hosts) %}
+        {% call macros.Leaderboard(hosts, 50, False) %}
         {% endcall %}
     </div>
 {% endblock %}

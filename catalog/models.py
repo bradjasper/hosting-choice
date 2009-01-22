@@ -10,6 +10,7 @@ from django.core.cache import cache
 
 import sitemap
 import format
+import cache
 
 def slugify(data):
     """Turn a piece of data into a slug"""
@@ -42,7 +43,7 @@ class RankTime(models.Model):
     rank = models.IntegerField()
 
 
-class HostManager(models.Manager):
+class HostManager(cache.CacheManager):
 
     # Consider caching this
     def leaderboard(self):
@@ -82,7 +83,6 @@ class Host(Common):
     link_back_required = models.BooleanField(default=False)
     link_back_url = models.URLField(max_length=255, blank=True)
 
-    hits = models.IntegerField(default=0)
     featured = models.IntegerField(default=0, blank=True)
     active = models.BooleanField(default=1)
 
@@ -91,6 +91,9 @@ class Host(Common):
     featured = models.IntegerField(default=0)
 
     objects = HostManager()
+
+    def get_visits(self):
+        return Visits.objects.all(host=self)
 
     def __unicode__(self):
         return self.name
@@ -231,6 +234,8 @@ class Quote(models.Model):
     value = models.CharField(max_length=255)
     weight = models.IntegerField(default=0)
     active = models.BooleanField(default=True)
+
+    raw_id_fields = ('comment',)
 
     def __unicode__(self):
         return "(%s) %s" % (self.host, self.value)
