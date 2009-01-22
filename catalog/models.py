@@ -44,7 +44,7 @@ class RankTime(models.Model):
     rank = models.IntegerField()
 
 
-class HostManager(cache.CacheManager):
+class HostManager(models.Manager):
 
     # Consider caching this
     def leaderboard(self):
@@ -100,8 +100,11 @@ class Host(Common):
 
     objects = HostManager()
 
-    def get_visits(self):
-        return Visits.objects.all(host=self)
+    def get_hits(self):
+        return 0
+    hits = property(get_hits)
+
+#        return Hits.objects.all()
 
     def __unicode__(self):
         return self.name
@@ -250,7 +253,6 @@ class Quote(models.Model):
     weight = models.IntegerField(default=0)
     active = models.BooleanField(default=True)
 
-    raw_id_fields = ('comment',)
 
     def __unicode__(self):
         return "(%s) %s" % (self.host, self.value)

@@ -15,6 +15,8 @@ MIDDLEWARE_CLASSES = (
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+CACHE_BACKEND = 'dummy://'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -23,7 +25,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'hostingchoice.catalog',
 	'hostingchoice.main',
-    #'debug_toolbar',
 )
 
 TEMPLATE_DIRS = (

@@ -33,11 +33,20 @@ class HostAdmin(admin.ModelAdmin):
     ]
 
 class KarmaAdmin(admin.ModelAdmin):
-
     list_display = ('comment', 'ip', 'value')
     list_filter = ('value',)
     ordering = ('comment', 'ip', 'value')
     search_fields = ('comment', 'ip')
+
+class QuoteAdmin(admin.ModelAdmin):
+
+    raw_id_fields = ('comment',)
+
+    list_display = ('host', 'value', 'weight', 'active')
+    list_filter = ('weight', 'active')
+    ordering = ('host', 'value', 'weight', 'active')
+    search_fields = ('host', 'value', 'weight', 'active')
+
 
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
@@ -45,4 +54,4 @@ admin.site.register(models.Comment, CommentAdmin)
 admin.site.register(models.Karma, KarmaAdmin)
 admin.site.register(models.Feature)
 admin.site.register(models.FeatureType)
-admin.site.register(models.Quote)
+admin.site.register(models.Quote, QuoteAdmin)
