@@ -82,7 +82,7 @@ def show_categories(request):
     categories = cache.get('categories')
     if not categories:
         categories = models.Category.objects.filter(parent=0).order_by('name')
-        cache.set('categories', categories, settings.CACHE_TIME)
+        cache.set('categories', categories, settings.CACHE_TIMEOUT)
 
     return response.render('categories.html', {
         'categories': categories,
