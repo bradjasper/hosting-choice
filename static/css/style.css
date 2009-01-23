@@ -187,7 +187,7 @@ p {
     margin-bottom: 18px;
 }
 
-a.visit {
+#info a.visit {
     width: 113px;
     height: 27px;
     display: block;
@@ -195,7 +195,7 @@ a.visit {
     margin: 9px 0;
 }
 
-a.visit span {
+#info a.visit span {
     display: none !important;
     font-size: 1% !important;
 }

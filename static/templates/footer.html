@@ -24,8 +24,16 @@
                 pageTracker._trackPageview();
             } catch(err) {}
         
-            $(document).ready(function() {
-            });
+            {% if host -%}
+                $(document).ready(function() {
+                    $('[class=visit]').each(function() {
+                        console.log($(this));
+                        $(this).click(function() {
+                            top.location = '/visit/{{host.slug}}.html';
+                        });
+                    });
+                });
+            {%- endif %}
         </script>
         <script type="text/javascript" src="http://cetrk.com/pages/scripts/0002/0407.js"> </script>
     </body>

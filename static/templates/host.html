@@ -38,7 +38,7 @@
         
         <div class="desc">
            {%- if host.image -%}
-           <a rel="external" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
+           <a href="javascript:" title="Visit {{host.name}}" class="visit">
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
@@ -46,7 +46,7 @@
 
            <br />
            <p id="purchase"><span class="arrow-point"></span>
-           <a href="/visit/{{host.slug}}.html" rel="external">
+           <a href="javascript:" class="visit" title="Visit {{host.name}}">
                 Purchase <strong>Web Hosting</strong> from
                 <strong>{{host.name}}</strong>
                 {%- if host.features()['Price'] %}
@@ -75,7 +75,7 @@
             {% endcall -%}
         </table>
         <div>
-            <a class="visit" rel="external" href="/visit/{{host.slug}}.html" title="Visit {{host.name}}">
+            <a class="visit" href="javascript:" title="Visit {{host.name}}">
                 <span>{{host.name}}</span></a>
         </div>
     </div>

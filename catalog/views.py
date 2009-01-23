@@ -2,11 +2,12 @@ from django import http
 from catalog import models, forms
 from django.core.cache import cache
 import MySQLdb
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, cache_control
 
 import response
 import settings
 
+@cache_control(private=True)
 def show_host(request, slug):
     """Return the view for an host listing"""
 
@@ -82,7 +83,7 @@ def show_categories(request):
     categories = cache.get('categories')
     if not categories:
         categories = models.Category.objects.filter(parent=0).order_by('name')
-        cache.set('categories', categories, settings.CACHE_TIME)
+        cache.set('categories', categories, settings.CACHE_TIMEOUT)
 
     return response.render('categories.html', {
         'categories': categories,
@@ -131,8 +132,10 @@ def matrix(request):
 def visit(request, slug):
     """Visit a site, recording a hit"""
     host = models.Host.objects.get(slug=slug)
-    host.hits += 1
-    host.save()
+    hit = models.Hit(host=host)
+    hit.ip = request.META['REMOTE_ADDR']
+
+    hit.save()
 
     return http.HttpResponseRedirect(host.url)
 
