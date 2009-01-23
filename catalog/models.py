@@ -101,10 +101,13 @@ class Host(Common):
     objects = HostManager()
 
     def get_hits(self):
-        return 0
-    hits = property(get_hits)
+        return Hit.objects.filter(host=self)
 
-#        return Hits.objects.all()
+    def num_hits(self):
+        return len(self.get_hits())
+
+    hits = property(num_hits)
+
 
     def __unicode__(self):
         return self.name
@@ -267,7 +270,7 @@ class Comment(models.Model):
     
     host = models.ForeignKey('Host')
     text = models.TextField()
-    ip = models.CharField(max_length=25)
+    ip = models.IPAddressField()
 
     date = models.DateTimeField(default=datetime.datetime.now())
 
@@ -375,3 +378,7 @@ class FeatureType(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Hit(models.Model):
+    ip = models.IPAddressField()
+    host = models.ForeignKey('Host')
