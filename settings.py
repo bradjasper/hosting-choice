@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'hostingchoice.profiler_middlware.ProfileMiddleware',
+#    'hostingchoice.profiler_middlware.ProfileMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
