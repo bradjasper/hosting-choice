@@ -27,9 +27,9 @@
             {% if host -%}
                 $(document).ready(function() {
                     $('[class=visit]').each(function() {
-                        console.log($(this));
+                        $(this).attr('href', "/visit/{{host.slug}}.html");
                         $(this).click(function() {
-                            top.location = '/visit/{{host.slug}}.html';
+                            pageTracker._trackEvent('Hit')
                         });
                     });
                 });
