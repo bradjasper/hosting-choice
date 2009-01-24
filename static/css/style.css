@@ -13,7 +13,6 @@ body {
     font-family: Arial, Verdana, Tahoma, Sans-Serif;
     font-size: 80%;
     text-align: center;
-    behavior: url(iepngfix.htc);
 }
 
 #outer {
@@ -23,16 +22,8 @@ body {
     text-align: center;
     padding: 0;
     border-width: 0;
-    border: 1px solid blue;
 }
 
-#outer_vAA {
-    border: 1px solid red; 
-}
-
-#outer_vA {
-    border: 1px solid green;
-}
 #inner {
     text-align: center;
 }

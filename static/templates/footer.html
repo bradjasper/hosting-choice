@@ -17,13 +17,6 @@
             <div class="clear"></div>
         </div>
         <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-                document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-            try {
-                var pageTracker = _gat._getTracker("UA-6961171-1");
-                pageTracker._trackPageview();
-            } catch(err) {}
-        
             {% if host -%}
                 $(document).ready(function() {
                     $('[class=visit]').each(function() {
@@ -34,14 +27,6 @@
                     });
                 });
             {%- endif %}
-
-            bam = function() {
-                alert('bam');
-            }
-            bam_vA = function() {
-                alert('v2');
-            }
-            genetify.vary();
         </script>
         <script type="text/javascript" src="http://cetrk.com/pages/scripts/0002/0407.js"> </script>
     </body>
