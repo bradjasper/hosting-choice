@@ -23,8 +23,16 @@ body {
     text-align: center;
     padding: 0;
     border-width: 0;
+    border: 1px solid blue;
 }
 
+#outer_vAA {
+    border: 1px solid red; 
+}
+
+#outer_vA {
+    border: 1px solid green;
+}
 #inner {
     text-align: center;
 }
@@ -676,3 +684,8 @@ ul.normal li {
 .quotes li.alt {
     background: #f2f2f2;
 }
+
+.v { display: none; }
+.genetify_disabled { display: none !important; } 
+.genetify_enabled { display: block !important; } 
+
