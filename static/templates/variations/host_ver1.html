@@ -89,3 +89,18 @@
     <p>Cannot find host.</p>
 {% endif %}
 {%- endblock -%}
+
+{% block footer %}
+    {{ super() }}
+    <script>
+    if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
+    'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
+    '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
+    </script>
+    <script>
+    try {
+    _uacct = 'UA-75770-5';
+    urchinTracker("/0050799212/test");
+    } catch (err) { }
+    </script>
+{% endblock %}
