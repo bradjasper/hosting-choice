@@ -46,7 +46,7 @@
 
            <br />
            <p id="purchase"><span class="arrow-point"></span>
-           <a href="javascript:" class="visit" title="Visit {{host.name}}">
+           <a href="*" class="visit" title="Visit {{host.name}}">
                <span class="default_text">Purchase
                        <strong>Web Hosting</strong> from
                     <strong>{{host.name}}</strong>
@@ -68,7 +68,10 @@
             <span>(<a href="/host/{{host.slug}}.html#comments">{{
                                 host.comment_set.filter(active=1) | length }}
                                 Reviews</a>)</span>
-
+        </div>
+        <div style="padding: 0px !important;">
+            <a class="visit" href="#" title="Visit {{host.name}}">
+                <span>{{host.name}}</span></a>
         </div>
         <table>
             {%- call macros.Features(host.feature_set.all().order_by('type')) %}
@@ -76,10 +79,7 @@
             {%- call macros.Ratings(host.ratings()) %}
             {% endcall -%}
         </table>
-        <div>
-            <a class="visit" href="#" title="Visit {{host.name}}">
-                <span>{{host.name}}</span></a>
-        </div>
+
     </div>
 
 

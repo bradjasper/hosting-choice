@@ -53,7 +53,13 @@ def show_host(request, slug):
         host = None
         form = None
 
-    return response.render('host.html', {
+    ver = request.GET.get('ver')
+    if ver:
+        template = "variations/host_%s.html" % ver
+    else:
+        template = "host.html"
+
+    return response.render(template, {
         'host': host,
         'form': form,
         'messages': messages,
