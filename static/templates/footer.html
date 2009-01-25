@@ -1,26 +1,33 @@
                 </div>
             </div>
         <div id="footer">
-            <span>&copy; 2009 Hosting Choice</span>
-            <ul>
-                <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
-                <li><a href="/hosts.html">Hosting Directory</a></li>
-                <li><a href="/submit.html">Submit A Host</a></li>
-                <li><a href="/faq.html">FAQ</a></li>
-                <li><a href="/about.html">About Us</a></li>
-                <li><a href="/blog.html">Blog</a></li>
-                <li><a href="/sitemap.html">Sitemap</a></li>
-                <li><a href="/terms.html">TOS</a></li>
-                <li><a href="/privacy.html">Privacy</a></li>
-                <li class="noborder"><a href="/admin/" rel="nofollow">Admin</a></li>
-            </ul>
-            <div class="clear"></div>
-        </div>
-        <script type="text/javascript">
-            {% if host -%}
-                $(document).ready(function() {
-                    $('[class=visit]').each(function() {
-                        $(this).attr('href', "/visit/{{host.slug}}.html");
+            {% block footer %}
+                <span>&copy; 2009 Hosting Choice</span>
+                <ul>
+                    <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
+                    <li><a href="/hosts.html">Hosting Directory</a></li>
+                    <li><a href="/submit.html">Submit A Host</a></li>
+                    <li><a href="/faq.html">FAQ</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/sitemap.html">Sitemap</a></li>
+                    <li><a href="/terms.html">TOS</a></li>
+                    <li><a href="/privacy.html">Privacy</a></li>
+                    <li class="noborder"><a href="/admin/" rel="nofollow">Admin</a></li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <script type="text/javascript">
+                {% if host -%}
+                    $(document).ready(function() {
+                        $('[class=visit]').each(function() {
+                            $(this).attr('href', "/visit/{{host.slug}}.html");
+                            $(this).click(function() {
+                                _uacct = 'UA-75770-5';
+                                urchinTracker("/0050799212/test");
+                                return true;
+                            });
+                        });
                     });
                 });
             {%- endif %}
@@ -36,5 +43,6 @@
         </script>
 
         <script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><img class="statcounter" src="http://c.statcounter.com/4410292/0/de59d2bc/1/" alt="free hit counters" /></a></div></noscript>
+        {% endblock %}
     </body>
 </html>
