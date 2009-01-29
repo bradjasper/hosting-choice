@@ -1,5 +1,6 @@
                 </div>
             </div>
+
         <div id="footer">
             {% block footer %}
                 <span>&copy; 2009 Hosting Choice</span>
@@ -16,27 +17,27 @@
                     <li class="noborder"><a href="/admin/" rel="nofollow">Admin</a></li>
                 </ul>
                 <div class="clear"></div>
-            </div>
-            <script type="text/javascript">
-                {% if host -%}
-                    $(document).ready(function() {
-                        $('[class=visit]').each(function() {
-                            $(this).attr('href', "/visit/{{host.slug}}.html");
-                        });
+                <a id="django" href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25.gif" border="0" alt="a django site." title="a django site." /></a>
+            {% endblock %}
+        </div>
+        <script type="text/javascript">
+            {% if host -%}
+                $(document).ready(function() {
+                    $('[class=visit]').each(function() {
+                        $(this).attr('href', "/visit/{{host.slug}}.html");
                     });
-                {%- endif %}
-            </script>
-            <script type="text/javascript" src="http://cetrk.com/pages/scripts/0002/0407.js"> </script>
-            <!-- Start of StatCounter Code -->
-            <script type="text/javascript">
+                });
+            {%- endif %}
+        </script>
+        <script type="text/javascript" src="http://cetrk.com/pages/scripts/0002/0407.js"> </script>
+        <!-- Start of StatCounter Code -->
+        <script type="text/javascript">
             var sc_project=4410292; 
             var sc_invisible=1; 
             var sc_partition=55; 
             var sc_click_stat=1; 
             var sc_security="de59d2bc"; 
             </script>
-
-            <script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><img class="statcounter" src="http://c.statcounter.com/4410292/0/de59d2bc/1/" alt="free hit counters" /></a></div></noscript>
-        {% endblock %}
+        <script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><img class="statcounter" src="http://c.statcounter.com/4410292/0/de59d2bc/1/" alt="free hit counters" /></a></div></noscript>
     </body>
 </html>
