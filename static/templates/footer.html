@@ -21,11 +21,21 @@
                 <a id="django" href="http://www.djangoproject.com/"><img src="http://media.djangoproject.com/img/badges/djangosite100x25.gif" border="0" alt="A Django site." title="A Django site." /></a>
             {% endblock %}
         </div>
+        <script>
+            if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
+            'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
+            '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
+        </script>
         <script type="text/javascript">
             {% if host -%}
                 $(document).ready(function() {
                     $('[class=visit]').each(function() {
                         $(this).attr('href', "/visit/{{host.slug}}.html");
+                        $(this).click(function() {
+                            _uacct = 'UA-75770-5';
+                            urchinTracker("/0050799212/goal");
+                        });
+                       
                     });
                 });
             {%- endif %}
