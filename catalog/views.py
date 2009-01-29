@@ -144,6 +144,7 @@ def visit(request, slug):
     hit.save()
 
     return http.HttpResponseRedirect(host.url)
+    return response.render('visit.html')
 
 def sitemap_xml(request):
     """Display sitemap for search engine"""

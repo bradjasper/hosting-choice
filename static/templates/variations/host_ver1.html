@@ -93,6 +93,8 @@
 {% block footer %}
     boom!@!@!@
     {{ super() }}
+
+    {% if host.name == 'BlueHost' %}
     <script>
     if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
     'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
@@ -104,5 +106,7 @@
     urchinTracker("/0050799212/test");
     } catch (err) { }
     </script>
-    boom
+    {% endif %}
+
+        
 {% endblock %}
