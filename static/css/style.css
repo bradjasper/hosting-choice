@@ -680,3 +680,14 @@ ul.normal li {
 .genetify_disabled { display: none !important; } 
 .genetify_enabled { display: block !important; } 
 
+#plug {
+    margin-top: 10px;
+    padding-top: 10px;
+    background: url('/media/images/dots.png') top left repeat-x;
+}
+
+#django {
+    display: block;
+    margin: 15px;
+    float: right;
+}
