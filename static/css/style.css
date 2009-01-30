@@ -48,10 +48,12 @@ body {
 
 #header {
     height: 78px;
-    background: url('/media/images/header.png') top center no-repeat;
-    width: 770px;
+    background: #fff url('/media/images/header.png') top center no-repeat;
+    width: 780px;
     margin: 0 auto;
-    position: relative;
+    top: 0;
+    position: absolute;
+
 }
 
 #nav {
@@ -92,6 +94,7 @@ body {
     width: 778px;
     background: url('/media/images/content-sprite.png') -778px repeat-y;
     margin: 0 auto;
+    padding-top: 78px;
     text-align: left;
 }
 
@@ -688,6 +691,6 @@ ul.normal li {
 
 #django {
     display: block;
-    margin: 15px;
+    padding: 15px;
     float: right;
 }

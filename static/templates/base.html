@@ -38,46 +38,6 @@
         </script>
         <div id="outer">
             <div id="inner">
-                <div id="header">
-                    <a href="/" id="logo" title="Home"><span>Hosting Choice Home</span></a>
-
-                    <ul id="nav">
-                        <li class="
-                            {%- if active_page == 'about' -%}
-                                active
-                            {%- endif %}" id="about">
-                            <a href="/about.html"><span>About Us</span></a>
-                        </li>
-                        <li class="
-                            {%- if active_page == 'submit' -%}
-                                active
-                            {%- endif %}" id="submit">
-                            <a href="/submit.html"><span>Submit A Host</span></a>
-                        </li>
-                        <li class="
-                            {%- if active_page == 'faq' -%}
-                                active
-                            {%- endif %}" id="faq">
-                            <a href="/faq.html"><span>FAQ</span></a>
-                        </li>
-                        <li class="
-                            {%- if active_page == 'directory' -%}
-                                active
-                            {%- endif %}" id="directory">
-                            <a href="/hosts.html"><span>Host Directory</span></a>
-                        </li>
-                        <li class="
-                            {%- if active_page == 'leaderboard' -%}
-                                active
-                            {%- endif %}" id="tophosts">
-                            <a href="/leaderboard.html"><span>Top 10 Web Hosts</span></a>
-                        </li>
-                    </ul>
-                    <a class="nav-text" id="twitter" href="http://twitter.com/hostingchoice">
-                        Follow <strong>HostingChoice</strong> on twitter
-                    </a>
-                </div>
-
                 <div id="content">
                     <div id="content-top"></div>
                     <div id="content-inner">
@@ -96,9 +56,48 @@
 
                     <div class="clear"></div>
                     <div id="content-bottom"></div>
-                </div>
+                    <div id="header">
+                        <a href="/" id="logo" title="Home"><span>Hosting Choice Home</span></a>
+
+                        <ul id="nav">
+                            <li class="
+                                {%- if active_page == 'about' -%}
+                                    active
+                                {%- endif %}" id="about">
+                                <a href="/about.html"><span>About Us</span></a>
+                            </li>
+                            <li class="
+                                {%- if active_page == 'submit' -%}
+                                    active
+                                {%- endif %}" id="submit">
+                                <a href="/submit.html"><span>Submit A Host</span></a>
+                            </li>
+                            <li class="
+                                {%- if active_page == 'faq' -%}
+                                    active
+                                {%- endif %}" id="faq">
+                                <a href="/faq.html"><span>FAQ</span></a>
+                            </li>
+                            <li class="
+                                {%- if active_page == 'directory' -%}
+                                    active
+                                {%- endif %}" id="directory">
+                                <a href="/hosts.html"><span>Host Directory</span></a>
+                            </li>
+                            <li class="
+                                {%- if active_page == 'leaderboard' -%}
+                                    active
+                                {%- endif %}" id="tophosts">
+                                <a href="/leaderboard.html"><span>Top 10 Web Hosts</span></a>
+                            </li>
+                        </ul>
+                        <a class="nav-text" id="twitter" href="http://twitter.com/hostingchoice">
+                            Follow <strong>HostingChoice</strong> on twitter
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
 
         <div id="footer">
             {% block footer %}
