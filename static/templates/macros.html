@@ -25,7 +25,7 @@
         <td>
             <span class="
                 {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
-            "></span>
+                "><span>Rating: {{ratings[name]}}/5</span></span>
         </td>
     </tr>
     {% endfor %}
@@ -47,7 +47,7 @@
 
 
 {%- macro Leaderboard(hosts, limit, more_link) -%}
-    <table class="leaderboard">
+    <table class="leaderboard" summary="Top Web Hosts Leaderboard">
         {%- if hosts -%}
             <tr>
                 <th>#</th>
@@ -61,12 +61,12 @@
                     <td class="percentage">{{ host.percentage() | smart_round }}%
                         <span>(<a href="/host/{{host.slug}}.html#comments">{{
                                 host.comment_set.filter(active=1) | length }}
-                                Reviews</a>)</span></td>
+                                {{ host.name }} Reviews</a>)</span></td>
                     <td class="name"><a href="/host/{{host.slug}}.html">
                     {%- if loop.index == 1 %}
-                    <strong>{{ host.name }}</strong>
+                    <strong><h2>{{ host.name }}</h2></strong>
                     {%- else -%}
-                        {{host.name}}
+                        <h3>{{host.name}}</h2>
                         {%- endif -%}</a>
                     {%- if loop.index == 10 -%}
                         <a name="more"></a>

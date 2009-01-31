@@ -60,3 +60,12 @@ class Entry(Common):
 
     def __unicode__(self):
         return "%s - %s" % (self.name, self.user)
+
+
+class FAQ(Common):
+    """Frequently Asked Question"""
+
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+
+    order = models.IntegerField(default=0)

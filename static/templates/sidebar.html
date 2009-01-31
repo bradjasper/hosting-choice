@@ -14,8 +14,8 @@
     <ul>
         {% for review in recent_reviews %}
         <li>
-            On <a href="/host/{{review.host.slug}}.html">
-                {{review.host.name}}</a>
+            <a title="{{review.host.name}} Review" href="/host/{{review.host.slug}}.html">
+                {{review.host.name}} Review</a>
             by {{review.name}}
         </li>
         {% endfor %}
@@ -25,9 +25,11 @@
     <ul>
         {% for article in articles %}
         <li>
-            <a href="/article/{{article.slug}}.html">{{article.name}}</a>
+            <a href="/article/{{article.slug}}.html" title="{{article.name}}">{{article.name}}</a>
         </li>
         {% endfor %}
+        <li><strong><a href="/articles.html">See More Blog
+                Posts</a></strong</li>
     </ul>
 
     <h3>Site Links</h3>
@@ -41,5 +43,3 @@
         <li><a href="/about.html">About Us</a></li>
     </ul>
 </div>
-
-

@@ -202,6 +202,11 @@ p {
     font-size: 1% !important;
 }
 
+.visit {
+    font-size: 110%;
+    line-height: 23px;
+}
+
 .comments {
     margin-top: 50px;
 }
@@ -273,7 +278,10 @@ p {
     width: 60px;
     height: 13px;
     display: block !important;
-    font-size: 1%;
+}
+
+.stars span {
+    display: none;
 }
 
 .stars05 { background-position: 0 -12px; }
@@ -471,6 +479,7 @@ p {
 
 .leaderboard td.percentage {
     font-weight: bold;
+    width: 80px;
     color: #111;
 }
 
@@ -481,6 +490,12 @@ p {
 .leaderboard td.bigname {
     font-size: 120%;
 }
+
+.leaderboard h2 {
+    font-size: 120%;
+    font-weight: inherit;
+}
+
 
 .even {
     background-color: #f1f1f1;
@@ -628,13 +643,18 @@ p {
     background: url('/media/images/icons/twitter.png') top left no-repeat;
 }
 
-ul.normal, ul.normal li ul {
+ul.normal, ul.normal li ul, ol.normal, ol.normal li ol {
     padding: 5px 0 10px 35px;
 }
 
 ul.normal li {
     padding: 5px 0;
     list-style: square;
+}
+
+ol.normal li {
+    padding: 5px 0;
+    list-style: decimal;
 }
 
 
@@ -693,4 +713,11 @@ ul.normal li {
     display: block;
     padding: 15px;
     float: right;
+}
+
+hr {
+    background: url('/media/images/dots.png') top left repeat-x;
+    padding: 1px;
+    margin: 20px 0;
+    border: 0px;
 }
