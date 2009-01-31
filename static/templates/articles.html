@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }} &raquo; <a href="/blog.html">Blog</a> &raquo;
+    <strong>Web Hosting Articles</strong>
+{% endblock %}
+
+{% block title -%}
+    Web Hosting Articles - {{ super() }}
+{%- endblock %}
+
+{% block meta_description -%}
+    A full list of web hosting articles from Hosting Choice.
+{%- endblock %}
+
+
+{% block content -%}
+<div>
+    <h1>Web Hosting Articles</h1>
+    <ul class="normal">
+        {% for entry in entries %}
+            <li><a href="/article/{{entry.slug}}.html">{{entry.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{%- endblock %}

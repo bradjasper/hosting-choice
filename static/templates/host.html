@@ -60,6 +60,8 @@
            <div class="text">{{host.description | read_more }}</div>
 
            <br />
+
+           {% include 'quotes.html' %}
            <p id="purchase"><span class="arrow-point"></span>
            <a href="javascript:" class="visit" title="Visit {{host.name}}">
                <span class="default_text">Purchase
@@ -72,7 +74,6 @@
             </a>
           </p> 
 
-           {% include 'quotes.html' %}
         </div>
 
     </div>

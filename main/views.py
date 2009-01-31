@@ -44,3 +44,17 @@ def show_entry(request, slug):
         'entry': entry,
         'request': request})
 
+def show_entries(request):
+    entries = models.Entry.objects.all().order_by('-pub_date')
+
+    return response.render('articles.html', {
+        'entries': entries})
+
+
+def show_faq(request):
+    """Show FAQ page"""
+
+    entries = models.FAQ.objects.all().order_by('-order')
+
+    return response.render('faq.html', {
+        'entries': entries})

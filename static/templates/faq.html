@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+    {{ super() }}
+    <strong>Frequently Asked Questions (FAQ)</strong>
+{% endblock %}
+
+{% block title -%}
+    Frequently Asked Questions - {{ super() }}
+{%- endblock %}
+
+{% block meta_description -%}
+    Frequently Asked Questions as Hosting Choice
+{%- endblock %}
+
+
+{% block content -%}
+<div>
+    <h1>Frequently Asked Questions</h1>
+    <ol class="normal">
+        {% for entry in entries %}
+            <li><a href="/faq.html#faq-{{loop.index}}">{{entry.question}}</a></li>
+        {% endfor %}
+    </ol>
+
+    {% for entry in entries %}
+        <hr />
+        <a name="faq-{{loop.index}}"></a>
+        <h2>{{loop.index}}. {{entry.question}}</h2>
+        <p class="desc">{{entry.answer|markup}}</p>
+    {% endfor %}
+</div>
+{%- endblock %}

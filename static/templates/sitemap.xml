@@ -40,6 +40,11 @@
         <changefreq>hourly</changefreq>
         <priority>1.0</priority>
     </url>
+    <url>
+        <loc>http://hosting-choice.com/articles.html</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.0</priority>
+    </url>
     {% for article in articles %}
         <url>
             <loc>http://hosting-choice.com/article/{{article.slug}}.html</loc>
