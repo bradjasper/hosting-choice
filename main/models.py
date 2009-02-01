@@ -52,7 +52,7 @@ class Entry(Common):
     """Blog Entry"""
 
     name = models.CharField(max_length=255)
-    user = models.ForeignKey(auth.User)
+    user = models.ForeignKey(auth.User, default=1)
     slug = models.SlugField(unique=True, default=None, blank=True)
     text = models.TextField()
 
@@ -69,3 +69,6 @@ class FAQ(Common):
     answer = models.TextField()
 
     order = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.question
