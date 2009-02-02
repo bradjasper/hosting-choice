@@ -61,6 +61,9 @@ class Entry(Common):
     def __unicode__(self):
         return "%s - %s" % (self.name, self.user)
 
+    def get_absolute_url(self):
+        return "http://hosting-choice.com/article/%s.html" % self.slug
+
 
 class FAQ(Common):
     """Frequently Asked Question"""

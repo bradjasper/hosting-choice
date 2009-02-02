@@ -1,14 +1,13 @@
 from django.conf.urls.defaults import *
-
-# Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+
+import main.feeds
+
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Example:
-    # (r'^bizdir/', include('bizdir.foo.urls')),
+feeds = {'latest': main.feeds.LatestEntries}
 
-    # Uncomment the next line to enable the admin:
+urlpatterns = patterns('',
     (r'^admin/(.*)', admin.site.root),
 
     (r'^category/(?P<slug>.*).html$', 'catalog.views.show_category'),
@@ -33,6 +32,9 @@ urlpatterns = patterns('',
 
     (r'^alt_index.html$', 'main.views.alt_index'),
     (r'^$|index.html$', 'main.views.index'),
+
+    (r'^feeds/(?P<url>.*).xml$', 'django.contrib.syndication.views.feed',
+        {'feed_dict': feeds}),
 
     (r'^(?P<slug>(.*)).html', 'main.views.get_page'),
 )
