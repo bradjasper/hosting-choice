@@ -678,7 +678,7 @@ ol.normal li {
     list-style-type: decimal;
 }
 
-.more, .read {
+.more {
     display: none;
 }
 
