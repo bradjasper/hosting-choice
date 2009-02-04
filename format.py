@@ -1,3 +1,5 @@
+import math
+
 import markdown
 
 def datetimeformat(value, format=None):
@@ -10,7 +12,7 @@ def datetimeformat(value, format=None):
 
 def smart_round(num):
 
-    new_num = round(round(num / 0.5) * 0.5)
+    new_num = math.ceil(num / 0.5) * 0.5
 
     # Cheap way to remove rounding zero. Find better way to do this.
     if str(new_num).endswith('.0'):

@@ -285,15 +285,15 @@ p {
 }
 
 .stars05 { background-position: 0 -12px; }
-.stars10 { background-position: 0 -26px; }
+.stars1 { background-position: 0 -26px; }
 .stars15 { background-position: 0 -39px; }
-.stars20 { background-position: 0 -53px; }
+.stars2 { background-position: 0 -53px; }
 .stars25 { background-position: 0 -67px; }
-.stars30 { background-position: 0 -81px; }
+.stars3 { background-position: 0 -81px; }
 .stars35 { background-position: 0 -94px; }
-.stars40 { background-position: 0 -108px; }
+.stars4 { background-position: 0 -108px; }
 .stars45 { background-position: 0 -122px; }
-.stars50 { background-position: 0 -135px; }
+.stars5 { background-position: 0 -135px; }
 
 .comment {
     background: url('/media/images/comment-sprite.png') 0 0 no-repeat;

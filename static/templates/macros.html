@@ -46,14 +46,10 @@
 {%- endmacro -%}
 
 {%- macro get_feature(feature) -%}
-    {% if feature.type.suffix == 'MB' %}
-        {% if feature.value == '0' %}
-            Unlimited
-        {% else %}
-            {{ feature.value | normalize_size }}
-        {% endif %}
+    {% if feature.type.name == 'Price' %}
+        ${{ feature.value }}
     {% else %}
-        {{feature.type.prefix}}{{feature.value}}{{feature.type.suffix}}
+        {{ feature.value | normalize_size(True) }}
     {% endif %}
     {{ caller() }}
 {%- endmacro -%}
