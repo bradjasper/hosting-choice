@@ -56,7 +56,11 @@
                         {% endblock %}
                     </div>
 
-                    {% include 'sidebar.html' %}
+                    <div id="sidebar">
+                        {% block sidebar %}
+                            {% include 'sidebar.html' %}
+                        {% endblock %}
+                    </div>
 
                     <div class="clear"></div>
                     <div id="content-bottom"></div>

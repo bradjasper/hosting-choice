@@ -3,7 +3,7 @@
 {%- endmacro -%}
 
 {%- macro get_rating_class(rating) -%}
-    stars{{rating | smart_round | replace('.', '') }} {{ caller() }}
+    stars{{rating | smart_round | replace(',', '.') }} {{ caller() }}
 {%- endmacro -%}
 
 {%- macro get_rating_mood(rating) -%}

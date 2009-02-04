@@ -1,45 +1,42 @@
-<div id="sidebar">
+<h3 class="nomargin">Top 10 Hosts</h3>
+<ul id="top_hosts">
+    {% for host in top_hosts %}
+        <li{% if loop.index == 1 %} class="strong"{% endif %}><a href="/host/{{host.slug}}.html">{{host.name}}</a>
+            <span>({{host.percentage() | smart_round}}%)</span></li>
+    {% endfor %}
+</ul>
 
-    <h3 class="nomargin">Top 10 Hosts</h3>
-    <ul id="top_hosts">
-        {% for host in top_hosts %}
-            <li{% if loop.index == 1 %} class="strong"{% endif %}><a href="/host/{{host.slug}}.html">{{host.name}}</a>
-                <span>({{host.percentage() | smart_round}}%)</span></li>
-        {% endfor %}
-    </ul>
+{%- include 'email_form.html' %}
+    
+<h3>Recent Reviews</h3>
+<ul>
+    {% for review in recent_reviews %}
+    <li>
+        <a title="{{review.host.name}} Review" href="/host/{{review.host.slug}}.html">
+            {{review.host.name}} Review</a>
+        by {{review.name}}
+    </li>
+    {% endfor %}
+</ul>
 
-    {%- include 'email_form.html' %}
-        
-    <h3>Recent Reviews</h3>
-    <ul>
-        {% for review in recent_reviews %}
-        <li>
-            <a title="{{review.host.name}} Review" href="/host/{{review.host.slug}}.html">
-                {{review.host.name}} Review</a>
-            by {{review.name}}
-        </li>
-        {% endfor %}
-    </ul>
+<h3>Recent Articles</h3>
+<ul>
+    {% for article in articles %}
+    <li>
+        <a href="/article/{{article.slug}}.html" title="{{article.name}}">{{article.name}}</a>
+    </li>
+    {% endfor %}
+    <li><strong><a href="/articles.html">See More Blog
+            Posts</a></strong</li>
+</ul>
 
-    <h3>Recent Articles</h3>
-    <ul>
-        {% for article in articles %}
-        <li>
-            <a href="/article/{{article.slug}}.html" title="{{article.name}}">{{article.name}}</a>
-        </li>
-        {% endfor %}
-        <li><strong><a href="/articles.html">See More Blog
-                Posts</a></strong</li>
-    </ul>
-
-    <h3>Site Links</h3>
-    <ul>
-        <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
-        <li><a href="/hosts.html">Hosting Directory</a></li>
-        <li><a href="/submit.html">Submit A Host</a></li>
-        <li><a href="/blog.html">Blog</a></li>
-        <li><a href="/faq.html">FAQ</a></li>
-        <li><a href="/sitemap.html">Sitemap</a></li>
-        <li><a href="/about.html">About Us</a></li>
-    </ul>
-</div>
+<h3>Site Links</h3>
+<ul>
+    <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
+    <li><a href="/hosts.html">Hosting Directory</a></li>
+    <li><a href="/submit.html">Submit A Host</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/sitemap.html">Sitemap</a></li>
+    <li><a href="/about.html">About Us</a></li>
+</ul>

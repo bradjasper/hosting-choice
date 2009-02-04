@@ -13,12 +13,19 @@
     {% endif %}
 {% endblock %}
 
+{% block sidebar %}
+    <h3>Top 10 Web Hosts</h3>
+    <div><p>Here you will find our <strong>top 10 web hosts</strong>.
+        These hosts are picked by our users to be the best of the best.</p>
+
+        <p>Read the customer reviews to help decide which host is best for you.
+        Read our <a href="/faq.html">hosting FAQ</a> for more questions.</p>
+    </div>
+    {{ super() }}
+{% endblock %}
+
 {%- block content -%}
     <h1>Top Web Hosts</h1>
-    <p>Below you will find our list of the <strong>top 10 web hosts</strong>.
-    These hosts are picked by our users to be the best of the best.
-    Read the customer reviews to help decide which host is best for you.
-    Read our <a href="/faq.html">hosting FAQ</a> for more questions.</p>
 
     {% call macros.Leaderboard(top_hosts) %}
     {% endcall %}
