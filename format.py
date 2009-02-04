@@ -1,3 +1,5 @@
+import math
+
 import markdown
 
 def datetimeformat(value, format=None):
@@ -10,8 +12,7 @@ def datetimeformat(value, format=None):
 
 def smart_round(num):
 
-    new_num = round(round(num / 0.5) * 0.5)
-    return new_num
+    new_num = math.ceil(num / 0.5) * 0.5
 
     # Cheap way to remove rounding zero. Find better way to do this.
     if str(new_num).endswith('.0'):
@@ -19,11 +20,19 @@ def smart_round(num):
 
     return new_num
 
-def normalize_size(size):
+def normalize_size(size, complete = None):
     for i, type in enumerate(['MB', 'GB', 'TB']):
         tmp_size = int(size) / (1000 ** i)
         if tmp_size < 1000:
-            return "%d%s" % (tmp_size, type)
+            size = tmp_size
+            break
+
+    if complete:
+        if size == 0:
+            size = 'Unlimited'
+        else:
+            size = "%d%s" % (size, type)
+
     return size
 
 def markup(text):

@@ -10,6 +10,24 @@ String.prototype.rtrim = function() {
 
 $(document).ready(function() {
 
+    $('[class=leaderboard] tr.host_row').each(function() {
+        $(this).click(function() {
+            window.location = 'http://hosting-choice.com/host/'+$(this).attr('id')+'.html';
+        });
+
+        $(this).hover(
+            function() {
+                $(this).attr('tmp_bg', $(this).css('background'));
+                $(this).css('background', '#ddd');
+                $(this).css('cursor', 'hand');
+                $(this).css('cursor', 'pointer');
+            }, function() {
+                $(this).css('background', $(this).attr('tmp_bg'));
+                $(this).css('cursor', 'arrow');
+            }
+        );
+    });
+
     $('[class=visit]').each(function() {
         var url = $(this).attr('href');
         var name = $(this).attr('name');
