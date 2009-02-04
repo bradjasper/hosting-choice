@@ -386,7 +386,7 @@ class Hit(models.Model):
     host = models.ForeignKey('Host')
     user_agent = models.TextField()
 
-    referrer = models.URLField(blank=True, null=True)
+    referrer = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
 
     note = models.TextField(blank=True, null=True)

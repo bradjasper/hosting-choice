@@ -8,6 +8,8 @@ String.prototype.rtrim = function() {
 	return this.replace(/\s+$/,"");
 }
 
+bg_store = {}
+
 $(document).ready(function() {
 
     $('[class=leaderboard] tr.host_row').each(function() {
@@ -17,12 +19,14 @@ $(document).ready(function() {
 
         $(this).hover(
             function() {
-                $(this).attr('tmp_bg', $(this).css('background'));
+                bg_store[$(this).attr('id')] = $(this).css('background');
                 $(this).css('background', '#ddd');
                 $(this).css('cursor', 'hand');
                 $(this).css('cursor', 'pointer');
             }, function() {
-                $(this).css('background', $(this).attr('tmp_bg'));
+                var color = bg_store[$(this).attr('id')];
+                if (!color) { color = "#fafafa"; }
+                $(this).css('background', color);
                 $(this).css('cursor', 'arrow');
             }
         );

@@ -92,14 +92,11 @@
                     <span>(<a href="/host/{{host.slug}}.html#comments">{{
                         host.comment_set.filter(active=1) | length }}
                         Reviews</a>)</span>
-
-                   
-                    </td>
-                    <td class="name">
                         {%- if loop.index == 10 -%}
                             <a name="more"></a>
                         {%- endif -%}
-
+                    </td>
+                    <td class="name">
                         <a href="{{host.get_absolute_url()}}"><img class="small_logo"
                             src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
 
@@ -109,6 +106,7 @@
                     <td>${{ host.features()['Price'] }}</td>
                     <td><a name="host" class="visit" href="{{host.get_visit_url()}}">Visit</a></td>
                 </tr>
+
 
                 {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
             {% endfor %}
