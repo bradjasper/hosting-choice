@@ -33,7 +33,7 @@
         <div class="desc">
            {%- if host.image -%}
            <a name="logo" href="{{host.get_visit_url()}}" title="Visit {{host.name}}" class="visit">
-               <img src="/media/images/{{host.image}}" class="logo" size="50%" />
+               <img alt="{{host.name}}" src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
            <div class="text">{{host.description | read_more }}</div>

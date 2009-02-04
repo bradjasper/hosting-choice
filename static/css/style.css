@@ -455,7 +455,7 @@ p {
 .leaderboard td {
     color: #222;
     vertical-align: middle;
-    padding: 15px 8px;
+    padding: 13px 8px;
     border-bottom: 1px solid white;
     border-right: 1px solid white;
 }
@@ -473,13 +473,13 @@ p {
 
 .leaderboard td.percentage {
     font-weight: bold;
-    font-size: 170%;
+    font-size: 190%;
     color: #111;
 }
 
 .leaderboard td.percentage span {
-    font-size: 45%;
-    padding: 8px 0;
+    font-size: 50%;
+    padding: 5px 0;
     display: block;
 }
 
@@ -552,12 +552,13 @@ p {
     padding: 3px;
     border: 1px solid #ddd;
     margin-left: 5px;
+    display: block;
     width: 200px;
     float: right;
 }
 
 .small_logo {
-    width: 100px;
+    width: 150px;
 }
 
 .rank span {
@@ -727,7 +728,7 @@ hr {
 }
 
 .see_more {
-    font-size: 130%;
+    font-size: 170%;
 }
 
 .footnote {
