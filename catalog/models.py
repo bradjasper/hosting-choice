@@ -115,8 +115,7 @@ class Host(Common):
     def features(self):
         """Return a dictionary of features"""
 
-        func = lambda x: (x.type.name, "%s%s%s" % (x.type.prefix, x.value,
-            x.type.suffix))
+        func = lambda x: (x.type.name, x.value)
         return dict(map(func, Feature.objects.filter(host=self).order_by('type')))
 
     def quotes(self):

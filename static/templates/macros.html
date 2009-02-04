@@ -75,33 +75,6 @@
     {{ caller() }}
 {% endmacro %}
 
-{% macro Matrix(hosts) %}
-    <table id="matrix">
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Overall</th>
-            <th>Support</th>
-            <th>Features</th>
-            <th>Uptime</th>
-        </tr>
-        {% for host in hosts %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ host.name }}</td>
-                <td>{{ host.percentage() }}</td>
-                <td>{{ host.ratings_rank()['Support'] }}</td>
-                <td>{{ host.ratings_rank()['Features'] }}</td>
-                <td>{{ host.ratings_rank()['Uptime'] }}</td>
-            </tr>
-        {% endfor %}
-    </table>
-    {{ caller() }}
-{% endmacro %}
-
-
-
-
 {%- macro Leaderboard(hosts, limit, more_link) -%}
     <table class="leaderboard" summary="Top Web Hosts Leaderboard">
         {%- if hosts -%}
@@ -111,12 +84,21 @@
                 <th>Host</th>
                 <th>Space</th>
                 <th>Bandwidth</th>
-                <th>Price</th>
+                <th>Price<a href="#footnote">*</a></th>
+                <th></th>
             </tr>
             {%- for host in hosts %}
-                <tr class="{{ loop.cycle('odd', 'even') }}">
+                <tr id="{{host.slug}}" class="host_row {{ loop.cycle('odd', 'even') }}">
                     <td class="rank">{{ loop.index }}.</td>
-                    <td class="percentage">{{ host.percentage() | smart_round }}</td>
+                    <td class="percentage">{{ host.percentage() | smart_round
+                        }}%
+
+                    <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                        host.comment_set.filter(active=1) | length }}
+                        Reviews</a>)</span>
+
+                   
+                    </td>
                     <td class="name">
                         {%- if loop.index == 10 -%}
                             <a name="more"></a>
@@ -125,14 +107,11 @@
                         <a href="{{host.get_absolute_url()}}"><img class="small_logo"
                             src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
 
-                        <span>(<a href="/host/{{host.slug}}.html#comments">{{
-                                host.comment_set.filter(active=1) | length }}
-                                {{ host.name }} Reviews</a>)</span>
-
                     </td>
-                    <td>{{ host.features()['Space'] }}</td>
-                    <td>{{ host.features()['Bandwidth'] }}</td>
-                    <td>{{ host.features()['Price'] }}</td>
+                    <td>{{ host.features()['Space'] | normalize_size(True) }}</td>
+                    <td>{{ host.features()['Bandwidth'] | normalize_size(True) }}</td>
+                    <td>${{ host.features()['Price'] }}</td>
+                    <td><a name="host" class="visit" href="{{host.get_visit_url()}}">Visit</a></td>
                 </tr>
 
                 {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
@@ -148,9 +127,21 @@
                     </td>
                 </tr>
             {% endif %}
+            <tr>
+                <td colspan="6" class="footnote">
+                    <a name="footnote"></a>
+                    <strong>*</strong>
+                    Prices are based on a 1 year contract split into monthly
+                    payments. See
+                    <a href="/faq.html#faq-10">this FAQ item</a>
+                    for more information.
+                </td>
+            </tr>
         {% else %}
             No Hosts!
         {% endif %}
     </table>
     {{ caller() }}
 {%- endmacro -%}
+
+

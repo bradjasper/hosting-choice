@@ -441,46 +441,46 @@ p {
 
 .leaderboard {
     width: 100%;
-    font-size: 150%;
     border: 1px solid #ccc;
     background: #fafafa;
-    margin: 1px;
-    padding: 1px;
 }
 
 .leaderboard th {
-    padding: 8px;
-    font-size: 60%;
     color: #444;
-    background-color: #dedede;
+    background-color: #eaeaea;
     text-align: left;
+    padding: 8px 3px;
+}
+
+.leaderboard td {
+    color: #222;
+    vertical-align: middle;
+    padding: 15px 8px;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
 
 .leaderboard td span, #info div span {
     display: block;
-    font-size: 55%;
-    padding: 2px;
-    color: gr1y;
-    margin: 2px 0;
-}
-
-.leaderboard td {
-    padding: 15px;
-    color: #222;
-    vertical-align: top;
+    color: grey;
 }
 
 .leaderboard td.rank {
-    font-size: 60%;
-    padding: 15px 10px;
     color: grey;
-    width: 12%;
+    font-size: 100%;
+    font-weight: normal;
 }
 
 .leaderboard td.percentage {
     font-weight: bold;
-    width: 80px;
+    font-size: 170%;
     color: #111;
+}
+
+.leaderboard td.percentage span {
+    font-size: 45%;
+    padding: 8px 0;
+    display: block;
 }
 
 .leaderboard td.percentage span {
@@ -724,4 +724,13 @@ hr {
     padding: 1px;
     margin: 20px 0;
     border: 0px;
+}
+
+.see_more {
+    font-size: 130%;
+}
+
+.footnote {
+    font-size: 90%;
+    color: #666 !important;
 }
