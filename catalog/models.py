@@ -78,8 +78,8 @@ class HostManager(models.Manager):
 
 class Host(Common):
 
-    user = models.ForeignKey(auth.User)
-    category = models.ForeignKey('Category')
+    user = models.ForeignKey(auth.User, default=1)
+    category = models.ForeignKey('Category', default=1)
 
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, default=None, blank=True)

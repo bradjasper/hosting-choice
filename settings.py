@@ -101,5 +101,7 @@ FORCE_SCRIPT_NAME = ''
 # Change sessions from DB to Memcache
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
+PREPEND_WWW = False
+
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *
