@@ -93,7 +93,12 @@ INSTALLED_APPS = [
 ]
 
 #handler404 = 'main.views.custom_404'
+
+# Force script name to be nothing, this lets us use fcgi
 FORCE_SCRIPT_NAME = ''
+
+# Change sessions from DB to Memcache
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
 	from settings_dev import *

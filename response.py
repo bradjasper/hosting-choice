@@ -41,6 +41,7 @@ def render(template, context = None):
 
     if 'request' in context:
         request = context['request']
+
         context['active_page'] = get_section(request.META['PATH_INFO'])
 
         form = forms.EmailForm(request.POST)

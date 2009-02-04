@@ -556,6 +556,10 @@ p {
     float: right;
 }
 
+.small_logo {
+    width: 100px;
+}
+
 .rank span {
     font-size: 35% !important;
     font-weight: normal !important;

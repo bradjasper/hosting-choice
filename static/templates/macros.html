@@ -45,61 +45,6 @@
     {{ caller() }}
 {%- endmacro -%}
 
-
-{%- macro Leaderboard(hosts, limit, more_link) -%}
-    <table class="leaderboard" summary="Top Web Hosts Leaderboard">
-        {%- if hosts -%}
-            <tr>
-                <th>#</th>
-                <th>Rank</th>
-                <th>Host</th>
-                <th>Features</th>
-            </tr>
-            {%- for host in hosts %}
-            <tr class="{{ loop.cycle('odd', 'even') }}">
-                    <td class="rank">{{ loop.index }}.</td>
-                    <td class="percentage">{{ host.percentage() | smart_round }}%
-                        <span>(<a href="/host/{{host.slug}}.html#comments">{{
-                                host.comment_set.filter(active=1) | length }}
-                                {{ host.name }} Reviews</a>)</span></td>
-                    <td class="name"><a href="/host/{{host.slug}}.html">
-                    {%- if loop.index == 1 %}
-                    <strong><h2>{{ host.name }}</h2></strong>
-                    {%- else -%}
-                        <h3>{{host.name}}</h2>
-                        {%- endif -%}</a>
-                    {%- if loop.index == 10 -%}
-                        <a name="more"></a>
-                    {%- endif %}</td>
-                    <td class="features">
-                        {% for feature in host.feature_set.all() %}
-                        <span><strong>{{feature.type.name}}:</strong>
-                            {%- call get_feature(feature) %}
-                            {% endcall -%}
-                        </span>
-                        {% endfor %}
-                    </td>
-                </tr>
-
-                {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
-            {% endfor %}
-            {%- if more_link | default(true) -%}
-                <tr>
-                    <td colspan="4" class="see_more">
-                        <strong><a
-                            href="/hosts/shared-hosting.html#more"
-                            title="Web Hosting Reviews">See More Top Web Hosts</a>
-                        </strong>
-                    </td>
-                </tr>
-            {% endif %}
-        {% else %}
-            No Hosts!
-        {% endif %}
-    </table>
-    {{ caller() }}
-{%- endmacro -%}
-
 {%- macro get_feature(feature) -%}
     {% if feature.type.suffix == 'MB' %}
         {% if feature.value == '0' %}
@@ -153,3 +98,59 @@
     </table>
     {{ caller() }}
 {% endmacro %}
+
+
+
+
+{%- macro Leaderboard(hosts, limit, more_link) -%}
+    <table class="leaderboard" summary="Top Web Hosts Leaderboard">
+        {%- if hosts -%}
+            <tr>
+                <th>#</th>
+                <th>Rank</th>
+                <th>Host</th>
+                <th>Space</th>
+                <th>Bandwidth</th>
+                <th>Price</th>
+            </tr>
+            {%- for host in hosts %}
+                <tr class="{{ loop.cycle('odd', 'even') }}">
+                    <td class="rank">{{ loop.index }}.</td>
+                    <td class="percentage">{{ host.percentage() | smart_round }}</td>
+                    <td class="name">
+                        {%- if loop.index == 10 -%}
+                            <a name="more"></a>
+                        {%- endif -%}
+
+                        <a href="{{host.get_absolute_url()}}"><img class="small_logo"
+                            src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
+
+                        <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                                host.comment_set.filter(active=1) | length }}
+                                {{ host.name }} Reviews</a>)</span>
+
+                    </td>
+                    <td>{{ host.features()['Space'] }}</td>
+                    <td>{{ host.features()['Bandwidth'] }}</td>
+                    <td>{{ host.features()['Price'] }}</td>
+                </tr>
+
+                {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
+            {% endfor %}
+
+            {%- if more_link | default(true) -%}
+                <tr>
+                    <td colspan="6" class="see_more">
+                        <strong><a
+                            href="/hosts/shared-hosting.html#more"
+                            title="Web Hosting Reviews">See More Top Web Hosts</a>
+                        </strong>
+                    </td>
+                </tr>
+            {% endif %}
+        {% else %}
+            No Hosts!
+        {% endif %}
+    </table>
+    {{ caller() }}
+{%- endmacro -%}
