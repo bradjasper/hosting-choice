@@ -10,7 +10,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'hostingchoice.session_referrer_middleware.ReferrerMiddleware',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
@@ -30,5 +30,7 @@ INSTALLED_APPS = (
 TEMPLATE_DIRS = (
     '/Users/bjasper/Sites/hostingchoice/static/templates/',
 )
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
 ADMIN_MEDIA_PREFIX = '/media/admin_dev/'

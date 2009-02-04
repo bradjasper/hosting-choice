@@ -10,6 +10,12 @@ String.prototype.rtrim = function() {
 
 $(document).ready(function() {
 
+    $('[class=visit]').each(function() {
+        var url = $(this).attr('href');
+        var name = $(this).attr('name');
+        $(this).attr('href', url+'?note='+name);
+    });
+
     $('#errors').fadeIn(1500);
     $('#success').fadeIn(1500);
 
@@ -63,12 +69,6 @@ $(document).ready(function() {
         function(){ $(this).find(".tools").show() },
         function(){ $(this).find(".tools").hide() });
 
-
-    /*
-    $('.text').hover(
-        function() { $(this).find(".read").show() },
-        function() { $(this).find(".read").hide() });
-    */
 
     /* Set default items for star ratings (comment error) */
     var types = ['features', 'support', 'uptime']

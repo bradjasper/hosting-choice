@@ -140,11 +140,13 @@ def visit(request, slug):
     host = models.Host.objects.get(slug=slug)
     hit = models.Hit(host=host)
     hit.ip = request.META['REMOTE_ADDR']
+    hit.referrer = request.session.get('referrer')
+    hit.user_agent = request.META['HTTP_USER_AGENT']
+    hit.note = request.GET.get('note')
 
     hit.save()
 
     return http.HttpResponseRedirect(host.url)
-    return response.render('visit.html')
 
 def sitemap_xml(request):
     """Display sitemap for search engine"""

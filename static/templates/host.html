@@ -12,21 +12,6 @@
 {% block head %}
     {{ super() }}
     <script src="/media/js/host_init.js"></script>
-
-    {% if host.name == 'BlueHost' %}
-        <script>
-        function utmx_section(){}function utmx(){}
-        (function(){var k='0050799212',d=document,l=d.location,c=d.cookie;function f(n){
-        if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return c.substring(i+n.
-        length+1,j<0?c.length:j)}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
-        d.write('<sc'+'ript src="'+
-        'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
-        +'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
-        +new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-        '" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
-        </script><script>utmx("url",'A/B');</script>
-    {% endif %}
-        
 {% endblock %}
 
 
@@ -53,7 +38,7 @@
         
         <div class="desc">
            {%- if host.image -%}
-           <a href="javascript:" title="Visit {{host.name}}" class="visit">
+           <a name="logo" href="{{host.get_visit_url()}}" title="Visit {{host.name}}" class="visit">
                <img src="/media/images/{{host.image}}" class="logo" size="50%" />
             </a>
            {%- endif -%}
@@ -63,7 +48,7 @@
 
            {% include 'quotes.html' %}
            <p id="purchase"><span class="arrow-point"></span>
-           <a href="javascript:" class="visit" title="Visit {{host.name}}">
+           <a name="under_entry" href="{{host.get_visit_url()}}" class="visit" title="Visit {{host.name}}">
                <span class="default_text">Purchase
                        <strong>Web Hosting</strong> from
                     <strong>{{host.name}}</strong>
@@ -93,7 +78,7 @@
             {% endcall -%}
         </table>
         <div>
-            <a class="visit" href="#" title="Visit {{host.name}}">
+            <a name="button" class="visit" href="{{host.get_visit_url()}}" title="Visit {{host.name}}">
                 <span>{{host.name}}</span></a>
         </div>
     </div>
@@ -108,19 +93,4 @@
 
 {% block footer %}
     {{ super() }}
-    {% if host.name == 'BlueHost' %}
-    <script>
-        if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
-        'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
-        '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
-    </script>
-    <script>
-        try {
-        _uacct = 'UA-75770-5';
-        urchinTracker("/0050799212/test");
-        } catch (err) { }
-    </script>
-    {% endif %}
-
-    
 {% endblock %}

@@ -161,6 +161,9 @@ class Host(Common):
     def get_absolute_url(self):
         return "/host/%s.html" % self.slug
 
+    def get_visit_url(self):
+        return "/visit/%s.html" % self.slug
+
     def ratings_rank(self):
         """Return the rating categories as a rank (percentage)"""
 
@@ -382,3 +385,9 @@ class FeatureType(models.Model):
 class Hit(models.Model):
     ip = models.IPAddressField()
     host = models.ForeignKey('Host')
+    user_agent = models.TextField()
+
+    referrer = models.URLField(blank=True, null=True)
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+
+    note = models.TextField(blank=True, null=True)

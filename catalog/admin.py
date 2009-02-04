@@ -47,6 +47,13 @@ class QuoteAdmin(admin.ModelAdmin):
     ordering = ('host', 'value', 'weight', 'active')
     search_fields = ('host', 'value', 'weight', 'active')
 
+class HitsAdmin(admin.ModelAdmin):
+
+    list_display = ('ip', 'host', 'referrer', 'pub_date', 'note')
+    list_filter = ('host',)
+    ordering = ('host', 'ip', 'referrer', 'pub_date')
+    search_fields = ('host', 'ip', 'referrer', 'pub_date')
+
 
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
@@ -55,4 +62,4 @@ admin.site.register(models.Karma, KarmaAdmin)
 admin.site.register(models.Feature)
 admin.site.register(models.FeatureType)
 admin.site.register(models.Quote, QuoteAdmin)
-admin.site.register(models.Hit)
+admin.site.register(models.Hit, HitsAdmin)

@@ -72,6 +72,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.gzip.GZipMiddleware',
 #    'hostingchoice.profiler_middlware.ProfileMiddleware',
+    'hostingchoice.session_referrer_middleware.ReferrerMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 

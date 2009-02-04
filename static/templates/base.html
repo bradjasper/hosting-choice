@@ -93,7 +93,7 @@
                                 <a href="/leaderboard.html"><span>Top 10 Web Hosts</span></a>
                             </li>
                         </ul>
-                        <a class="nav-text" id="twitter" href="http://twitter.com/hostingchoice">
+                        <a class="nav-text" id="twitter" href="http://twitter.com/hostchoice">
                             Follow <strong>HostingChoice</strong> on twitter
                         </a>
                     </div>
@@ -102,33 +102,20 @@
         </div>
 
         <div id="footer">
-            {% block footer %}
+            {%- block footer -%}
                 {% include 'footer.html' %}
-            {% endblock %}
+            {%- endblock -%}
         </div>
         <script>
             if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
             'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
             '.google-analytics.com/urchin.js'+'"></sc'+'ript>')
         </script>
-        <script type="text/javascript">
-            {% if host -%}
-                $(document).ready(function() {
-                    $('[class=visit]').each(function() {
-                        $(this).attr('href', "/visit/{{host.slug}}.html");
-                        {%- if host.name == 'BlueHost' %}
-                            $(this).click(function() {
-                                _uacct = 'UA-75770-5';
-                                urchinTracker("/0050799212/goal");
-                            });
-                        {% endif %}
-                       
-                    });
-                });
-            {%- endif %}
-        </script>
+
+        <!-- Crazy Egg -->
         <script type="text/javascript" src="http://cetrk.com/pages/scripts/0002/0407.js"> </script>
-        <!-- Start of StatCounter Code -->
+
+        <!-- Statcounter -->
         <script type="text/javascript">
             var sc_project=4410292; 
             var sc_invisible=1; 
@@ -136,9 +123,6 @@
             var sc_click_stat=1; 
             var sc_security="de59d2bc"; 
             </script>
-        <script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><img class="statcounter" src="http://c.statcounter.com/4410292/0/de59d2bc/1/" alt="free hit counters" /></a></div></noscript>
-        <a title="Clicky Web Analytics" href="http://getclicky.com/71243"><img alt="Clicky Web Analytics" src="http://static.getclicky.com/media/links/badge.gif" border="0" /></a>
-        <script src="http://static.getclicky.com/71243.js" type="text/javascript"></script>
-        <noscript><p><img alt="Clicky" width="1" height="1" src="http://static.getclicky.com/71243-db7.gif" /></p></noscript>
+        <script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script><noscript><img class="statcounter" src="http://c.statcounter.com/4410292/0/de59d2bc/1/" alt="free hit counters" /></noscript>
     </body>
 </html>
