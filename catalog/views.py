@@ -7,7 +7,6 @@ from django.views.decorators.cache import cache_page, cache_control
 import response
 import settings
 
-#@cache_control(private=True)
 def show_host(request, slug):
     """Return the view for an host listing"""
 
@@ -132,8 +131,11 @@ def leaderboard(request):
 def matrix(request):
     """Display the leaderboard as a matrix"""
 
+    hosts = models.Host.objects.leaderboard()
+
     return response.render('matrix.html', {
-        'request': request})
+        'request': request,
+        'hosts': hosts})
 
     
 def visit(request, slug):

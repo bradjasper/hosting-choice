@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block title %}
-    {% if top_hosts %}
+    {% if hosts %}
         Top 10 Web Hosts - Top 10 Web Hosting
         {{ super() }}
     {% endif %}
@@ -27,6 +27,6 @@
 {%- block content -%}
     <h1>Top Web Hosts</h1>
 
-    {% call macros.Leaderboard(top_hosts) %}
+    {% call macros.Leaderboard(hosts, 10) %}
     {% endcall %}
 {%- endblock -%}

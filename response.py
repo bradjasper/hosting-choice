@@ -36,7 +36,7 @@ def render(template, context = None):
         context = {}
 
     categories = catalog.models.Category.objects.filter()
-    top_hosts = catalog.models.Host.objects.leaderboard()[0:10]
+    hosts = catalog.models.Host.objects.leaderboard()
     recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')[:10]
     articles = main.models.Entry.objects.all().order_by('-pub_date')[0:10]
 
@@ -71,7 +71,7 @@ def render(template, context = None):
 
     context.update({
         'categories': categories,
-        'top_hosts': top_hosts,
+        'hosts': hosts,
         'recent_reviews': recent_reviews,
         'articles': articles})
 

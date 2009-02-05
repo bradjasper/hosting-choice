@@ -1,8 +1,9 @@
 <h3 class="nomargin">Top 10 Hosts</h3>
 <ul id="top_hosts">
-    {% for host in top_hosts %}
+    {% for host in hosts %}
         <li{% if loop.index == 1 %} class="strong"{% endif %}><a href="/host/{{host.slug}}.html">{{host.name}}</a>
             <span>({{host.percentage() | smart_round}}%)</span></li>
+        {% if loop.index == 10 %}{% break %}{% endif %}
     {% endfor %}
 </ul>
 

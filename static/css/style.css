@@ -455,7 +455,7 @@ p {
 .leaderboard td {
     color: #222;
     vertical-align: middle;
-    padding: 13px 8px;
+    padding: 18px 8px;
     border-bottom: 1px solid white;
     border-right: 1px solid white;
 }
@@ -729,11 +729,13 @@ hr {
 
 .see_more {
     font-size: 170%;
+    text-align: left !important;
 }
 
 .footnote {
     font-size: 90%;
     color: #666 !important;
+    text-align: left !important;
 }
 
 .matrix {
@@ -746,8 +748,9 @@ hr {
 }
 
 .matrix th, .matrix td {
-    padding: 8px;
+    padding: 15px 5px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .matrix td, .matrix th {
@@ -759,13 +762,13 @@ hr {
 }
 
 .matrix td.name {
-    text-align: left;
     background-color: #ccc;
     font-weight: bold;
 }
 
-.matrix td.name a {
-    color: black;
+.matrix td.name a img {
+    border: 0;
+    width: 100px;
 }
 
 .matrix .rank {

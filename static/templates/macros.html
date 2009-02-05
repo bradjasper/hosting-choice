@@ -84,7 +84,11 @@
                 <th></th>
             </tr>
             {%- for host in hosts %}
-                <tr id="{{host.slug}}" class="host_row {{ loop.cycle('odd', 'even') }}">
+                <tr id="{{host.slug}}" class="host_row {{ loop.cycle('odd', 'even') }}
+                    {% if loop.index > (limit|default(100)) %}
+                        hidden
+                    {%- endif -%}
+                    ">
                     <td class="rank">{{ loop.index }}.</td>
                     <td class="percentage">{{ host.percentage() | smart_round
                         }}%
@@ -108,14 +112,14 @@
                 </tr>
 
 
-                {% if loop.index == (limit|default(100)) %}{% break %}{% endif %}
+                {% if loop.index == (limit|default(100)) %}{% endif %}
             {% endfor %}
 
             {%- if more_link | default(true) -%}
                 <tr>
                     <td colspan="6" class="see_more">
                         <strong><a
-                            href="/hosts/shared-hosting.html#more"
+                            href="javascript:"
                             title="Web Hosting Reviews">See More Top Web Hosts</a>
                         </strong>
                     </td>
@@ -129,6 +133,9 @@
                     payments. See
                     <a href="/faq.html#faq-10">this FAQ item</a>
                     for more information.
+                    <br />&nbsp;<br />
+                    <a href="/matrix.html" title="Matrix view">Switch to Matrix
+                        style view</a>
                 </td>
             </tr>
         {% else %}
@@ -138,12 +145,12 @@
     {{ caller() }}
 {%- endmacro -%}
 
-{% macro Matrix(hosts) %}
+{% macro Matrix(hosts, limit, more_link) %}
     {% if hosts %}
     <table class="matrix">
         <tr>
             <th>#</th>
-            <th>Name</th>
+            <th>Host</th>
             <th>Overall</th>
             <th><abbr title="Bandwidth">BW</abbr></th>
             <th>Space</th>
@@ -154,9 +161,12 @@
         </tr>
         {% for host in hosts %}
             {% set info = host.matrix_info() %}
-            <tr>
+            <tr class="host_row {% if loop.index > (limit|default(100)) %}
+                        hidden{%- endif -%}">
                 <td class="rank">{{ loop.index }}</td>
-                <td class="name" id="{{ host.name }}"><a href="{{host.get_absolute_url()}}">{{ host.name }}</a></td>
+                <td class="name" id="{{ host.name }}"><a
+                        href="{{host.get_absolute_url()}}"><img
+                        src="/media/images/{{host.image}}" title="{{ host.name }}" /></a></td>
                 <td class="rank{{ info['percentage'] | get_normal_rank }}"><span>{{ info['percentage'] | get_normal_rank }}%</span></td>
                 <td class="rank{{ info['bandwidth'] | get_normal_rank }}"><span>{{ info['bandwidth'] | get_normal_rank }}%</span></td>
                 <td class="rank{{ info['space'] | get_normal_rank }}"><span>{{ info['space'] | get_normal_rank }}%</span></td>
@@ -166,6 +176,21 @@
                 <td class="rank{{ info['uptime'] | get_normal_rank }}"><span>{{ info['uptime'] | get_normal_rank }}%</span></td>
             </tr>
         {% endfor %}
+        {%- if more_link | default(true) -%}
+            <tr>
+                <td colspan="9" class="see_more">
+                    <strong><a
+                        href="javascript:"
+                        title="Web Hosting Reviews">See More Top Web Hosts</a>
+                    </strong>
+                </td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td class="footnote" colspan="9"><a href="/leaderboard.html">Switch to Leaderboard
+                    style view</a>
+            </td>
+        </tr>
         {{ caller() }}
     </table>
     {% endif %}
