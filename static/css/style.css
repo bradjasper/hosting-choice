@@ -88,6 +88,7 @@ body {
 #nav .active {
     padding-bottom: 2px;
     border-bottom: 2px solid #ff9c00;
+    margin-left: 2px;
 }
 
 #content {
@@ -668,6 +669,12 @@ ol.normal li {
     margin: 0 !important;
 }
 
+.entry {
+    background: url('/media/images/dots.png') bottom left repeat-x;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
 .entry ul, .entry ol {
     margin-left: 25px;
 }
@@ -710,9 +717,7 @@ ol.normal li {
 .genetify_enabled { display: block !important; } 
 
 #plug {
-    margin-top: 10px;
-    padding-top: 10px;
-    background: url('/media/images/dots.png') top left repeat-x;
+    line-height: 19px;
 }
 
 #django {

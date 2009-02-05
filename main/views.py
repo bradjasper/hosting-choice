@@ -32,7 +32,7 @@ def get_page(request, slug):
 
 
 def show_blog(request):
-    entries = models.Entry.objects.all().order_by('-pub_date')[:5]
+    entries = models.Entry.objects.all().order_by('-pub_date')[:10]
     return response.render('blog.html', {
         'entries': entries,
         'request': request})
@@ -48,7 +48,8 @@ def show_entries(request):
     entries = models.Entry.objects.all().order_by('-pub_date')
 
     return response.render('articles.html', {
-        'entries': entries})
+        'entries': entries,
+        'request': request})
 
 
 def show_faq(request):
@@ -57,4 +58,5 @@ def show_faq(request):
     entries = models.FAQ.objects.all().order_by('-order')
 
     return response.render('faq.html', {
-        'entries': entries})
+        'entries': entries,
+        'request': request})
