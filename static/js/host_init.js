@@ -23,19 +23,19 @@ $(document).ready(function() {
         
     $('[class=leaderboard] tr.host_row').each(function() {
         $(this).click(function() {
-            window.location = '/host/'+$(this).attr('id')+'.html';
+            window.location = '/visit/'+$(this).attr('id')+'.html?note=leaderboard_hover';
         });
 
         $(this).hover(
             function() {
-                bg_store[$(this).attr('id')] = $(this).css('background');
+                bg_store[$(this).attr('id')] = $(this).css('background-color');
                 $(this).css('background', '#ddd');
                 $(this).css('cursor', 'hand');
                 $(this).css('cursor', 'pointer');
             }, function() {
                 var color = bg_store[$(this).attr('id')];
-                if (!color) { color = "#fafafa"; }
-                $(this).css('background', color);
+                if (!color) { color = "#dedede"; }
+                $(this).css('background-color', color);
                 $(this).css('cursor', 'arrow');
             }
         );
