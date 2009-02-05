@@ -54,3 +54,14 @@ def read_more(text, limit=125):
         text = part1 + part2
 
     return text
+
+def get_normal_rank(value):
+    """Get the normalized rank"""
+
+    if value > 99:
+        value = 99
+
+    if value < 0:
+        value = 0
+
+    return unicode(value).split('.')[0]

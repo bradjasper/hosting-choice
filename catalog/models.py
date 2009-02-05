@@ -2,6 +2,7 @@ from __future__ import division
 
 import re
 import datetime
+import math
 
 from django.db import models
 from django.contrib import sitemaps
@@ -226,6 +227,34 @@ class Host(Common):
         cache.set(key, final, settings.CACHE_TIMEOUT)
 
         return final
+
+    def matrix_info(self):
+        """Get this hosts info we use in a matrix"""
+
+        features = self.features()
+        ratings = self.ratings()
+
+        space = int(features['Space']) / 10000
+        bandwidth = int(features['Bandwidth']) / 50000
+
+        if space == 0:
+            space = 1
+
+        if bandwidth == 0:
+            bandwidth = 1
+
+        matrix = {
+            'price': float(features['Price']) / 7,
+            'space': space,
+            'bandwidth': bandwidth,
+            'features': ratings.get('Features', -1) / 5,
+            'support': ratings.get('Support', -1) / 5,
+            'uptime': ratings.get('Uptime', -1) / 5,
+            'percentage': self.percentage() / 100}
+
+        func = lambda (x,y): (x, math.floor((y * 100) / 3) * 3)
+
+        return dict(map(func, matrix.iteritems()))
 
     
 class Category(Common):

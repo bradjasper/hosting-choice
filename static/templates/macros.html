@@ -18,22 +18,22 @@
     {%- endif %} {{ caller() }}
 {%- endmacro -%}
 
-{%- macro Ratings(ratings) -%}
-    {% for name in ratings %}
+{%- macro Ratings(matrix) -%}
+    {% for name in matrix %}
     <tr class="{% if loop.last %}nodots{% endif %}">
         <th>{{name}}:</th>
         <td>
             <span class="
-                {%- call get_rating_class(ratings[name]) %}stars{% endcall -%}
-                "><span>Rating: {{ratings[name]}}/5</span></span>
+                {%- call get_rating_class(matrix[name]) %}stars{% endcall -%}
+                "><span>Rating: {{matrix[name]}}/5</span></span>
         </td>
     </tr>
     {% endfor %}
     {{ caller() }}
 {%- endmacro -%}
 
-{%- macro Features(features) -%}
-    {% for feature in features %}
+{%- macro Features(matrix) -%}
+    {% for feature in matrix %}
     <tr>
         <th>{{feature.type.name}}:</th>
         <td>
@@ -138,4 +138,35 @@
     {{ caller() }}
 {%- endmacro -%}
 
-
+{% macro Matrix(hosts) %}
+    {% if hosts %}
+    <table class="matrix">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Overall</th>
+            <th><abbr title="Bandwidth">BW</abbr></th>
+            <th>Space</th>
+            <th>Price</th>
+            <th>Features</th>
+            <th>Support</th>
+            <th>Uptime</th>
+        </tr>
+        {% for host in hosts %}
+            {% set info = host.matrix_info() %}
+            <tr>
+                <td class="rank">{{ loop.index }}</td>
+                <td class="name" id="{{ host.name }}"><a href="{{host.get_absolute_url()}}">{{ host.name }}</a></td>
+                <td class="rank{{ info['percentage'] | get_normal_rank }}"><span>{{ info['percentage'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['bandwidth'] | get_normal_rank }}"><span>{{ info['bandwidth'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['space'] | get_normal_rank }}"><span>{{ info['space'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['price'] | get_normal_rank }}"><span>{{ info['price'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['features'] | get_normal_rank }}"><span>{{ info['features'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['support'] | get_normal_rank }}"><span>{{ info['support'] | get_normal_rank }}%</span></td>
+                <td class="rank{{ info['uptime'] | get_normal_rank }}"><span>{{ info['uptime'] | get_normal_rank }}%</span></td>
+            </tr>
+        {% endfor %}
+        {{ caller() }}
+    </table>
+    {% endif %}
+{% endmacro %}

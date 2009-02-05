@@ -27,6 +27,7 @@ env.filters['datetimeformat'] = format.datetimeformat
 env.filters['normalize_size'] = format.normalize_size
 env.filters['markup'] = format.markup
 env.filters['read_more'] = format.read_more
+env.filters['get_normal_rank'] = format.get_normal_rank
 
 def render(template, context = None):
     """Generic render method to render full pages"""

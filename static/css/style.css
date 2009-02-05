@@ -735,3 +735,78 @@ hr {
     font-size: 90%;
     color: #666 !important;
 }
+
+.matrix {
+    width: 100%;
+}
+
+.matrix th {
+    font-weight: bold;
+    background-color: #bbb;
+}
+
+.matrix th, .matrix td {
+    padding: 8px;
+    text-align: center;
+}
+
+.matrix td, .matrix th {
+    border: 1px solid white;
+}
+.matrix td span {
+    font-size: 85%;
+    color: #222;
+}
+
+.matrix td.name {
+    text-align: left;
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+.matrix td.name a {
+    color: black;
+}
+
+.matrix .rank {
+    font-size: 90%;
+    color: #999;
+    font-weight: normal;
+    background-color: #eee;
+}
+
+/* Matrix Stuff */
+.rank99 { background-color: #006600; }
+.rank96 { background-color: #097400; }
+.rank93 { background-color: #138200; }
+.rank90 { background-color: #1C9000; }
+.rank87 { background-color: #259E00; }
+.rank84 { background-color: #38B900; }
+.rank81 { background-color: #41C700; }
+.rank78 { background-color: #4AD500; }
+.rank75 { background-color: #53E300; }
+.rank72 { background-color: #5DF100; }
+.rank69 { background-color: #66FF00; }
+.rank66 { background-color: #74F100; }
+.rank63 { background-color: #82E300; }
+.rank60 { background-color: #90D500; }
+.rank57 { background-color: #9EC700; }
+.rank54 { background-color: #ACB900; }
+.rank51 { background-color: #B9AC00; }
+.rank48 { background-color: #C79E00; }
+.rank45 { background-color: #D59000; }
+.rank42 { background-color: #E38200; }
+.rank39 { background-color: #F17400; }
+.rank36 { background-color: #FF6600; }
+.rank33 { background-color: #FF5D00; }
+.rank30 { background-color: #FF5300; }
+.rank27 { background-color: #FF4A00; }
+.rank24 { background-color: #FF4100; }
+.rank21 { background-color: #FF3800; }
+.rank18 { background-color: #FF2E00; }
+.rank15 { background-color: #FF2500; }
+.rank12 { background-color: #FF1C00; }
+.rank9 { background-color: #FF1300; }
+.rank6 { background-color: #FF0900; }
+.rank3 { background-color: #FF0000; }
+.rank0 { background-color: #ddd; }

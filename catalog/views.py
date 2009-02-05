@@ -131,6 +131,7 @@ def leaderboard(request):
 
 def matrix(request):
     """Display the leaderboard as a matrix"""
+
     return response.render('matrix.html', {
         'request': request})
 
