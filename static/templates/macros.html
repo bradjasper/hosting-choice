@@ -84,7 +84,7 @@
                 <th></th>
             </tr>
             {%- for host in hosts %}
-                <tr id="host{{loop.index}}" class="host_row {{ loop.cycle('odd', 'even') }}
+                <tr id="{{host.slug}}" class="host_row {{ loop.cycle('odd', 'even') }}
                     {% if loop.index > (limit|default(100)) %}
                         hidden
                     {%- endif -%}
