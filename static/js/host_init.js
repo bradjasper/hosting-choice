@@ -12,6 +12,8 @@ bg_store = {}
 
 $(document).ready(function() {
 
+    $.localScroll();
+
     $('[class=see_more] a').click(function() {
         var link = $(this);
         $('.hidden').each(function() {

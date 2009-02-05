@@ -2,7 +2,7 @@
 
 {% block breadcrumbs %}
     {{ super() }}
-    <strong>Frequently Asked Questions (FAQ)</strong>
+    <strong>Frequently Asked Questions (FAQ)</strong> &raquo;
 {% endblock %}
 
 {% block title -%}
@@ -16,6 +16,7 @@
 
 {% block content -%}
 <div>
+    <a name="top"></a>
     <h1>Frequently Asked Questions</h1>
     <ol class="normal">
         {% for entry in entries %}
@@ -28,6 +29,7 @@
         <a name="faq-{{loop.index}}"></a>
         <h2>{{loop.index}}. {{entry.question}}</h2>
         <p class="desc">{{entry.answer|markup}}</p>
+        <p><small><a href="#top">Back To Top</a></small></p>
     {% endfor %}
 </div>
 {%- endblock %}
