@@ -234,8 +234,8 @@ class Host(Common):
         features = self.features()
         ratings = self.ratings()
 
-        space = int(features['Space']) / 10000
-        bandwidth = int(features['Bandwidth']) / 50000
+        space = int(features['Space']) / 20000
+        bandwidth = int(features['Bandwidth']) / 90000
 
         if space == 0:
             space = 1
@@ -244,7 +244,7 @@ class Host(Common):
             bandwidth = 1
 
         matrix = {
-            'price': float(features['Price']) / 7,
+            'price': 5.5 / float(features['Price']),
             'space': space,
             'bandwidth': bandwidth,
             'features': ratings.get('Features', -1) / 5,
