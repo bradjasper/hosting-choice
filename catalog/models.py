@@ -413,9 +413,9 @@ class FeatureType(models.Model):
 class Hit(models.Model):
     ip = models.IPAddressField()
     host = models.ForeignKey('Host')
-    user_agent = models.TextField()
+    user_agent = models.CharField(max_length=255)
 
     referrer = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField(default=datetime.datetime.now)
 
-    note = models.TextField(blank=True, null=True)
+    note = models.CharField(max_length=255)
