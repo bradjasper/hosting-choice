@@ -101,14 +101,15 @@
                         {%- endif -%}
                     </td>
                     <td class="name">
-                        <a href="{{host.get_absolute_url()}}"><img class="small_logo"
+                        <a name="leaderboard_logo" class="visit" href="{{host.get_visit_url()}}" title="Visit
+                            {{host.name}}"><img class="small_logo"
                             src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
 
                     </td>
                     <td>{{ host.features()['Space'] | normalize_size(True) }}</td>
                     <td>{{ host.features()['Bandwidth'] | normalize_size(True) }}</td>
                     <td>${{ host.features()['Price'] }}</td>
-                    <td><a name="leaderboard" class="visit" href="{{host.get_visit_url()}}">Visit</a></td>
+                    <td class="more_info"><a href="{{host.get_absolute_url()}}">More Info</a></td>
                 </tr>
 
 

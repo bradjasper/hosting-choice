@@ -473,14 +473,15 @@ p {
 
 .leaderboard td.percentage {
     font-weight: bold;
-    font-size: 190%;
+    font-size: 180%;
     color: #111;
 }
 
 .leaderboard td.percentage span {
     font-size: 50%;
-    padding: 5px 0;
+    padding: 6px 0;
     display: block;
+    white-space: nowrap;
 }
 
 .leaderboard td.percentage span {
@@ -813,3 +814,7 @@ hr {
 .rank6 { background-color: #FF0900; }
 .rank3 { background-color: #FF0000; }
 .rank0 { background-color: #ddd; }
+
+.more_info {
+    white-space: nowrap;
+}
