@@ -15,16 +15,15 @@ $(document).ready(function() {
     $.localScroll();
 
     $('[class=see_more] a').click(function() {
-        var link = $(this);
+        $(this).fadeOut(500);
         $('.hidden').each(function() {
-            link.fadeOut(500);
             $(this).fadeIn(1500);
         });
     });
         
     $('[class=leaderboard] tr.host_row').each(function() {
         $(this).click(function() {
-            window.location = 'http://hosting-choice.com/host/'+$(this).attr('id')+'.html';
+            window.location = '/host/'+$(this).attr('id')+'.html';
         });
 
         $(this).hover(

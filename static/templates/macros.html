@@ -84,7 +84,7 @@
                 <th></th>
             </tr>
             {%- for host in hosts %}
-                <tr id="{{host.slug}}" class="host_row {{ loop.cycle('odd', 'even') }}
+                <tr id="host{{loop.index}}" class="host_row {{ loop.cycle('odd', 'even') }}
                     {% if loop.index > (limit|default(100)) %}
                         hidden
                     {%- endif -%}
@@ -112,14 +112,13 @@
                 </tr>
 
 
-                {% if loop.index == (limit|default(100)) %}{% endif %}
             {% endfor %}
 
             {%- if more_link | default(true) -%}
                 <tr>
                     <td colspan="6" class="see_more">
                         <strong><a
-                            href="javascript:"
+                            href="#more"
                             title="Web Hosting Reviews">See More Top Web Hosts</a>
                         </strong>
                     </td>
@@ -166,7 +165,10 @@
                 <td class="rank">{{ loop.index }}</td>
                 <td class="name" id="{{ host.name }}"><a
                         href="{{host.get_absolute_url()}}"><img
-                        src="/media/images/{{host.image}}" title="{{ host.name }}" /></a></td>
+                        src="/media/images/{{host.image}}" title="{{ host.name }}" /></a>
+                    {%- if loop.index == 10 -%}
+                        <a name="more"></a>
+                    {%- endif -%}</td>
                 <td class="rank{{ info['percentage'] | get_normal_rank }}"><span>{{ info['percentage'] | get_normal_rank }}%</span></td>
                 <td class="rank{{ info['bandwidth'] | get_normal_rank }}"><span>{{ info['bandwidth'] | get_normal_rank }}%</span></td>
                 <td class="rank{{ info['space'] | get_normal_rank }}"><span>{{ info['space'] | get_normal_rank }}%</span></td>
@@ -180,7 +182,7 @@
             <tr>
                 <td colspan="9" class="see_more">
                     <strong><a
-                        href="javascript:"
+                        href="#more"
                         title="Web Hosting Reviews">See More Top Web Hosts</a>
                     </strong>
                 </td>
