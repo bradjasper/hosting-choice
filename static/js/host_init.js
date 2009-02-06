@@ -8,9 +8,11 @@ String.prototype.rtrim = function() {
 	return this.replace(/\s+$/,"");
 }
 
-bg_store = {}
-
 $(document).ready(function() {
+
+    bg_store = {}
+
+    var pageTracker = _gat._getTracker("UA-6961171-1");
 
     $.localScroll();
 
@@ -23,7 +25,10 @@ $(document).ready(function() {
         
     $('[class=leaderboard] tr.host_row').each(function() {
         $(this).click(function() {
-            window.location = '/visit/'+$(this).attr('id')+'.html?note=leaderboard_hover';
+            var url = '/visit/'+$(this).attr('id')+'.html'
+            var note = '?note=leaderboard_hover';
+            pageTracker._trackPageview(url);
+            window.location = url+note;
         });
 
         $(this).hover(
@@ -45,6 +50,10 @@ $(document).ready(function() {
         var url = $(this).attr('href');
         var name = $(this).attr('name');
         $(this).attr('href', url+'?note='+name);
+        $(this).click(function() {
+            alert(url);
+            pageTracker._trackPageview(url);
+        });
     });
 
     $('#errors').fadeIn(1500);

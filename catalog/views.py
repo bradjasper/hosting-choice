@@ -145,7 +145,7 @@ def visit(request, slug):
     hit.ip = request.META['REMOTE_ADDR']
     hit.referrer = request.session.get('referrer')
     hit.user_agent = request.META['HTTP_USER_AGENT']
-    hit.note = request.GET.get('note')
+    hit.note = request.GET.get('note', "no_js")
 
     hit.save()
 
