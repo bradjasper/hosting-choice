@@ -51,7 +51,6 @@ $(document).ready(function() {
         var name = $(this).attr('name');
         $(this).attr('href', url+'?note='+name);
         $(this).click(function() {
-            alert(url);
             pageTracker._trackPageview(url);
         });
     });
