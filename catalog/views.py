@@ -140,14 +140,17 @@ def matrix(request):
     
 def visit(request, slug):
     """Visit a site, recording a hit"""
+
     host = models.Host.objects.get(slug=slug)
     hit = models.Hit(host=host)
     hit.ip = request.META['REMOTE_ADDR']
     hit.referrer = request.session.get('referrer')
     hit.user_agent = request.META['HTTP_USER_AGENT']
     hit.note = request.GET.get('note', "no_js")
+    hit.session = request.session.session_key or "no_js"
 
-    hit.save()
+    if "no_js" not in [hit.note, hit.session]:
+        hit.save()
 
     return http.HttpResponseRedirect(host.url)
 
@@ -172,3 +175,6 @@ def sitemap(request):
         'categories': categories})
 
 
+
+def test(request):
+    assert False, (request, dir(request))

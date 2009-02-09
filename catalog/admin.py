@@ -19,6 +19,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 class FeaturesInline(admin.TabularInline):
     model = models.Feature
+    extra = 34
 
 class HostAdmin(admin.ModelAdmin):
 
@@ -54,12 +55,19 @@ class HitsAdmin(admin.ModelAdmin):
     ordering = ('host', 'ip', 'referrer', 'pub_date')
     search_fields = ('host', 'ip', 'referrer', 'pub_date')
 
+class FeatureTypeAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'group', 'is_tag')
+    list_filter = ('group',)
+    ordering = ('name', 'group', 'is_tag')
+    search_fields = ('name', 'group', 'title', 'description', 'slug')
 
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
 admin.site.register(models.Comment, CommentAdmin)
 admin.site.register(models.Karma, KarmaAdmin)
 admin.site.register(models.Feature)
-admin.site.register(models.FeatureType)
+admin.site.register(models.FeatureGroup)
+admin.site.register(models.FeatureType, FeatureTypeAdmin)
 admin.site.register(models.Quote, QuoteAdmin)
 admin.site.register(models.Hit, HitsAdmin)

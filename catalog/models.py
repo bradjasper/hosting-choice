@@ -401,17 +401,50 @@ class Feature(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.type.name, self.value)
 
+class FeatureGroup(models.Model):
+    value = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.value
+
 class FeatureType(models.Model):
     name = models.CharField(max_length=255)
+    group = models.ForeignKey('FeatureGroup', default=None)
 
     prefix = models.CharField(max_length=255, blank=True)
     suffix = models.CharField(max_length=255, blank=True)
 
+    is_tag = models.BooleanField(default=True)
+    slug = models.SlugField(blank=True)
+    title = models.TextField(blank=True)
+    description = models.TextField(blank=True)
+
     def __unicode__(self):
         return self.name
 
+    def save(self):
+
+        if self.is_tag:
+            if not self.slug:
+                self.slug = slugify(self.name)
+
+            if not self.title:
+                self.title = "Top %s Hosts - %s Hosting - %s Web Hosting" % (
+                    self.name, self.name, self.name)
+
+            if not self.description:
+                self.description = """Here are the best <strong>%s Hosting Providers</strong>
+                in the World! We've taken user reviews and compiled the
+                <strong>best %s hosts</strong> to give you this list of
+                <strong>%s hosts</strong>""" % (
+                    self.name, self.name, self.name)
+
+        super(FeatureType, self).save()
+
+
 class Hit(models.Model):
     ip = models.IPAddressField()
+    session = models.CharField(max_length=255)
     host = models.ForeignKey('Host')
     user_agent = models.CharField(max_length=255)
 

@@ -14,6 +14,12 @@ $(document).ready(function() {
 
     var pageTracker = _gat._getTracker("UA-6961171-1");
 
+    var adWords_Conversion = function(){
+        var image = new Image(1,1);
+        image.src = "http://www.googleadservices.com/pagead/conversion/1070629377/?value=3.5&amp;label=sGrlCNeHjAEQgYTC_gM&amp;guid=ON&amp;script=0"
+        return;
+    }
+
     $.localScroll();
 
     $('[class=see_more] a').click(function() {
@@ -23,36 +29,14 @@ $(document).ready(function() {
         });
     });
         
-    $('[class=leaderboard] tr.host_row').each(function() {
-        $(this).click(function() {
-            var url = '/visit/'+$(this).attr('id')+'.html'
-            var note = '?note=leaderboard_hover';
-            pageTracker._trackPageview(url);
-            window.location = url+note;
-        });
-
-        $(this).hover(
-            function() {
-                bg_store[$(this).attr('id')] = $(this).css('background-color');
-                $(this).css('background', '#ddd');
-                $(this).css('cursor', 'hand');
-                $(this).css('cursor', 'pointer');
-            }, function() {
-                var color = bg_store[$(this).attr('id')];
-                if (!color) { color = "#dedede"; }
-                $(this).css('background-color', color);
-                $(this).css('cursor', 'arrow');
-            }
-        );
-    });
-
     $('[class=visit]').each(function() {
         var url = $(this).attr('href');
         var name = $(this).attr('name');
-        $(this).attr('href', url+'?note='+name);
+        var session = $.cookie('sessionid');
+        $(this).attr('href', url+'?note='+name+'&sid='+session);
         $(this).click(function() {
-            alert(url);
             pageTracker._trackPageview(url);
+            adWords_Conversion();
         });
     });
 
@@ -85,7 +69,6 @@ $(document).ready(function() {
 
     /* Hover Effect for tools on comments. Brings up "I liked this" links */
     $('.tools a').livequery(function() {
-        var par = $(this).parent();
 
         $(this).ajaxify({
             method: 'POST',

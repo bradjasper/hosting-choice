@@ -820,6 +820,12 @@ hr {
 .rank3 { background-color: #FF0000; }
 .rank0 { background-color: #ddd; }
 
-.more_info {
+.other {
     white-space: nowrap;
+}
+
+.more_info {
+    color: grey;
+    display: block;
+    padding: 7px 0;
 }

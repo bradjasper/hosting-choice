@@ -109,7 +109,12 @@
                     <td>{{ host.features()['Space'] | normalize_size(True) }}</td>
                     <td>{{ host.features()['Bandwidth'] | normalize_size(True) }}</td>
                     <td>${{ host.features()['Price'] }}</td>
-                    <td class="more_info"><a href="{{host.get_absolute_url()}}">More Info</a></td>
+                    <td class="other">
+                        <strong>
+                            <a name="leaderboard_visit" class="visit" href="{{host.get_visit_url()}}">Visit Site</a>
+                        </strong>
+                        <a class="more_info" href="{{host.get_absolute_url()}}">More Info</a>
+                    </td>
                 </tr>
 
 

@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     (r'^article/(?P<slug>.*).html$', 'main.views.show_entry'),
     (r'^articles.html$', 'main.views.show_entries'),
 
+    (r'^test.html$', 'catalog.views.test'),
+
     (r'^alt_index.html$', 'main.views.alt_index'),
     (r'^$|index.html$', 'main.views.index'),
 
