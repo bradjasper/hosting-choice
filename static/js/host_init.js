@@ -13,11 +13,17 @@ $(document).ready(function() {
     bg_store = {}
 
     var pageTracker = _gat._getTracker("UA-6961171-1");
-
-    var adWords_Conversion = function(){
-        var image = new Image(1,1);
-        image.src = "http://www.googleadservices.com/pagead/conversion/1070629377/?value=3.5&amp;label=sGrlCNeHjAEQgYTC_gM&amp;guid=ON&amp;script=0"
-        return;
+    var conversions = {
+        'adwords': function(){
+            var image = new Image(1,1);
+            image.src = "http://www.googleadservices.com/pagead/conversion/1070629377/?value=3.5&amp;label=sGrlCNeHjAEQgYTC_gM&amp;guid=ON&amp;script=0";
+            return;
+        },
+        '7search': function(){
+            var image = new Image(1,1);
+            image.src = "http://conversion.7search.com/conversion/v1/?advid=155680&urlid=&type=purchase&value=1&noscript=1";
+            return;
+        }
     }
 
     $.localScroll();
@@ -36,7 +42,8 @@ $(document).ready(function() {
         $(this).attr('href', url+'?note='+name+'&sid='+session);
         $(this).click(function() {
             pageTracker._trackPageview(url);
-            adWords_Conversion();
+            conversions['adwords']();
+            conversions['7search']();
         });
     });
 
