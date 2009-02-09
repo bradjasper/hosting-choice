@@ -206,6 +206,7 @@ p {
 .visit {
     font-size: 110%;
     line-height: 23px;
+    white-space: nowrap;
 }
 
 .comments {
