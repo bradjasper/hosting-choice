@@ -170,7 +170,7 @@
                         hidden{%- endif -%}">
                 <td class="rank">{{ loop.index }}</td>
                 <td class="name" id="{{ host.name }}"><a
-                        href="{{host.get_absolute_url()}}"><img
+                        href="{{host.get_visit_url()}}?note=matrix"><img
                         src="/media/images/{{host.image}}" title="{{ host.name }}" /></a>
                     {%- if loop.index == 10 -%}
                         <a name="more"></a>
