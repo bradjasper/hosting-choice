@@ -2,10 +2,10 @@ import re
 
 from catalog import models
 
-bid = 1.50
+bid = 1
 
 for host in models.Host.objects.all():
-	name = re.sub('[^a-zA-Z0-9_\s\&]', '', host.name, re.IGNORECASE).lower()
+	name = re.sub('[^a-zA-Z0-9_\s\.\&]', '', host.name, re.IGNORECASE).lower()
         items = []
         items.append(name)
         items.append(name + " hosting")
