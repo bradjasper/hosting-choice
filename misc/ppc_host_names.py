@@ -2,8 +2,6 @@ import re
 
 from catalog import models
 
-bid = 1
-
 for host in models.Host.objects.all():
 	name = re.sub('[^a-zA-Z0-9_\s\.\&]', '', host.name, re.IGNORECASE).lower()
         items = []
@@ -22,6 +20,11 @@ for host in models.Host.objects.all():
         items.append(name + " hosting review")
 
         for item in items:
+            if 'review' in item:
+                bid = 3
+            else:
+                bid = 1
+
             print item, '**', bid, '**', 'http://hosting-choice.com' + host.get_absolute_url()
             print '"' + item + '"', '**', bid, '**', 'http://hosting-choice.com' + host.get_absolute_url()
             print '[' + item + ']', '**', bid, '**', 'http://hosting-choice.com' + host.get_absolute_url()
