@@ -474,6 +474,7 @@ p {
 
 .leaderboard td.percentage {
     font-weight: bold;
+    text-align: center;
     font-size: 180%;
     color: #111;
 }
@@ -820,12 +821,34 @@ hr {
 .rank3 { background-color: #FF0000; }
 .rank0 { background-color: #ddd; }
 
-.other a {
-    white-space: nowrap;
+.other {
+    text-align: center;
 }
 
-.more_info {
+.other a {
+    white-space: nowrap;
+    color: #333;
+}
+
+.other a.visit {
+    display: block;
+    margin: 5px auto;
+    background: url('/media/images/small_visit.png') no-repeat;
+    width: 52px;
+    height: 25px;
+}
+
+.other a.visit span {
+    display: none;
+}
+
+.other span {
     color: grey;
     display: block;
     padding: 7px 0;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 110%;
 }

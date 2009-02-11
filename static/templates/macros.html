@@ -76,11 +76,11 @@
         {%- if hosts -%}
             <tr>
                 <th>#</th>
-                <th>Rank</th>
                 <th>Host</th>
+                <th><a href="#footnote">Price</a></th>
                 <th>Space</th>
                 <th>Bandwidth</th>
-                <th>Price<a href="#footnote">*</a></th>
+                <th>Rank</th>
                 <th></th>
             </tr>
             {%- for host in hosts %}
@@ -90,30 +90,33 @@
                     {%- endif -%}
                     ">
                     <td class="rank">{{ loop.index }}.</td>
-                    <td class="percentage">{{ host.percentage() | smart_round
-                        }}%
-
-                    <span>(<a href="/host/{{host.slug}}.html#comments">{{
-                        host.comment_set.filter(active=1) | length }}
-                        Reviews</a>)</span>
-                        {%- if loop.index == 10 -%}
-                            <a name="more"></a>
-                        {%- endif -%}
-                    </td>
                     <td class="name">
                         <a name="leaderboard_logo" class="visit" href="{{host.get_visit_url()}}" title="Visit
                             {{host.name}}"><img class="small_logo"
                             src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
 
                     </td>
+                    <td class="price">${{ host.features()['Price'] }}</td>
                     <td>{{ host.features()['Space'] | normalize_size(True) }}</td>
                     <td>{{ host.features()['Bandwidth'] | normalize_size(True) }}</td>
-                    <td>${{ host.features()['Price'] }}</td>
+                    <td class="percentage">{{ host.percentage() | smart_round
+                        }}%
+
+                        {%- if loop.index == 10 -%}
+                            <a name="more"></a>
+                        {%- endif -%}
+                    </td>
+
                     <td class="other">
                         <strong>
-                            <a name="leaderboard_visit" class="visit" href="{{host.get_visit_url()}}">Visit Site</a>
+                            <a name="leaderboard_visit" class="visit"
+                                href="{{host.get_visit_url()}}"><span>Visit
+                                    Site</span></a>
                         </strong>
-                        <a class="more_info" href="{{host.get_absolute_url()}}">More Info</a>
+                        <span>(<a href="/host/{{host.slug}}.html#comments">{{
+                            host.comment_set.filter(active=1) | length }}
+                            Reviews</a>)</span>
+
                     </td>
                 </tr>
 
