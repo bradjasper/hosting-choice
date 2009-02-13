@@ -111,15 +111,15 @@ body {
 
 #content-inner {
     float: left;
-    width: 545px;
+    width: 740px;
     font-size: 100%;
     padding: 0 10px 0 20px;
 }
 
 #sidebar {
-    float: right;
+    margin-top: 30px;
+    border-top: 1px solid #bbb;
     padding: 10px 0;
-    width: 180px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -135,20 +135,12 @@ h4 { font-size: 120% }
 h5 { font-size: 105% }
 
 #sidebar h3 {
-    color: #aec023;
-    font-family: Arial, Verdana, "Sans-serif";
-    text-transform: uppercase;
-    font-size: 100%;
-    font-weight: bold;
-    padding-bottom: 13px;
-    padding-left: 8px;
-    background: url('/media/images/sidebar_sep.png') bottom left no-repeat;
-    margin-top: 25px;
+    background: url('/media/images/dots.png') bottom left repeat-x;
+    padding-top: 30px;
 }
 
 
 #sidebar ul, #sidebar div {
-    width: 90%;
     font-size: 95%;
     padding: 5px 10px;
 }
@@ -235,7 +227,7 @@ p {
 
 .host {
     float: left;
-    width: 350px;
+    width: 550px;
 }
 #info {
     float: right;
