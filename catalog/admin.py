@@ -50,9 +50,9 @@ class QuoteAdmin(admin.ModelAdmin):
 
 class HitsAdmin(admin.ModelAdmin):
 
-    list_display = ('ip', 'host', 'referrer', 'pub_date', 'note')
+    list_display = ('ip', 'host', 'referrer_domain', 'pub_date', 'note')
     list_filter = ('host',)
-    ordering = ('host', 'ip', 'referrer', 'pub_date')
+    ordering = ('-pub_date', 'host', 'ip', 'referrer')
     search_fields = ('host', 'ip', 'referrer', 'pub_date')
 
 class FeatureTypeAdmin(admin.ModelAdmin):

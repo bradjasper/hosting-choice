@@ -3,6 +3,7 @@ from __future__ import division
 import re
 import datetime
 import math
+import httplib
 
 from django.db import models
 from django.contrib import sitemaps
@@ -477,6 +478,11 @@ class Hit(models.Model):
 
     note = models.CharField(max_length=255)
 
+    def referrer_domain(self):
+        if self.referrer:
+            split = httplib.urlsplit(self.referrer)
+            return split.netloc
+        return ''
 
 '''
 class Coupon(models.Model):
