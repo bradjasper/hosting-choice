@@ -13,6 +13,7 @@ from django.core.cache import cache
 import sitemap
 import format
 import settings
+import places
 
 
 def slugify(data):
@@ -459,3 +460,78 @@ class Hit(models.Model):
             split = httplib.urlsplit(self.referrer)
             return split.netloc
         return ''
+
+'''
+class Coupon(models.Model):
+
+    host = models.ForeignKey('Host')
+
+    value = models.CharField(max_length=255)
+    text = models.TextField()
+
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return "%s - %s - %s" % (self.host, self.value, self.text)
+
+class Lead(models.Model):
+    """These are leads stored from users that want a host quote"""
+
+    SPACE_CHOICES = (
+        (0, "I don't know"),
+        (1, "10GB+"),
+        (2, "5GB+"),
+        (3, "1GB+"),
+        (4, "Less than 1GB"))
+
+    BW_CHOICES = (
+        (0, "I don't know"),
+        (1, "100GB+"),
+        (2, "50GB+"),
+        (3, "10GB+"),
+        (4, "Less than 10GB"))
+
+    PLATFORM_CHOICES = (
+        (0, "I don't know"),
+        (1, "Linux"),
+        (2, "Windows"))
+
+    BUDGET_CHOICES = (
+        (0, "I don't know"),
+        (1, "$100+"),
+        (2, "$50+"),
+        (3, "$10+"),
+        (4, "Less than $10"))
+
+    name_first = models.CharField(max_length=255)
+    name_last = models.CharField(max_length=255)
+    email = models.EmailField(max_length=255)
+    phone = models.CharField(max_length=255)
+    country = models.CharField(max_length=255, choices=places.COUNTRIES)
+    
+    space = models.IntegerField(default=0, choices=SPACE_CHOICES)
+    bandwidth = models.IntegerField(default=0, choices=BW_CHOICES)
+    platform = models.IntegerField(default=0, choices=PLATFORM_CHOICES)
+    budget = models.IntegerField(default=0, choices=BUDGET_CHOICES)
+
+    note = models.TextField()
+
+
+
+'''
+
+class Summary(models.Model):
+
+    TYPE_CHOICES = (
+        (0, "Pro"),
+        (1, "Con"))
+
+    host = models.ForeignKey('Host')
+
+    type = models.IntegerField(default=0, choices=TYPE_CHOICES)
+
+    text = models.TextField()
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = 'Summaries'

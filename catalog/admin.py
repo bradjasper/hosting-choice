@@ -62,6 +62,14 @@ class FeatureTypeAdmin(admin.ModelAdmin):
     ordering = ('name', 'group', 'is_tag')
     search_fields = ('name', 'group', 'title', 'description', 'slug')
 
+class SummaryAdmin(admin.ModelAdmin):
+
+    list_display = ('host', 'type', 'text')
+    list_filter = ('host', 'type')
+    ordering = ('host', 'type', 'text')
+    search_fields = ('host', 'type', 'text')
+
+
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
 admin.site.register(models.Comment, CommentAdmin)
@@ -71,3 +79,5 @@ admin.site.register(models.FeatureGroup)
 admin.site.register(models.FeatureType, FeatureTypeAdmin)
 admin.site.register(models.Quote, QuoteAdmin)
 admin.site.register(models.Hit, HitsAdmin)
+admin.site.register(models.Summary, SummaryAdmin)
+
