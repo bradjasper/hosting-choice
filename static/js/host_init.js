@@ -28,6 +28,24 @@ $(document).ready(function() {
 
     $.localScroll();
 
+    $('#hide_all').live('click', function() {
+        $(this).text('Show All Features');
+        $('.hide').each(function() {
+            $(this).fadeOut(1500);
+        });
+        $(this).attr('id', 'show_all');
+    });
+
+    $('#show_all').live('click', function() {
+        $(this).text('Hide All Features');
+        $('.hide').each(function() {
+            $(this).fadeIn(1500);
+        });
+        $(this).attr('id', 'hide_all');
+    });
+
+
+
     $('[class=see_more] a').click(function() {
         $(this).fadeOut(500);
         $('.hidden').each(function() {

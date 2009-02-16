@@ -182,19 +182,6 @@ p {
     margin-bottom: 18px;
 }
 
-#info a.visit {
-    width: 113px;
-    height: 27px;
-    display: block;
-    background: url('/media/images/icon-sprite.png') 0 -17px no-repeat;
-    margin: 9px 0;
-}
-
-#info a.visit span {
-    display: none !important;
-    font-size: 1% !important;
-}
-
 .visit {
     font-size: 110%;
     line-height: 23px;
@@ -225,46 +212,6 @@ p {
     float: left;
 }
 
-.host {
-    float: left;
-    width: 550px;
-}
-#info {
-    float: right;
-    width: 169px;
-    margin-left: 10px;
-}
-
-
-#info table {
-    background: url('/media/images/rating.png') top left no-repeat;
-    width: 100%;
-    height: 128px;
-    font-size: 85%;
-}
-
-#info table tr {
-    background: url('/media/images/dots.png') bottom left repeat-x;
-}
-
-#info table td, #info table th {
-    padding: 0 7px;
-    vertical-align: middle;
-}
-
-#info table th {
-    text-align: right;
-    font-weight: bold;
-}
-
-#info table td {
-    width: 48%;
-}
-
-#info div {
-    text-align: center;
-    padding: 7px 0;
-}
 
 .stars {
     background: url('/media/images/star-sprite.png') 0 0 no-repeat;
@@ -453,7 +400,7 @@ p {
     border-right: 1px solid white;
 }
 
-.leaderboard td span, #info div span {
+.leaderboard td span {
     display: block;
     color: grey;
 }
@@ -497,10 +444,6 @@ p {
 }
 
 .odd {
-}
-
-.alt {
-    background-color: #eee;
 }
 
 .hidden {
@@ -562,7 +505,9 @@ p {
 }
 
 #breadcrumbs {
-    padding: 1px 0 9px 0;
+    position: absolute;
+    bottom: 8px;
+    right: 15px;
 }
 
 .dots {
@@ -843,4 +788,51 @@ hr {
 .price {
     font-weight: bold;
     font-size: 110%;
+}
+
+#host_image {
+    float: right;
+}
+
+.host h1 {
+    float: left;
+}
+
+.hide {
+    display: none;
+}
+
+#info {
+}
+
+#info th {
+    font-weight: bold;
+    background-color: #ddd;
+}
+
+#info th, #info td {
+    padding: 8px;
+}
+
+#info tr {
+    background-color: #eee;
+}
+
+#info td {
+    font-size: 95%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.alt {
+    background-color: #f6f6f6 !important;
+}
+
+#info .footnote {
+    background-color: #ddd !important;
+}
+
+#info .footnote a {
+    font-size: 80%;
+    color: #333;
 }

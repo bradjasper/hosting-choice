@@ -48,7 +48,6 @@ class RankTime(models.Model):
 
 class HostManager(models.Manager):
 
-    # Consider caching this
     def leaderboard(self):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
@@ -117,8 +116,23 @@ class Host(Common):
     def features(self):
         """Return a dictionary of features"""
 
-        func = lambda x: (x.type.name, x.value)
-        return dict(map(func, Feature.objects.filter(host=self).order_by('type')))
+        items = Feature.objects.filter(host=self).exclude(value=0)
+        sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
+
+        return items
+
+    def feature_groups(self):
+        """Return features returned in groups"""
+
+        # Grab the unique groups and sort them based on their priority
+        items = set(map(lambda x: x.type.group, self.features()))
+        items = sorted(items, lambda y,x: cmp(x.priority, y.priority))
+
+        # Loop through each group and grab each feature type, sorting on its
+        # priority
+        func = lambda x: (x, filter(lambda y: y.type.group == x, self.features()))
+        return map(func, items)
+
 
     def quotes(self):
         """Return a list of quotes for a given host. These segments of comments
@@ -256,6 +270,7 @@ class Host(Common):
         func = lambda (x,y): (x, math.floor((y * 100) / 3) * 3)
 
         return dict(map(func, matrix.iteritems()))
+
 
     
 class Category(Common):
@@ -402,8 +417,16 @@ class Feature(models.Model):
     def __unicode__(self):
         return "%s (%s)" % (self.type.name, self.value)
 
+    def get_group(self):
+        """Used for grouping features by their featuretype group"""
+        return self.type.group
+    type_group = property(get_group)
+
+
 class FeatureGroup(models.Model):
     value = models.CharField(max_length=255)
+    priority = models.IntegerField(blank=True, default=0)
+    show = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.value
@@ -412,13 +435,13 @@ class FeatureType(models.Model):
     name = models.CharField(max_length=255)
     group = models.ForeignKey('FeatureGroup', default=None)
 
-    prefix = models.CharField(max_length=255, blank=True)
-    suffix = models.CharField(max_length=255, blank=True)
-
-    is_tag = models.BooleanField(default=True)
     slug = models.SlugField(blank=True)
     title = models.TextField(blank=True)
     description = models.TextField(blank=True)
+
+    is_tag = models.BooleanField(default=True)
+    priority = models.IntegerField(blank=True, default=0)
+    show = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
@@ -529,3 +552,4 @@ class Summary(models.Model):
 
     class Meta:
         verbose_name_plural = 'Summaries'
+

@@ -28,58 +28,31 @@
 {%- block content -%}
 {% if host %}
     <div class="host" id="host-{{host.id}}">
-        <h1>{{host.name}} Hosting Review</h1>
-        
-        <div class="desc">
-           {%- if host.image -%}
-           <a name="logo" href="{{host.get_visit_url()}}" title="Visit {{host.name}}" class="visit">
-               <img alt="{{host.name}}" src="/media/images/{{host.image}}" class="logo" size="50%" />
+        <h1>{{host.name}} Review</h1>
+
+        {%- if host.image -%}
+           <a id="host_image" name="logo" href="{{host.get_visit_url()}}" title="Visit {{host.name}}" class="visit">
+               <img alt="{{host.name}} Review - {{host.name}} Hosting Review" src="/media/images/{{host.image}}" class="logo" />
             </a>
-           {%- endif -%}
-           <div class="text">{{host.description | read_more }}</div>
+       {%- endif -%}
+        <div class="clear"></div>
 
-           <br />
-
-           {% include 'quotes.html' %}
-           <p id="purchase"><span class="arrow-point"></span>
-           <a name="under_entry" href="{{host.get_visit_url()}}" class="visit" title="Visit {{host.name}}">
-               <span class="default_text">Purchase
-                       <strong>Web Hosting</strong> from
-                    <strong>{{host.name}}</strong>
-                    {%- if host.features()['Price'] %}
-                        for only {{host.features()['Price']}}
-                    {%- endif -%}
-                </span>
-            </a>
-          </p> 
-
-        </div>
-
-    </div>
-    <div id="info">
-        <div class="rank">
-            {{ host.percentage() | smart_round }}%
-        
-            <span>(<a href="/host/{{host.slug}}.html#comments">{{
-                                host.comment_set.filter(active=1) | length }}
-                                Reviews</a>)</span>
-
-        </div>
-        <table>
-            {%- call macros.Features(host.feature_set.all().order_by('type')) %}
-            {% endcall -%}
-            {%- call macros.Ratings(host.ratings()) %}
-            {% endcall -%}
-        </table>
-        <div>
-            <a name="visit_button" class="visit" href="{{host.get_visit_url()}}" title="Visit {{host.name}}">
-                <span>{{host.name}}</span></a>
-        </div>
+        {% call macros.Info_Table(host) %}
+            {% call macros.Ratings(host.ratings()) %}
+                <tr>
+                    <th colspan="2">Ratings</th>
+                </tr>
+                <tr>
+                    <td>Overall</td>
+                    <td>{{ host.percentage() }}%</td>
+                </tr>
+            {% endcall %}
+        {% endcall %}
     </div>
 
 
     <div class="clear"></div>
-    {%- include 'comments.html' -%}
+    {#    {%- include 'comments.html' -%} #}
 {% else %}
     <p>Cannot find host.</p>
 {% endif %}

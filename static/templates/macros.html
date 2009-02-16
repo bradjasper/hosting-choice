@@ -19,17 +19,17 @@
 {%- endmacro -%}
 
 {%- macro Ratings(matrix) -%}
-    {% for name in matrix %}
-    <tr class="{% if loop.last %}nodots{% endif %}">
-        <th>{{name}}:</th>
-        <td>
-            <span class="
-                {%- call get_rating_class(matrix[name]) %}stars{% endcall -%}
-                "><span>Rating: {{matrix[name]}}/5</span></span>
-        </td>
-    </tr>
-    {% endfor %}
     {{ caller() }}
+    {% for name in matrix %}
+        <tr class="hide {{ loop.cycle('', 'alt') }}">
+            <td>{{name}}</td>
+            <td>
+                <span class="
+                    {%- call get_rating_class(matrix[name]) %}stars{% endcall -%}
+                    "><span>Rating: {{matrix[name]}}/5</span></span>
+            </td>
+        </tr>
+    {% endfor %}
 {%- endmacro -%}
 
 {%- macro Features(matrix) -%}
@@ -205,3 +205,41 @@
     </table>
     {% endif %}
 {% endmacro %}
+
+{% macro Info_Table(host) %}
+    <a name="info"></a>
+    <table id="info">
+        {{ caller() }}
+        {% for group, features in host.feature_groups() %}
+            {% if features %}
+                <tr class="{% if not group.show %}hide{% endif %}">
+                    <th colspan="2">{{ group.value }}</th>
+                </tr>
+                {% for feature in features %}
+                <tr class="{% if not feature.type.show %}hide{% endif %}
+                    {{ loop.cycle('alt', '') }}">
+                        <td>{{ feature.type.name }}</td>
+                        <td>
+                            {%- if feature.value == "-1" %}
+                                Unlimited
+                            {% elif feature.value == "0" %}
+                                <img src="/media/images/icons/fwdw_icons/001_05.png" alt="Yes" />
+                            {% elif feature.value == "1" %}
+                                <img src="/media/images/icons/fwdw_icons/001_06.png" alt="Yes" />
+                            {% elif feature.type.name == "Price" %}
+                                ${{ feature.value }}/month
+                            {% else %}
+                                {{ feature.value }}
+                            {% endif -%}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        <tr>
+            <td colspan="2" class="footnote">
+                <a id="show_all" href="#info">Show All Features</a>
+            </td>
+        </tr>
+    </table>
+{% endmacro %}
+
