@@ -32,18 +32,26 @@ def show_host(request, slug):
 
                 for name in ['Features', 'Uptime', 'Support']:
                     value = form.cleaned_data.get('rating_'+name.lower()+'_val', -1)
+
+                    if value == -1:
+                        messages['errors'].append('You must '
+                            + 'specify a valid rating to review a host')
+
+                        break
+
                     type = models.RatingType.objects.get(name=name)
                     rating = models.Rating(type=type, value=value,
                         comment=comment)
                     rating.save()
 
-                messages['success'].append(
-                    'Successfully added your review to the site.'
-                    + ' Scroll up to see it. Thanks for helping! If you don\'t'
-                    + ' see your comment please wait a few minutes, we\'re'
-                    + ' caching some pages')
+                if len(messages['errors']) == 0:
+                    messages['success'].append(
+                        'Successfully added your review to the site.'
+                        + ' Scroll up to see it. Thanks for helping! If you don\'t'
+                        + ' see your comment please wait a few minutes, we\'re'
+                        + ' caching some pages')
 
-                form = forms.CommentForm()
+                    form = forms.CommentForm()
 
         else:
             form = forms.CommentForm()

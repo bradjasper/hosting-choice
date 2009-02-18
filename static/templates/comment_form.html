@@ -16,7 +16,7 @@
             </ul>
         {% elif messages['errors'] or form.errors %}
             <ul class="errors">
-             {% for message in messages['success'] %}
+             {% for message in messages['errors'] %}
                  <li>{{ message }}</li>
             {% endfor %}
             {% if form.errors %}
