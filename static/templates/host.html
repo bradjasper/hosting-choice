@@ -35,6 +35,11 @@
                <img alt="{{host.name}} Review - {{host.name}} Hosting Review" src="/media/images/{{host.image}}" class="logo" />
             </a>
        {%- endif -%}
+
+        <a href="{{host.get_visit_url()}}" name="header" class="visit"
+            id="header_visit" title="Visit {{host.name}}">Visit
+            {{host.name}} &raquo;</a>
+
         <div class="clear"></div>
 
         {% call macros.Info_Table(host) %}
@@ -44,15 +49,22 @@
                 </tr>
                 <tr>
                     <td>Overall</td>
-                    <td>{{ host.percentage() }}%</td>
+                    <td class="featured">{{ host.percentage() }}%</td>
                 </tr>
             {% endcall %}
         {% endcall %}
+
+        <div id="main">
+            {% include 'summaries.html' %}
+            {% include 'quotes.html' %}
+            <div class="clear"></div>
+            <a href="{{host.get_visit_url()}}" name="under_main"
+               class="visit" id="under_main" title="Visit {{host.name}}">Visit
+                {{host.name}} &raquo;</a>
+        </div>
     </div>
-
-
     <div class="clear"></div>
-    {#    {%- include 'comments.html' -%} #}
+    {%- include 'comments.html' -%}
 {% else %}
     <p>Cannot find host.</p>
 {% endif %}

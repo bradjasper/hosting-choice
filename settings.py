@@ -19,10 +19,10 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 
 # Caching Information
 CACHE_BACKEND = 'memcached://127.0.0.1:11211/'
-CACHE_MIDDLEWARE_SECONDS = 120
+CACHE_MIDDLEWARE_SECONDS = 864000
 CACHE_MIDDLEWARE_KEY_PREFIX = "hc"
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
-CACHE_TIMEOUT = 300
+CACHE_TIMEOUT =  43200
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

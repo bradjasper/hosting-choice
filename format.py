@@ -65,3 +65,9 @@ def get_normal_rank(value):
         value = 0
 
     return unicode(value).split('.')[0]
+
+def unlimited(value):
+    """Check if the value is unlimited"""
+    if value == "-1":
+        return "Unlimited"
+    return value

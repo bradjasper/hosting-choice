@@ -3,7 +3,7 @@
 {%- endmacro -%}
 
 {%- macro get_rating_class(rating) -%}
-    stars{{rating | smart_round | replace('.', '') }} {{ caller() }}
+  {{ caller() }}stars{{rating | smart_round | replace('.', '') }}
 {%- endmacro -%}
 
 {%- macro get_rating_mood(rating) -%}
@@ -24,8 +24,8 @@
         <tr class="hide {{ loop.cycle('', 'alt') }}">
             <td>{{name}}</td>
             <td>
-                <span class="
-                    {%- call get_rating_class(matrix[name]) %}stars{% endcall -%}
+                <span class="stars
+                    {% call get_rating_class(matrix[name]) %}{% endcall -%}
                     "><span>Rating: {{matrix[name]}}/5</span></span>
             </td>
         </tr>
@@ -76,8 +76,8 @@
         {%- if hosts -%}
             <tr>
                 <th>#</th>
-                <th>Host</th>
-                <th><a href="#footnote">Price</a></th>
+                <th class="host">Host</th>
+                <th>Price<a href="#footnote">*</a></th>
                 <th>Space</th>
                 <th>Bandwidth</th>
                 <th>Rank</th>
@@ -96,11 +96,10 @@
                             src="/media/images/{{host.image}}" title="{{host.name}}" /></a>
 
                     </td>
-                    <td class="price">${{ host.features()['Price'] }}</td>
-                    <td>{{ host.features()['Space'] | normalize_size(True) }}</td>
-                    <td>{{ host.features()['Bandwidth'] | normalize_size(True) }}</td>
-                    <td class="percentage">{{ host.percentage() | smart_round
-                        }}%
+                    <td class="price">${{ host.features_dict()['Price'] }}</td>
+                    <td class="other">{{ host.features_dict()['Space'] | unlimited }}</td>
+                    <td class="other">{{ host.features_dict()['Bandwidth'] | unlimited }}</td>
+                    <td class="percentage">{{ host.percentage() | smart_round }}%
 
                         {%- if loop.index == 10 -%}
                             <a name="more"></a>
@@ -108,11 +107,11 @@
                     </td>
 
                     <td class="other">
-                        <strong>
-                            <a name="leaderboard_visit" class="visit"
-                                href="{{host.get_visit_url()}}"><span>Visit
-                                    Site</span></a>
-                        </strong>
+                        <a name="leaderboard_visit" class="visit"
+                            title="Visit {{host.name}}"
+                            href="{{host.get_visit_url()}}">Visit
+                            {{host.name}}</a>
+
                         <span><a href="/host/{{host.slug}}.html">Read
                             Review</a></span>
 
@@ -227,7 +226,7 @@
                             {% elif feature.value == "1" %}
                                 <img src="/media/images/icons/fwdw_icons/001_06.png" alt="Yes" />
                             {% elif feature.type.name == "Price" %}
-                                ${{ feature.value }}/month
+                                <strong>${{ feature.value }}/month</strong>
                             {% else %}
                                 {{ feature.value }}
                             {% endif -%}</td>

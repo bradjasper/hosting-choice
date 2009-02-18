@@ -38,6 +38,23 @@ class Common(models.Model):
 
         super(Common, self).save()
 
+    def cache_get(self, key):
+        """Shortcut for getting cache items with a namespace"""
+
+        return cache.get("%d-%s" % (self.id, key))
+
+    def cache_set(self, key, value):
+        """Shortcut for setting cache items with a namespace"""
+
+        cache.set("%d-%s" %  (self.id, key), value, settings.CACHE_TIMEOUT)
+
+class CommonManager(models.Manager):
+
+    def cache_get(self, key):
+        return cache.get(key)
+
+    def cache_set(self, key, value):
+        cache.set(key, value, settings.CACHE_TIMEOUT)
 
 class RankTime(models.Model):
     """Stores a rank for a given host at a given time. Used for trending"""
@@ -47,24 +64,22 @@ class RankTime(models.Model):
     rank = models.IntegerField()
 
 
-class HostManager(models.Manager):
+class HostManager(CommonManager):
 
     def leaderboard(self):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
-        cached = cache.get('leaderboard')
-        if cached:
-            return cached
+        if self.cache_get('leaderboard'):
+            return self.cache_get('leaderboard')
 
         percentages = lambda x,y: cmp(x.percentage(), y.percentage())
         num_comments = lambda x,y: cmp(len(x.comments()), len(y.comments()))
 
         items = sorted(self.all(), num_comments, reverse=True)
-        items = sorted(items, percentages, reverse=True)
+        items = sorted(self.all(), percentages, reverse=True)
 
-
-        cache.set('leaderboard', items, settings.CACHE_TIMEOUT)
+        self.cache_set('leaderboard', items)
 
         return items
 
@@ -115,7 +130,7 @@ class Host(Common):
         return self.name
 
     def features(self):
-        """Return a dictionary of features"""
+        """Return list of features sorted by priority"""
 
         items = Feature.objects.filter(host=self).exclude(value=0)
         sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
@@ -134,6 +149,12 @@ class Host(Common):
         func = lambda x: (x, filter(lambda y: y.type.group == x, self.features()))
         return map(func, items)
 
+    def features_dict(self):
+        """Return a dictionary of features"""
+
+        return dict([(feature.type.name, feature.value) for feature in
+            self.features()])
+
 
     def quotes(self):
         """Return a list of quotes for a given host. These segments of comments
@@ -147,17 +168,23 @@ class Host(Common):
         """Return a list of comments for this host. This method filters out
         inactive comments and sorts the results by their karma"""
 
+        if self.cache_get('comments'):
+            return self.cache_get('comments')
+
         comments = Comment.objects.filter(host=self, active=True)
 
         func = lambda x,y: cmp(x.karma(), y.karma())
-        return sorted(comments, func, reverse=True)
+        items = sorted(comments, func, reverse=True)
+
+        self.cache_set('comments', items)
+
+        return items
 
     def rank(self):
         """Return this hosts rank in the leaderboard"""
 
-        value = cache.get((self.id, 'rank'))
-        if value:
-            return value
+        if self.cache_get('rank'):
+            return self.cache_get('rank')
 
         for i, host in enumerate(Host.objects.leaderboard()):
             if self == host:
@@ -166,13 +193,21 @@ class Host(Common):
                 break
         value = 0
 
-        cache.set((self.id, 'rank'), value, 500)
+        cache.set('rank', value)
 
         return value
 
     def percentage(self):
         """Return the rating as a percentage"""
-        return format.smart_round(self.rating(100))
+
+        if self.cache_get('percentage'):
+            return self.cache_get('percentage')
+
+        percent = format.smart_round(self.rating(100))
+
+        self.cache_set('percentage', percent)
+
+        return percent
 
     def get_absolute_url(self):
         return "/host/%s.html" % self.slug
@@ -223,10 +258,8 @@ class Host(Common):
     def raw_ratings(self):
         """Return the raw value/count for each rating category"""
 
-        key = "%s-%s" % ('raw_ratings', self.slug)
-        cached = cache.get(key)
-        if cached:
-            return cached
+        if self.cache_get('raw_ratings'):
+            return self.cache_get('raw_ratings')
 
         comments = [comment.raw_ratings() for comment in \
             Comment.objects.filter(host=self, active=1)]
@@ -240,7 +273,7 @@ class Host(Common):
                 else:
                     final[name] = [rating[0], rating[1]]
 
-        cache.set(key, final, settings.CACHE_TIMEOUT)
+        self.cache_set('raw_ratings', final)
 
         return final
 
@@ -271,6 +304,13 @@ class Host(Common):
         func = lambda (x,y): (x, math.floor((y * 100) / 3) * 3)
 
         return dict(map(func, matrix.iteritems()))
+
+    def summaries(self, type=None):
+
+        if type is not None:
+            return Summary.objects.filter(host=self, type=type)
+
+        return Summary.objects.filter(host=self)
 
 
     
@@ -308,7 +348,7 @@ class Quote(models.Model):
     def __unicode__(self):
         return "(%s) %s" % (self.host, self.value)
 
-class Comment(models.Model):
+class Comment(Common):
     """Comment for storing reviews"""
 
     STATUSES = (
@@ -367,8 +407,16 @@ class Comment(models.Model):
     def karma(self):
         """Return the karma for the entire comment"""
 
+        if self.cache_get('karma'):
+            return self.cache_get('karma')
+
         karmas = Karma.objects.filter(comment=self)
-        return sum(map(lambda x: x.value, karmas))
+        karma = sum(map(lambda x: x.value, karmas))
+
+        self.cache_set('karma', karma)
+
+        return karma
+        
 
 
 class Karma(models.Model):

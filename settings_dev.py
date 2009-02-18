@@ -11,11 +11,12 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'hostingchoice.session_referrer_middleware.ReferrerMiddleware',
+    'hostingchoice.profiler_middleware.ProfilerMiddleware',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
 
-CACHE_BACKEND = 'dummy://'
+CACHE_TIMEOUT = 60
 
 INSTALLED_APPS = (
     'django.contrib.auth',

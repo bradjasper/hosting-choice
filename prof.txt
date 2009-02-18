@@ -1,0 +1,516 @@
+         838547 function calls (811305 primitive calls) in 2.423 CPU seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1514    0.312    0.000    0.312    0.000 {method 'query' of '_mysql.connection' objects}
+     3105    0.152    0.000    0.152    0.000 {method 'recv' of '_socket.socket' objects}
+     1513    0.116    0.000    0.116    0.000 {method 'ping' of '_mysql.connection' objects}
+20466/2655    0.087    0.000    0.213    0.000 copy.py:144(deepcopy)
+     2456    0.079    0.000    0.079    0.000 :1(sendall)
+      528    0.057    0.000    0.061    0.000 {built-in method load}
+     2273    0.049    0.000    0.271    0.000 query.py:150(clone)
+     2329    0.040    0.000    0.065    0.000 query.py:1239(setup_joins)
+     1949    0.037    0.000    0.250    0.000 query.py:1041(add_filter)
+     2456    0.033    0.000    0.043    0.000 memcache.py:927(check_key)
+    19706    0.032    0.000    0.041    0.000 copy.py:261(_keep_alive)
+    45646    0.030    0.000    0.030    0.000 {isinstance}
+     1949    0.030    0.000    0.129    0.000 where.py:30(add)
+     1514    0.029    0.000    0.056    0.000 query.py:468(get_default_columns)
+     1514    0.027    0.000    0.199    0.000 query.py:251(as_sql)
+     1514    0.026    0.000    0.026    0.000 {method 'store_result' of '_mysql.connection' objects}
+     1514    0.026    0.000    0.479    0.000 cursors.py:129(execute)
+     1514    0.025    0.000    0.056    0.000 __init__.py:154(last_executed_query)
+     1515    0.024    0.000    0.039    0.000 query.py:44(__init__)
+     1626    0.023    0.000    0.340    0.000 memcache.py:648(get)
+    15833    0.023    0.000    0.023    0.000 {hasattr}
+     1514    0.022    0.000    0.563    0.000 util.py:16(execute)
+     1459    0.022    0.000    0.031    0.000 base.py:194(__init__)
+     1516    0.020    0.000    0.079    0.000 copy.py:232(_deepcopy_tuple)
+       72    0.020    0.000    0.024    0.000 {method 'dump' of 'cPickle.Pickler' objects}
+3404/2652    0.020    0.000    0.185    0.000 tree.py:55(__deepcopy__)
+     3634    0.019    0.000    0.168    0.000 memcache.py:879(readline)
+     1514    0.018    0.000    0.180    0.000 __init__.py:54(cursor)
+    55848    0.018    0.000    0.018    0.000 {method 'append' of 'list' objects}
+     1514    0.018    0.000    0.019    0.000 cursors.py:40(__init__)
+     1184    0.018    0.000    0.020    0.000 __init__.py:62(__init__)
+2270/1891    0.018    0.000    0.283    0.000 query.py:1197(add_q)
+     1949    0.017    0.000    0.029    0.000 where.py:125(make_atom)
+2272/1514    0.016    0.000    0.052    0.000 where.py:69(as_sql)
+     3793    0.016    0.000    0.020    0.000 datastructures.py:62(__init__)
+     3074    0.016    0.000    0.027    0.000 query.py:871(join)
+    12018    0.015    0.000    0.023    0.000 query.py:134(quote_name_unless_alias)
+     1178    0.015    0.000    0.024    0.000 memcache.py:905(recv)
+     1891    0.015    0.000    0.529    0.000 query.py:492(_filter_or_exclude)
+      830    0.014    0.000    0.173    0.000 memcache.py:628(_set)
+     2973    0.014    0.000    1.020    0.000 query.py:200(results_iter)
+     6056    0.014    0.000    0.014    0.000 {_codecs.utf_8_decode}
+7945/5304    0.014    0.000    0.122    0.000 copy.py:224(_deepcopy_list)
+     1514    0.014    0.000    0.957    0.001 query.py:1678(execute_sql)
+     1514    0.014    0.000    0.051    0.000 cursors.py:107(_do_get_result)
+     2973    0.014    0.000    1.068    0.000 query.py:256(iterator)
+    10069    0.013    0.000    0.018    0.000 base.py:143(quote_name)
+     2273    0.013    0.000    0.289    0.000 query.py:592(_clone)
+     1514    0.013    0.000    0.072    0.000 query.py:412(get_columns)
+     1514    0.013    0.000    0.047    0.000 {built-in method fetch_row}
+    48705    0.013    0.000    0.013    0.000 {method 'get' of 'dict' objects}
+     2456    0.013    0.000    0.027    0.000 memcache.py:231(_get_server)
+     8326    0.012    0.000    0.012    0.000 tree.py:18(__init__)
+40556/37936    0.012    0.000    0.213    0.000 {len}
+     1949    0.012    0.000    0.023    0.000 __init__.py:121(db_type)
+13558/11410    0.011    0.000    0.027    0.000 {getattr}
+     1626    0.011    0.000    0.114    0.000 memcache.py:745(_expectvalue)
+     1184    0.011    0.000    0.019    0.000 related.py:122(pk_trace)
+     1178    0.011    0.000    0.097    0.000 memcache.py:757(_recv_value)
+     1189    0.011    0.000    0.382    0.000 query.py:604(_fill_cache)
+     1949    0.011    0.000    0.011    0.000 datastructures.py:401(__init__)
+     3793    0.011    0.000    0.011    0.000 datastructures.py:57(__new__)
+      376    0.010    0.000    0.944    0.003 models.py:395(raw_ratings)
+     6056    0.010    0.000    0.030    0.000 {method 'decode' of 'str' objects}
+      750    0.009    0.000    0.011    0.000 times.py:43(DateTime_or_None)
+     3788    0.009    0.000    0.049    0.000 query.py:121(__init__)
+    52324    0.009    0.000    0.009    0.000 {id}
+      676    0.009    0.000    0.292    0.000 related.py:223(__get__)
+     3522    0.009    0.000    0.023    0.000 encoding.py:37(force_unicode)
+     1184    0.009    0.000    0.047    0.000 related.py:701(db_type)
+     1514    0.009    0.000    0.009    0.000 cursors.py:72(_warning_check)
+     1514    0.009    0.000    0.030    0.000 query.py:576(get_ordering)
+     2318    0.009    0.000    0.391    0.000 query.py:169(_result_iter)
+     1514    0.009    0.000    0.010    0.000 query.py:517(get_from_clause)
+     1891    0.009    0.000    0.013    0.000 query_utils.py:30(__init__)
+     1514    0.008    0.000    0.154    0.000 base.py:242(_cursor)
+     1186    0.008    0.000    0.373    0.000 manager.py:101(filter)
+      788    0.008    0.000    0.969    0.001 models.py:401(karma)
+     2024    0.008    0.000    0.030    0.000 query.py:1714()
+     2273    0.008    0.000    0.026    0.000 datastructures.py:149(copy)
+     3074    0.008    0.000    0.010    0.000 query.py:693(table_alias)
+     5173    0.008    0.000    0.008    0.000 {range}
+    54568    0.008    0.000    0.008    0.000 {ord}
+     1108    0.007    0.000    0.708    0.001 query.py:146(__len__)
+     2456    0.007    0.000    0.086    0.000 memcache.py:872(send_cmd)
+     1514    0.007    0.000    0.371    0.000 cursors.py:273(_do_query)
+      394    0.007    0.000    0.976    0.002 models.py:170()
+     2024    0.007    0.000    0.010    0.000 cursors.py:329(fetchmany)
+     1625    0.007    0.000    0.360    0.000 models.py:41(cache_get)
+     1949    0.006    0.000    0.009    0.000 tree.py:83(add)
+      830    0.006    0.000    0.032    0.000 memcache.py:589(_val_to_store_info)
+     1949    0.006    0.000    0.011    0.000 __init__.py:194(get_db_prep_lookup)
+     2456    0.006    0.000    0.010    0.000 encoding.py:73(smart_str)
+       29    0.006    0.000    0.990    0.034 models.py:252(raw_ratings)
+     6056    0.006    0.000    0.020    0.000 utf_8.py:15(decode)
+     1514    0.006    0.000    0.012    0.000 cursors.py:87(nextset)
+     1184    0.006    0.000    0.026    0.000 related.py:118(get_db_prep_lookup)
+1515/1514    0.005    0.000    0.010    0.000 {method 'escape' of '_mysql.connection' objects}
+     5790    0.005    0.000    0.005    0.000 {method 'split' of 'str' objects}
+     1514    0.005    0.000    0.054    0.000 cursors.py:316(_post_get_result)
+     1626    0.005    0.000    0.353    0.000 memcached.py:24(get)
+    10253    0.005    0.000    0.005    0.000 {setattr}
+     6090    0.005    0.000    0.005    0.000 {method 'find' of 'str' objects}
+     2008    0.005    0.000    0.071    0.000 memcache.py:899(expect)
+     2329    0.005    0.000    0.019    0.000 query.py:852(get_initial_alias)
+      829    0.005    0.000    0.185    0.000 models.py:46(cache_set)
+     7570    0.005    0.000    0.005    0.000 cursors.py:124(_get_db)
+     1514    0.005    0.000    0.120    0.000 base.py:232(_valid_connection)
+     1514    0.005    0.000    0.023    0.000 connections.py:217(cursor)
+     2456    0.004    0.000    0.005    0.000 memcache.py:212(_statlog)
+      380    0.004    0.000    0.019    0.000 query.py:639(find_ordering_name)
+    10082    0.004    0.000    0.004    0.000 {method 'startswith' of 'str' objects}
+     2711    0.004    0.000    0.006    0.000 __init__.py:26(__getattr__)
+     2456    0.004    0.000    0.006    0.000 memcache.py:847(_get_socket)
+      748    0.004    0.000    0.461    0.001 {map}
+    13648    0.004    0.000    0.004    0.000 {method 'copy' of 'dict' objects}
+     4506    0.004    0.000    0.023    0.000 connections.py:189(string_decoder)
+      545    0.004    0.000    0.004    0.000 {built-in method match}
+      392    0.004    0.000    0.005    0.000 copy_reg.py:59(_reduce_ex)
+     1512    0.004    0.000    0.394    0.000 query.py:478(filter)
+     1514    0.004    0.000    0.004    0.000 {built-in method describe}
+     3840    0.003    0.000    0.004    0.000 options.py:265(get_field_by_name)
+     1514    0.003    0.000    0.429    0.000 cursors.py:311(_query)
+    11491    0.003    0.000    0.003    0.000 {method 'extend' of 'list' objects}
+      201    0.003    0.000    1.248    0.006 models.py:161(comments)
+     1514    0.003    0.000    0.005    0.000 __init__.py:61(make_debug_cursor)
+     5703    0.003    0.000    0.003    0.000 {method 'join' of 'str' objects}
+     2024    0.003    0.000    0.011    0.000 util.py:39(__getattr__)
+      830    0.003    0.000    0.182    0.000 memcached.py:34(set)
+     1514    0.003    0.000    0.483    0.000 base.py:81(execute)
+     1949    0.003    0.000    0.010    0.000 __init__.py:167()
+     1514    0.003    0.000    0.015    0.000 cursors.py:62(close)
+     1514    0.003    0.000    0.004    0.000 cursors.py:338(fetchall)
+     1511    0.003    0.000    0.004    0.000 related.py:596(get_related_field)
+     1514    0.003    0.000    0.030    0.000 cursors.py:309(_get_result)
+     3240    0.003    0.000    0.004    0.000 copy_reg.py:46(_reconstructor)
+     4575    0.003    0.000    0.003    0.000 {method 'update' of 'dict' objects}
+     5301    0.003    0.000    0.003    0.000 datastructures.py:113(keys)
+     1190    0.003    0.000    0.003    0.000 query.py:159(__iter__)
+       99    0.003    0.000    1.249    0.013 models.py:71()
+     8566    0.003    0.000    0.003    0.000 {method 'add' of 'set' objects}
+     1532    0.003    0.000    0.020    0.000 encoding.py:25(smart_unicode)
+     2456    0.003    0.000    0.009    0.000 memcache.py:837(connect)
+     1190    0.003    0.000    0.039    0.000 manager.py:68(get_query_set)
+     2456    0.003    0.000    0.003    0.000 {binascii.crc32}
+     2024    0.003    0.000    0.004    0.000 base.py:101(__getattr__)
+     1514    0.003    0.000    0.017    0.000 cursors.py:57(__del__)
+1515/1514    0.002    0.000    0.012    0.000 connections.py:236(literal)
+     1514    0.002    0.000    0.049    0.000 cursors.py:282(_fetch_row)
+     3425    0.002    0.000    0.002    0.000 {issubclass}
+     2270    0.002    0.000    0.002    0.000 tree.py:71(__nonzero__)
+     1509    0.002    0.000    0.002    0.000 __init__.py:350(get_db_prep_value)
+     1570    0.002    0.000    0.002    0.000 converters.py:50(Thing2Str)
+     3463    0.002    0.000    0.002    0.000 {method 'update' of 'set' objects}
+      758    0.002    0.000    0.005    0.000 tree.py:106(negate)
+     4602    0.002    0.000    0.002    0.000 {method 'pop' of 'list' objects}
+      376    0.002    0.000    0.002    0.000 converters.py:62(Float2Str)
+      380    0.002    0.000    0.105    0.000 query.py:550(order_by)
+     2456    0.002    0.000    0.002    0.000 memcache.py:831(_check_dead)
+     2025    0.002    0.000    0.002    0.000 {min}
+      830    0.002    0.000    0.175    0.000 memcache.py:439(set)
+      379    0.002    0.000    0.003    0.000 tree.py:140(end_subtree)
+     1949    0.002    0.000    0.002    0.000 query.py:125(get_meta)
+      379    0.002    0.000    0.002    0.000 tree.py:120(start_subtree)
+     3538    0.002    0.000    0.002    0.000 cursors.py:68(_check_executed)
+     2270    0.002    0.000    0.002    0.000 query.py:1486(can_filter)
+     2918    0.002    0.000    0.002    0.000 options.py:186(_fields)
+      759    0.002    0.000    0.002    0.000 query.py:744(promote_alias_chain)
+     2918    0.002    0.000    0.002    0.000 dispatcher.py:127(send)
+     3032    0.002    0.000    0.002    0.000 {time.time}
+      758    0.001    0.000    0.003    0.000 tree.py:34(_new_instance)
+     6820    0.001    0.000    0.001    0.000 copy.py:197(_deepcopy_atomic)
+     1514    0.001    0.000    0.001    0.000 util.py:12(__init__)
+     1189    0.001    0.000    0.002    0.000 base.py:276(__eq__)
+     1560    0.001    0.000    0.001    0.000 query.py:723(unref_alias)
+      326    0.001    0.000    0.272    0.001 query.py:292(get)
+     1515    0.001    0.000    0.001    0.000 options.py:201(get_fields_with_model)
+       18    0.001    0.000    0.002    0.000 markdown.py:591(_isLine)
+     1189    0.001    0.000    0.001    0.000 manager.py:149(__get__)
+     1514    0.001    0.000    0.001    0.000 {method 'next_result' of '_mysql.connection' objects}
+     2984    0.001    0.000    0.001    0.000 {iter}
+     1901    0.001    0.000    0.001    0.000 {method 'items' of 'dict' objects}
+     3241    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x135ea0}
+     1514    0.001    0.000    0.001    0.000 query.py:401(pre_sql_setup)
+     1526    0.001    0.000    0.001    0.000 datastructures.py:109(iteritems)
+      379    0.001    0.000    0.028    0.000 query_utils.py:46(__invert__)
+      380    0.001    0.000    0.003    0.000 query.py:1526(add_ordering)
+     1530    0.001    0.000    0.001    0.000 datastructures.py:122(itervalues)
+      379    0.001    0.000    0.140    0.000 query.py:485(exclude)
+     1515    0.001    0.000    0.001    0.000 {method 'character_set_name' of '_mysql.connection' objects}
+        1    0.001    0.001    0.001    0.001 connections.py:44(__init__)
+     1515    0.001    0.000    0.001    0.000 {_weakref.proxy}
+     1514    0.001    0.000    0.001    0.000 base.py:78(__init__)
+      805    0.001    0.000    0.001    0.000 {sum}
+      676    0.001    0.000    0.001    0.000 __init__.py:171(get_cache_name)
+     1135    0.001    0.000    0.001    0.000 query.py:727(promote_alias)
+     1514    0.001    0.000    0.001    0.000 {method 'affected_rows' of '_mysql.connection' objects}
+     1514    0.001    0.000    0.001    0.000 {built-in method field_flags}
+     2461    0.001    0.000    0.001    0.000 {method 'has_key' of 'dict' objects}
+      760    0.001    0.000    0.001    0.000 query.py:1728(get_order_dir)
+      822    0.001    0.000    0.001    0.000 query.py:719(ref_alias)
+       72    0.001    0.000    0.001    0.000 {method 'getvalue' of 'cStringIO.StringO' objects}
+      209    0.001    0.000    1.059    0.005 models.py:194(percentage)
+     1514    0.001    0.000    0.001    0.000 {method 'insert_id' of '_mysql.connection' objects}
+     1949    0.001    0.000    0.001    0.000 __init__.py:137(field_cast_sql)
+     1517    0.001    0.000    0.001    0.000 {method 'keys' of 'dict' objects}
+     1949    0.001    0.000    0.001    0.000 __init__.py:185(lookup_cast)
+      528    0.001    0.000    0.001    0.000 {cPickle.Unpickler}
+       49    0.001    0.000    0.001    0.000 format.py:13(smart_round)
+     1957    0.001    0.000    0.001    0.000 {callable}
+      376    0.000    0.000    0.000    0.000 __init__.py:653(get_db_prep_value)
+     1514    0.000    0.000    0.000    0.000 {method 'warning_count' of '_mysql.connection' objects}
+     1514    0.000    0.000    0.000    0.000 {method 'info' of '_mysql.connection' objects}
+      600    0.000    0.000    0.000    0.000 {cStringIO.StringIO}
+     1242    0.000    0.000    0.000    0.000 __init__.py:673(get_internal_type)
+     52/1    0.000    0.000    0.105    0.105 {method 'join' of 'unicode' objects}
+      604    0.000    0.000    0.000    0.000 {cmp}
+        1    0.000    0.000    2.313    2.313 models.py:62(leaderboard)
+    92/48    0.000    0.000    0.073    0.002 runtime.py:119(call)
+       28    0.000    0.000    0.990    0.035 models.py:239(raw_rating)
+       99    0.000    0.000    1.056    0.011 models.py:70()
+      380    0.000    0.000    0.000    0.000 query.py:1546(clear_ordering)
+       14    0.000    0.000    0.000    0.000 {posix.stat}
+     2803    0.000    0.000    0.000    0.000 {method 'isspace' of 'unicode' objects}
+       60    0.000    0.000    0.019    0.000 sidebar.html:5(root)
+      325    0.000    0.000    0.000    0.000 __init__.py:174(get_internal_type)
+        4    0.000    0.000    0.003    0.001 markdown.py:1602(_handleInline)
+      312    0.000    0.000    0.014    0.000 environment.py:329(getattr)
+     38/9    0.000    0.000    0.017    0.002 runtime.py:317(__call__)
+        1    0.000    0.000    0.000    0.000 :1(connect)
+       12    0.000    0.000    0.045    0.004 models.py:387(ratings)
+       13    0.000    0.000    0.000    0.000 environment.py:641(new_context)
+        3    0.000    0.000    0.001    0.000 macros.html:68(macro)
+       34    0.000    0.000    0.044    0.001 comment.html:5(root)
+       18    0.000    0.000    0.000    0.000 {method '__reduce_ex__' of 'object' objects}
+      158    0.000    0.000    0.104    0.001 host.html:5(root)
+       48    0.000    0.000    0.052    0.001 comments.html:5(root)
+      208    0.000    0.000    0.000    0.000 {method 'replace' of 'unicode' objects}
+       37    0.000    0.000    0.001    0.000 functional.py:246(wrapper)
+      376    0.000    0.000    0.000    0.000 __init__.py:658(get_internal_type)
+       18    0.000    0.000    0.000    0.000 copy.py:300(_reconstruct)
+       84    0.000    0.000    0.002    0.000 markdown.py:1646(_applyPattern)
+       28    0.000    0.000    0.990    0.035 models.py:218(rating)
+       72    0.000    0.000    0.084    0.001 host.html:63(block_content)
+      158    0.000    0.000    0.104    0.001 base.html:5(root)
+       37    0.000    0.000    0.001    0.000 html.py:30(escape)
+      8/4    0.000    0.000    0.000    0.000 markdown.py:294(toxml)
+        4    0.000    0.000    0.005    0.001 markdown.py:1274(_transform)
+       45    0.000    0.000    0.000    0.000 safestring.py:89(mark_safe)
+        1    0.000    0.000    0.000    0.000 {function set_character_set at 0x1355bf0}
+       64    0.000    0.000    0.000    0.000 {built-in method sub}
+        1    0.000    0.000    0.000    0.000 options.py:354(_fill_related_objects_cache)
+        8    0.000    0.000    0.001    0.000 util.py:5(flatatt)
+       18    0.000    0.000    0.000    0.000 {built-in method search}
+       13    0.000    0.000    0.000    0.000 runtime.py:66(__init__)
+        4    0.000    0.000    0.000    0.000 {method 'strftime' of 'datetime.date' objects}
+       30    0.000    0.000    0.000    0.000 runtime.py:305(__init__)
+        4    0.000    0.000    0.003    0.001 markdown.py:1326(_processSection)
+       12    0.000    0.000    0.009    0.001 models.py:130()
+        4    0.000    0.000    0.000    0.000 __init__.py:221(__init__)
+      403    0.000    0.000    0.000    0.000 {method 'iteritems' of 'dict' objects}
+        9    0.000    0.000    0.001    0.000 fields.py:130(__deepcopy__)
+       14    0.000    0.000    0.001    0.000 environment.py:476(get_template)
+        1    0.000    0.000    2.420    2.420 response.py:33(render)
+       58    0.000    0.000    0.000    0.000 __init__.py:668(get_db_prep_value)
+        1    0.000    0.000    0.016    0.016 macros.html:380(macro)
+        5    0.000    0.000    0.002    0.000 comment_form.html:5(root)
+       10    0.000    0.000    0.014    0.001 quotes.html:5(root)
+        1    0.000    0.000    0.000    0.000 {method 'autocommit' of '_mysql.connection' objects}
+       18    0.000    0.000    0.001    0.000 copy.py:65(copy)
+       11    0.000    0.000    0.000    0.000 macros.html:23(macro)
+        8    0.000    0.000    0.001    0.000 forms.py:336(as_widget)
+       13    0.000    0.000    0.000    0.000 forms.py:310(__init__)
+       67    0.000    0.000    0.000    0.000 files.py:130(__set__)
+       18    0.000    0.000    0.000    0.000 datastructures.py:119(values)
+       30    0.000    0.000    0.000    0.000 runtime.py:296(next)
+        4    0.000    0.000    0.002    0.000 markdown.py:582(run)
+        1    0.000    0.000    0.000    0.000 options.py:391(_fill_related_many_to_many_cache)
+       37    0.000    0.000    0.001    0.000 html.py:35(conditional_escape)
+       14    0.000    0.000    0.000    0.000 utils.py:584(__getitem__)
+        4    0.000    0.000    0.006    0.002 markdown.py:1798(markdown)
+       12    0.000    0.000    0.000    0.000 markdown.py:370(toxml)
+        5    0.000    0.000    0.012    0.002 {sorted}
+        4    0.000    0.000    0.006    0.001 markdown.py:1715(convert)
+       16    0.000    0.000    0.000    0.000 markdown.py:196(normalizeEntities)
+        4    0.000    0.000    0.000    0.000 markdown.py:548(run)
+        9    0.000    0.000    0.000    0.000 {method 'split' of 'unicode' objects}
+        4    0.000    0.000    0.000    0.000 markdown.py:1153(__init__)
+       14    0.000    0.000    0.000    0.000 genericpath.py:52(getmtime)
+        3    0.000    0.000    0.001    0.000 datastructures.py:74(__deepcopy__)
+        1    0.000    0.000    2.423    2.423 views.py:10(show_host)
+       62    0.000    0.000    0.019    0.000 base.html:93(block_sidebar)
+       49    0.000    0.000    0.000    0.000 {math.ceil}
+       25    0.000    0.000    0.000    0.000 environment.py:312(getitem)
+        9    0.000    0.000    0.002    0.000 summaries.html:5(root)
+        3    0.000    0.000    0.014    0.005 models.py:126(features)
+        1    0.000    0.000    0.000    0.000 filters.py:349(do_truncate)
+        1    0.000    0.000    0.000    0.000 socket.py:180(__init__)
+       62    0.000    0.000    0.000    0.000 {method 'startswith' of 'unicode' objects}
+        4    0.000    0.000    0.000    0.000 macros.html:5(root)
+       11    0.000    0.000    0.000    0.000 filters.py:51(do_replace)
+        7    0.000    0.000    0.001    0.000 widgets.py:211(render)
+       14    0.000    0.000    0.000    0.000 environment.py:700(is_up_to_date)
+        8    0.000    0.000    0.000    0.000 forms.py:404(_auto_id)
+       13    0.000    0.000    0.000    0.000 forms.py:20(pretty_name)
+       29    0.000    0.000    0.000    0.000 runtime.py:99(resolve)
+       13    0.000    0.000    0.000    0.000 forms.py:100(__getitem__)
+       14    0.000    0.000    0.000    0.000 loaders.py:199(uptodate)
+       49    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+        1    0.000    0.000    0.015    0.015 models.py:134(feature_groups)
+        4    0.000    0.000    0.000    0.000 __init__.py:1160(callHandlers)
+       84    0.000    0.000    0.000    0.000 markdown.py:723(getCompiledRegExp)
+        4    0.000    0.000    0.000    0.000 __init__.py:1086(findCaller)
+        2    0.000    0.000    0.000    0.000 loading.py:131(get_models)
+        4    0.000    0.000    0.000    0.000 __init__.py:1069(log)
+        4    0.000    0.000    0.000    0.000 __init__.py:1116(_log)
+        1    0.000    0.000    0.000    0.000 __init__.py:271(__init__)
+        4    0.000    0.000    0.000    0.000 {method 'expandtabs' of 'unicode' objects}
+       12    0.000    0.000    0.000    0.000 {locals}
+        5    0.000    0.000    0.000    0.000 email_form.html:5(root)
+        3    0.000    0.000    0.001    0.000 forms.py:71(__init__)
+       12    0.000    0.000    0.000    0.000 markdown.py:138(getBidiType)
+       13    0.000    0.000    0.000    0.000 forms.py:131(add_initial_prefix)
+        4    0.000    0.000    0.000    0.000 markdown.py:1254(reset)
+        4    0.000    0.000    0.006    0.002 format.py:38(markup)
+        4    0.000    0.000    0.000    0.000 markdown.py:471(run)
+        9    0.000    0.000    0.000    0.000 widgets.py:143(__deepcopy__)
+        4    0.000    0.000    0.000    0.000 markdown.py:612(run)
+       12    0.000    0.000    0.000    0.000 markdown.py:178(createTextNode)
+        1    0.000    0.000    0.000    0.000 environment.py:665(make_module)
+       14    0.000    0.000    0.000    0.000 utils.py:544(get)
+        6    0.000    0.000    0.022    0.004 models.py:379(rating)
+        9    0.000    0.000    0.000    0.000 markdown.py:1525(_linesUntil)
+        4    0.000    0.000    0.000    0.000 macros.html:34(macro)
+        1    0.000    0.000    0.003    0.003 manager.py:92(get)
+        3    0.000    0.000    0.000    0.000 forms.py:201(full_clean)
+        4    0.000    0.000    0.000    0.000 __init__.py:1186(getEffectiveLevel)
+       18    0.000    0.000    0.000    0.000 copy_reg.py:92(__newobj__)
+        7    0.000    0.000    0.001    0.000 runtime.py:224(__init__)
+        4    0.000    0.000    0.003    0.001 markdown.py:1412(_processParagraph)
+        3    0.000    0.000    0.000    0.000 query.py:190(__getitem__)
+        2    0.000    0.000    0.001    0.001 models.py:153(quotes)
+        4    0.000    0.000    0.000    0.000 datastructures.py:406(__getitem__)
+       16    0.000    0.000    0.000    0.000 markdown.py:277(appendChild)
+        1    0.000    0.000    0.000    0.000 __init__.py:139(__init__)
+        1    0.000    0.000    0.105    0.105 response.py:13(render_to_response)
+       53    0.000    0.000    0.000    0.000 {method 'strip' of 'unicode' objects}
+        4    0.000    0.000    0.000    0.000 runtime.py:78(super)
+        1    0.000    0.000    0.000    0.000 environment.py:727(__init__)
+        4    0.000    0.000    0.000    0.000 __init__.py:1103(makeRecord)
+        1    0.000    0.000    0.001    0.001 filters.py:559(do_groupby)
+       12    0.000    0.000    0.000    0.000 runtime.py:238(cycle)
+        8    0.000    0.000    0.000    0.000 widgets.py:158(build_attrs)
+        5    0.000    0.000    0.000    0.000 forms.py:328(_errors)
+       13    0.000    0.000    0.000    0.000 base.py:285(_get_pk_val)
+        1    0.000    0.000    0.000    0.000 options.py:304(init_name_map)
+        8    0.000    0.000    0.000    0.000 markdown.py:171(createElement)
+       79    0.000    0.000    0.000    0.000 {function __getitem__ at 0x70d430}
+    15/12    0.000    0.000    0.000    0.000 markdown.py:241(setBidi)
+        1    0.000    0.000    0.000    0.000 connections.py:270(set_character_set)
+        8    0.000    0.000    0.001    0.000 forms.py:322(__unicode__)
+        8    0.000    0.000    0.000    0.000 markdown.py:232(__init__)
+        1    0.000    0.000    0.001    0.001 __init__.py:71(Connect)
+        7    0.000    0.000    0.000    0.000 forms.py:108(_get_errors)
+        7    0.000    0.000    0.000    0.000 runtime.py:253(__iter__)
+        4    0.000    0.000    0.000    0.000 format.py:5(datetimeformat)
+        3    0.000    0.000    0.002    0.001 models.py:138()
+        2    0.000    0.000    0.001    0.000 host.html:38(block_breadcrumbs)
+        1    0.000    0.000    0.007    0.007 models.py:143()
+        4    0.000    0.000    0.000    0.000 models.py:209(get_visit_url)
+       60    0.000    0.000    0.000    0.000 {method 'itervalues' of 'dict' objects}
+        4    0.000    0.000    0.000    0.000 __init__.py:1131(handle)
+        4    0.000    0.000    0.000    0.000 markdown.py:53(message)
+       18    0.000    0.000    0.000    0.000 markdown.py:1386()
+       12    0.000    0.000    0.000    0.000 markdown.py:367(handleAttributes)
+       19    0.000    0.000    0.000    0.000 runtime.py:76()
+       10    0.000    0.000    0.000    0.000 base.html:51(block_head)
+        4    0.000    0.000    0.000    0.000 genericpath.py:85(_splitext)
+        1    0.000    0.000    0.000    0.000 datastructures.py:191(__repr__)
+        4    0.000    0.000    0.000    0.000 host.html:50(block_title)
+        4    0.000    0.000    0.000    0.000 runtime.py:214(__call__)
+        4    0.000    0.000    0.000    0.000 __init__.py:143(getLevelName)
+        2    0.000    0.000    0.000    0.000 base.html:76(block_footer)
+        1    0.000    0.000    0.000    0.000 datastructures.py:195(__getitem__)
+        4    0.000    0.000    0.000    0.000 filters.py:594()
+       27    0.000    0.000    0.000    0.000 forms.py:122(add_prefix)
+        1    0.000    0.000    0.000    0.000 wsgi.py:129(_load_post_and_files)
+        2    0.000    0.000    0.000    0.000 files.py:116(__get__)
+        1    0.000    0.000    0.002    0.002 {filter}
+        4    0.000    0.000    0.000    0.000 posixpath.py:94(splitext)
+        1    0.000    0.000    0.000    0.000 base.py:510(get_absolute_url)
+        1    0.000    0.000    0.001    0.001 host.html:87(macro)
+        1    0.000    0.000    0.000    0.000 runtime.py:109(get_exported)
+        7    0.000    0.000    0.000    0.000 runtime.py:290(__init__)
+        2    0.000    0.000    0.001    0.000 models.py:302(summaries)
+        1    0.000    0.000    0.000    0.000 widgets.py:282(render)
+       11    0.000    0.000    0.000    0.000 {method 'remove' of 'collections.deque' objects}
+        4    0.000    0.000    0.000    0.000 threading.py:796(currentThread)
+        4    0.000    0.000    0.000    0.000 comment.html:12(macro)
+        1    0.000    0.000    0.000    0.000 models.py:230(ratings)
+        1    0.000    0.000    0.000    0.000 :1(settimeout)
+       37    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+        4    0.000    0.000    0.000    0.000 runtime.py:198(__init__)
+       13    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 __init__.py:76()
+        4    0.000    0.000    0.000    0.000 posixpath.py:109(basename)
+       13    0.000    0.000    0.000    0.000 environment.py:464(join_path)
+        1    0.000    0.000    0.105    0.105 environment.py:600(render)
+        2    0.000    0.000    0.000    0.000 host.html:20(block_meta_keywords)
+       22    0.000    0.000    0.000    0.000 runtime.py:246()
+       14    0.000    0.000    0.000    0.000 models.py:408()
+        4    0.000    0.000    0.000    0.000 datastructures.py:106(items)
+        2    0.000    0.000    0.002    0.001 query.py:181(__nonzero__)
+        1    0.000    0.000    0.000    0.000 options.py:380(get_all_related_m2m_objects_with_model)
+        1    0.000    0.000    0.000    0.000 {_warnings.warn}
+        1    0.000    0.000    0.000    0.000 datastructures.py:226(get)
+        2    0.000    0.000    0.000    0.000 datastructures.py:188(__init__)
+        1    0.000    0.000    0.000    0.000 filters.py:603(__new__)
+        4    0.000    0.000    0.000    0.000 __init__.py:1200(isEnabledFor)
+        4    0.000    0.000    0.000    0.000 markdown.py:259(setAttribute)
+        1    0.000    0.000    0.000    0.000 options.py:343(get_all_related_objects_with_model)
+        2    0.000    0.000    0.000    0.000 host.html:14(block_meta_description)
+        3    0.000    0.000    0.000    0.000 manager.py:77(all)
+        1    0.000    0.000    0.000    0.000 functional.py:54(_curried)
+        1    0.000    0.000    0.000    0.000 host.html:93(macro)
+       12    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+        9    0.000    0.000    0.000    0.000 macros.html:85(macro)
+        3    0.000    0.000    0.000    0.000 base.py:282(__hash__)
+        4    0.000    0.000    0.000    0.000 threading.py:652(name)
+        2    0.000    0.000    0.000    0.000 quotes.html:16(macro)
+       12    0.000    0.000    0.000    0.000 markdown.py:360(__init__)
+        1    0.000    0.000    0.000    0.000 fields.py:111(clean)
+        2    0.000    0.000    0.000    0.000 host.html:31(block_footer)
+        1    0.000    0.000    0.000    0.000 cgi.py:188(parse_qsl)
+        1    0.000    0.000    0.000    0.000 files.py:18(__init__)
+        3    0.000    0.000    0.000    0.000 runtime.py:378(__init__)
+       12    0.000    0.000    0.000    0.000 runtime.py:111()
+        1    0.000    0.000    0.000    0.000 connections.py:184(unicode_literal)
+        1    0.000    0.000    0.000    0.000 util.py:52(__init__)
+        4    0.000    0.000    0.000    0.000 {zip}
+        2    0.000    0.000    0.000    0.000 __init__.py:381(get_db_prep_lookup)
+        4    0.000    0.000    0.000    0.000 markdown.py:193(toxml)
+       23    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 options.py:428(get_parent_list)
+        8    0.000    0.000    0.000    0.000 {thread.get_ident}
+        4    0.000    0.000    0.000    0.000 __init__.py:549(filter)
+        4    0.000    0.000    0.000    0.000 markdown.py:964(run)
+        4    0.000    0.000    0.001    0.000 base.html:86(block_breadcrumbsdiv)
+        4    0.000    0.000    0.000    0.000 datastructures.py:88(__iter__)
+        5    0.000    0.000    0.000    0.000 util.py:39(as_ul)
+        4    0.000    0.000    0.000    0.000 markdown.py:999(__init__)
+        1    0.000    0.000    0.000    0.000 urlparse.py:316(parse_qsl)
+        2    0.000    0.000    0.000    0.000 query.py:1459(set_limits)
+        1    0.000    0.000    0.000    0.000 base.py:28(__nonzero__)
+        4    0.000    0.000    0.000    0.000 markdown.py:1222(registerExtensions)
+        1    0.000    0.000    0.000    0.000 {method 'encode' of 'unicode' objects}
+        4    0.000    0.000    0.000    0.000 {sys._getframe}
+        1    0.000    0.000    0.000    0.000 wsgi.py:167(_get_post)
+        2    0.000    0.000    0.000    0.000 converters.py:42(Bool2Str)
+        5    0.000    0.000    0.000    0.000 util.py:36(__unicode__)
+        1    0.000    0.000    0.000    0.000 response.py:82(get_section)
+        1    0.000    0.000    0.000    0.000 connections.py:179(string_literal)
+        1    0.000    0.000    0.000    0.000 forms.py:115(is_valid)
+        1    0.000    0.000    0.000    0.000 models.py:206(get_absolute_url)
+        1    0.000    0.000    0.000    0.000 fields.py:409(clean)
+        4    0.000    0.000    0.000    0.000 markdown.py:161(appendChild)
+        2    0.000    0.000    0.000    0.000 comment.html:42(macro)
+        1    0.000    0.000    0.000    0.000 base.py:22(__unicode__)
+        9    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+        4    0.000    0.000    0.000    0.000 {method 'index' of 'list' objects}
+        2    0.000    0.000    0.000    0.000 __init__.py:390(get_db_prep_value)
+        4    0.000    0.000    0.000    0.000 {posix.getpid}
+        4    0.000    0.000    0.000    0.000 markdown.py:158(__init__)
+        4    0.000    0.000    0.000    0.000 markdown.py:281(handleAttributes)
+        1    0.000    0.000    0.000    0.000 wsgi.py:158(_get_get)
+        4    0.000    0.000    0.000    0.000 __init__.py:181(get_db_prep_value)
+        1    0.000    0.000    0.000    0.000 {_mysql.get_client_info}
+        1    0.000    0.000    0.000    0.000 options.py:233(get_m2m_with_model)
+        1    0.000    0.000    0.000    0.000 {method 'string_literal' of '_mysql.connection' objects}
+        4    0.000    0.000    0.000    0.000 {method 'isalpha' of 'unicode' objects}
+       11    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
+        1    0.000    0.000    0.000    0.000 fields.py:146(clean)
+        3    0.000    0.000    0.000    0.000 {hash}
+        1    0.000    0.000    0.000    0.000 {delattr}
+        1    0.000    0.000    0.000    0.000 connections.py:178(_get_string_literal)
+        2    0.000    0.000    0.000    0.000 __init__.py:371(get_internal_type)
+        2    0.000    0.000    0.000    0.000 loading.py:86(app_cache_ready)
+        4    0.000    0.000    0.000    0.000 posixpath.py:42(normcase)
+        1    0.000    0.000    0.000    0.000 connections.py:183(_get_unicode_literal)
+        2    0.000    0.000    0.000    0.000 base.html:72(block_breadcrumbs)
+        1    0.000    0.000    0.000    0.000 widgets.py:165(value_from_datadict)
+       13    0.000    0.000    0.000    0.000 {method 'upper' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 loading.py:42(_populate)
+        2    0.000    0.000    0.000    0.000 base.html:68(block_title)
+        1    0.000    0.000    0.000    0.000 __init__.py:160(_set_encoding)
+        1    0.000    0.000    0.000    0.000 {method 'get_server_info' of '_mysql.connection' objects}
+        2    0.000    0.000    0.000    0.000 runtime.py:425(__nonzero__)
+        2    0.000    0.000    0.000    0.000 base.html:64(block_meta_keywords)
+        1    0.000    0.000    0.000    0.000 {method 'discard' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 forms.py:240(clean)
+        3    0.000    0.000    0.000    0.000 markdown.py:167(setBidi)
+        3    0.000    0.000    0.000    0.000 __init__.py:401(get_internal_type)
+        1    0.000    0.000    0.000    0.000 __init__.py:770(get_internal_type)
+        2    0.000    0.000    0.000    0.000 base.py:34(_get_name)
+        1    0.000    0.000    0.000    0.000 Cookie.py:571(__init__)
+        2    0.000    0.000    0.000    0.000 footer.html:5(root)
+        1    0.000    0.000    0.000    0.000 connections.py:188(_get_string_decoder)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+

@@ -1,12 +1,21 @@
-{% set quotes = host.quotes() %}
-{% if quotes %}
-    <strong>Customer Reviews</strong>
-   <ul class="quotes">
-    {% for quote in quotes %}
-        <li class="{{ loop.cycle('alt', '') }}">
-            <strong>"</strong>{{ quote.value }}<strong>"</strong>
-            - <a href="#comment-{{quote.comment.id}}">{{ quote.comment.name }}</a>
+{% if host.quotes() %}
+    <ul id="quotes">
+    {% for quote in host.quotes() %}
+        <li>
+            <span class="big_stars
+            {% call macros.get_rating_class(quote.comment.rating()) -%}
+            big_
+            {%- endcall %}"></span>
+
+            <span class="quote">
+                <strong>"</strong>{{ quote.value }}<strong>"</strong>
+            </span>
+            <span class="quote_author">~
+                <a href="#comment-{{quote.comment.id}}">{{ quote.comment.name }}</a>
+            </span>
         </li>
+
+        {% if loop.index == 2 %}{% break %}{% endif %}
     {% endfor %}
    </ul>
 {% endif %}

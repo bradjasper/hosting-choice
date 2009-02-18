@@ -134,6 +134,12 @@ h3 { font-size: 135% }
 h4 { font-size: 120% }
 h5 { font-size: 105% }
 
+.host h1 {
+    float: left;
+    font-size: 250%;
+    padding: 12px 0;
+}
+
 #sidebar h3 {
     background: url('/media/images/dots.png') bottom left repeat-x;
     padding-top: 30px;
@@ -188,7 +194,9 @@ p {
 }
 
 .comments {
-    margin-top: 50px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
 }
 
 .comments h3 {
@@ -234,6 +242,25 @@ p {
 .stars4 { background-position: 0 -108px; }
 .stars45 { background-position: 0 -122px; }
 .stars5 { background-position: 0 -135px; }
+
+
+.big_stars {
+    background: url('/media/images/big_stars.png') 0 0 no-repeat;
+    width: 225px;
+    height: 46px;
+    display: block !important;
+}
+
+.big_stars05 { background-position: 0 -46px; }
+.big_stars1 { background-position: 0 -96px; }
+.big_stars15 { background-position: 0 -147px; }
+.big_stars2 { background-position: 0 -195px; }
+.big_stars25 { background-position: 0 -247px; }
+.big_stars3 { background-position: 0 -297px; }
+.big_stars35 { background-position: 0 -350px; }
+.big_stars4 { background-position: 0 -396px; }
+.big_stars45 { background-position: 0 -446px; }
+.big_stars5 { background-position: 0 -496px; }
 
 .comment {
     background: url('/media/images/comment-sprite.png') 0 0 no-repeat;
@@ -287,7 +314,7 @@ p {
 
 #purchase {
     padding: 5px 0;
-    font-size: 120%;
+    font-size: 180%;
     line-height: 22px;
 }
 
@@ -388,8 +415,12 @@ p {
 .leaderboard th {
     color: #444;
     background-color: #eaeaea;
-    text-align: left;
+    text-align: center;
     padding: 8px 3px;
+}
+
+.leaderboard th.host {
+    text-align: left;
 }
 
 .leaderboard td {
@@ -489,9 +520,9 @@ p {
 .logo {
     padding: 3px;
     border: 1px solid #ddd;
-    margin-left: 5px;
+    margin-bottom: 15px;
     display: block;
-    width: 200px;
+    width: 225px;
     float: right;
 }
 
@@ -633,23 +664,6 @@ ol.normal li {
     display: none;
 }
 
-.quotes {
-    font-size: 120%;
-    margin-bottom: 10px;
-}
-
-.quotes li {
-    padding: 10px;
-}
-
-.quotes li a {
-    font-size: 80%;
-}
-
-.quotes li.alt {
-    background: #f2f2f2;
-}
-
 .v { display: none; }
 .genetify_disabled { display: none !important; } 
 .genetify_enabled { display: block !important; } 
@@ -768,15 +782,8 @@ hr {
 }
 
 .other a.visit {
-    display: block;
-    margin: 5px auto;
-    background: url('/media/images/small_visit.png') no-repeat;
-    width: 52px;
-    height: 25px;
-}
-
-.other a.visit span {
-    display: none;
+    white-space: normal;
+    font-weight: bold;
 }
 
 .other span {
@@ -794,20 +801,26 @@ hr {
     float: right;
 }
 
-.host h1 {
-    float: left;
-}
 
 .hide {
     display: none;
 }
 
 #info {
+    float: left;
+    width: 175px;
+}
+
+#info .featured {
+    font-weight: bold;
 }
 
 #info th {
     font-weight: bold;
-    background-color: #ddd;
+    background-color: #e3e3e3;
+    font-size: 110%;
+    -moz-border-radius: 3px 3px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
 }
 
 #info th, #info td {
@@ -815,7 +828,7 @@ hr {
 }
 
 #info tr {
-    background-color: #eee;
+    background-color: #f9f9f9;
 }
 
 #info td {
@@ -824,15 +837,94 @@ hr {
     padding-right: 15px;
 }
 
-.alt {
-    background-color: #f6f6f6 !important;
-}
-
 #info .footnote {
     background-color: #ddd !important;
+    -moz-border-radius: 0 0 3px 3px;
+    -webkit-border-radius: 0 0 3px 3px;
 }
 
 #info .footnote a {
     font-size: 80%;
     color: #333;
+}
+
+#main {
+    float: left;
+    margin-left: 20px;
+    font-size: 120%;
+    width: 500px;
+}
+
+#summaries li {
+    font-weight: bold;
+    padding: 7px;
+    background-color: #e3e3e3;
+    -moz-border-radius: 3px;
+}
+
+#summaries ul {
+    padding: 4px 0;
+}
+
+#summaries ul li {
+    font-weight: normal;
+    list-style-type: square;
+    margin-left: 5px;
+    list-style-position: inside;
+    background-color: #fff !important;
+}
+
+#quotes {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #dedede;
+    width: 100%;
+}
+
+#quotes li {
+    display: block;
+    width: 43%;
+    float: left;
+    text-align: center;
+}
+
+#quotes li:first-child {
+    padding-right: 60px;
+}
+
+#quotes li span {
+    display: inline;
+    font-size: 110%;
+    line-height: 29px;
+    margin: 5px 0;
+}
+
+#quotes li span.quote_author {
+    font-size: 90%;
+    white-space: nowrap;
+    float: right;
+}
+
+#header_visit {
+    display: block;
+    float: left;
+    clear: left;
+    color: #333;
+}
+
+#under_main {
+    border: 1px solid #777;
+    width: 100%;
+    display: block;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 250%;
+    margin: 40px 0 0 0;
+    color: #212121;
+    background: url('/media/images/visit_bg.png') 0 0 repeat-x;
+}
+
+#under_main:hover {
+    border-color: #333;
+    color: black;
 }

@@ -1,0 +1,18 @@
+{% if host.summaries() %}
+    <ul id="summaries">
+    {% for group in host.summaries(0) | groupby('type') %}
+        <li>
+            {%- if group.grouper == 0 %}
+                Pro's
+            {% elif group.grouper == 1 %}
+                Con's 
+            {% endif -%}
+        </li>
+        <ul>
+        {%- for summary in group.list %}
+            <li>{{ summary.text }}</li>
+        {% endfor -%}
+        </ul>
+    {% endfor %}
+    </ul>
+{% endif %}
