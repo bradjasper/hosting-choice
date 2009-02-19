@@ -88,6 +88,9 @@
                     {% if loop.index > (limit|default(100)) %}
                         hidden
                     {%- endif -%}
+                    {%- if host.featured >= 1 %}
+                        featured
+                    {% endif -%}
                     ">
                     <td class="rank">{{ loop.index }}.</td>
                     <td class="name">
@@ -132,13 +135,17 @@
                 </tr>
             {% endif %}
             <tr>
-                <td colspan="6" class="footnote">
+                <td colspan="7" class="footnote">
                     <a name="footnote"></a>
                     <strong>*</strong>
                     Prices are based on a 1 year contract split into monthly
                     payments. See
                     <a href="/faq.html#faq-10">this FAQ item</a>
                     for more information.
+                    <br />&nbsp;<br />
+                    <strong>*</strong>
+                    Hosts with a darker background are feature hosts we work
+                    with. We have only adjusted the highlighting, not the rank.
                 </td>
             </tr>
         {% else %}
