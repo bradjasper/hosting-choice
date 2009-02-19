@@ -132,13 +132,21 @@ class Host(Common):
     def features(self):
         """Return list of features sorted by priority"""
 
+        if self.cache_get('features'):
+            return self.cache_get('features')
+
         items = Feature.objects.filter(host=self).exclude(value=0)
         sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
+
+        self.cache_set('features', items)
 
         return items
 
     def feature_groups(self):
         """Return features returned in groups"""
+
+        if self.cache_get('feature_groups'):
+            return self.cache_get('feature_groups')
 
         # Grab the unique groups and sort them based on their priority
         items = set(map(lambda x: x.type.group, self.features()))
@@ -147,7 +155,12 @@ class Host(Common):
         # Loop through each group and grab each feature type, sorting on its
         # priority
         func = lambda x: (x, filter(lambda y: y.type.group == x, self.features()))
-        return map(func, items)
+
+        final = map(func, items)
+
+        self.cache_set('feature_groups', final)
+
+        return final
 
     def features_dict(self):
         """Return a dictionary of features"""
