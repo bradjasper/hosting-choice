@@ -438,6 +438,10 @@ p {
     padding: 8px 3px;
 }
 
+.leaderboard .featured {
+    background-color: #bbb;
+}
+
 .leaderboard th.host {
     text-align: left;
 }
@@ -956,3 +960,4 @@ hr {
 #commitment {
     width: 90% !important;
 }
+
