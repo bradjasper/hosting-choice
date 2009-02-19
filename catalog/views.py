@@ -37,6 +37,8 @@ def show_host(request, slug):
                         messages['errors'].append('You must '
                             + 'specify a valid rating to review a host')
 
+                        # no transactions
+                        comment.delete()
                         break
 
                     type = models.RatingType.objects.get(name=name)
