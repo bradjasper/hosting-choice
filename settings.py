@@ -1,7 +1,7 @@
 # Django settings for bizdir project.
 import socket
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-#    'hostingchoice.profiler_middlware.ProfileMiddleware',
+    'hostingchoice.profiler_middleware.ProfilerMiddleware',
     'hostingchoice.session_referrer_middleware.ReferrerMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
