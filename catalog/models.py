@@ -40,7 +40,6 @@ class Common(models.Model):
 
     def cache_get(self, key):
         """Shortcut for getting cache items with a namespace"""
-
         return cache.get("%d-%s" % (self.id, key))
 
     def cache_set(self, key, value):
@@ -70,8 +69,9 @@ class HostManager(CommonManager):
         """Assign a rank to each host based on their rating. Return a list
         sorted in this order with a number (rank) assigned to each."""
 
-        if self.cache_get('leaderboard'):
-            return self.cache_get('leaderboard')
+        cached = self.cache_get('leaderboard')
+        if cached:
+            return cached
 
         percentages = lambda x,y: cmp(x.percentage(), y.percentage())
         num_comments = lambda x,y: cmp(len(x.comments()), len(y.comments()))
@@ -132,8 +132,9 @@ class Host(Common):
     def features(self):
         """Return list of features sorted by priority"""
 
-        if self.cache_get('features'):
-            return self.cache_get('features')
+        cached = self.cache_get('features')
+        if cached:
+            return cached
 
         items = Feature.objects.filter(host=self).exclude(value=0)
         sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
@@ -145,8 +146,9 @@ class Host(Common):
     def feature_groups(self):
         """Return features returned in groups"""
 
-        if self.cache_get('feature_groups'):
-            return self.cache_get('feature_groups')
+        cached = self.cache_get('feature_groups')
+        if cached:
+            return cached
 
         # Grab the unique groups and sort them based on their priority
         items = set(map(lambda x: x.type.group, self.features()))
@@ -165,8 +167,16 @@ class Host(Common):
     def features_dict(self):
         """Return a dictionary of features"""
 
-        return dict([(feature.type.name, feature.value) for feature in
+        cached = self.cache_get('features_dict')
+        if cached:
+            return cached
+
+        items = dict([(feature.type.name, feature.value) for feature in
             self.features()])
+
+        self.cache_set('features_dict', items)
+
+        return items
 
 
     def quotes(self):
@@ -181,8 +191,9 @@ class Host(Common):
         """Return a list of comments for this host. This method filters out
         inactive comments and sorts the results by their karma"""
 
-        if self.cache_get('comments'):
-            return self.cache_get('comments')
+        cached = self.cache_get('comments')
+        if cached:
+            return cached
 
         comments = Comment.objects.filter(host=self, active=True)
 
@@ -196,8 +207,9 @@ class Host(Common):
     def rank(self):
         """Return this hosts rank in the leaderboard"""
 
-        if self.cache_get('rank'):
-            return self.cache_get('rank')
+        cached = self.cache_get('rank')
+        if cached:
+            return cached
 
         for i, host in enumerate(Host.objects.leaderboard()):
             if self == host:
@@ -213,8 +225,9 @@ class Host(Common):
     def percentage(self):
         """Return the rating as a percentage"""
 
-        if self.cache_get('percentage'):
-            return self.cache_get('percentage')
+        cached = self.cache_get('percentage')
+        if cached:
+            return cached
 
         percent = format.smart_round(self.rating(100))
 
@@ -271,8 +284,9 @@ class Host(Common):
     def raw_ratings(self):
         """Return the raw value/count for each rating category"""
 
-        if self.cache_get('raw_ratings'):
-            return self.cache_get('raw_ratings')
+        cached = self.cache_get('raw_ratings')
+        if cached:
+            return cached
 
         comments = [comment.raw_ratings() for comment in \
             Comment.objects.filter(host=self, active=1)]
@@ -420,8 +434,9 @@ class Comment(Common):
     def karma(self):
         """Return the karma for the entire comment"""
 
-        if self.cache_get('karma'):
-            return self.cache_get('karma')
+        cached = self.cache_get('karma')
+        if cached:
+            return cached
 
         karmas = Karma.objects.filter(comment=self)
         karma = sum(map(lambda x: x.value, karmas))
