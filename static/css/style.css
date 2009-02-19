@@ -122,6 +122,25 @@ body {
     padding: 10px 0;
 }
 
+#sidebar div {
+    float: left;
+    width: 30%;
+}
+
+#email_form div {
+    width: 100%;
+}
+
+#recent_articles {
+    width: 100% !important;
+}
+
+#recent_articles div {
+    width: 30%;
+    height: 250px;
+    clear: right;
+}
+
 h1, h2, h3, h4, h5 {
     color: #aec023;
     font-size: 170%;
@@ -927,4 +946,13 @@ hr {
 #under_main:hover {
     border-color: #333;
     color: black;
+}
+
+#see_more_blog {
+    text-align: right;
+    font-weight: bold;
+}
+
+#commitment {
+    width: 90% !important;
 }

@@ -16,7 +16,7 @@
 
 {% block title -%}
     {% if host -%}
-        {{ host.name }} Review - {{host.name }} Hosting Review -
+        {{ host.name }} Review -
     {%- endif %} {{ super() }}
 {%- endblock %}
 
@@ -65,6 +65,27 @@
     </div>
     <div class="clear"></div>
     {%- include 'comments.html' -%}
+    <hr />
+    <h3>About {{host.name}}</h3>
+    <p>{{host.description}}</p>
+
+    <div id="commitment">
+<h3>Our Commitment</h3>
+<p>We strive to offer the <strong>best web hosting</strong>. We do
+this with your help through user reviews. Our <strong>{{host.name}}
+    Review</strong> is completely un-baised. The <strong>{{host.name}}
+    reviews</strong> are from other webmasters that have actually used
+<strong>{{host.name}} Web Hosting</strong>. If you have experience
+with <strong>{{host.name}}</strong> please submit a review above. If
+you're still researching hosts, check out or <a href="/leaderboard.html"
+    title="top 10 web hosting">top 10 web hosting</a> list.</p>
+
+<p>If you still have questions, please see our <a href="/blog.html">web hosting
+    articles</a> or <a href="/faq.html">FAQ</a>.</p>
+
+</div>
+
+
 {% else %}
     <p>Cannot find host.</p>
 {% endif %}
