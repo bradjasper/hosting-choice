@@ -15,6 +15,14 @@
       <priority>0.7</priority>
    </url>
 {% endfor -%}
+
+{%- for feature in features %}
+  <url>
+      <loc>http://hosting-choice.com{{ feature.get_absolute_url() }}</loc>
+      <changefreq>hourly</changefreq>
+      <priority>0.7</priority>
+   </url>
+{% endfor -%}
     <url>
         <loc>http://hosting-choice.com/hosts.html</loc>
         <changefreq>hourly</changefreq>

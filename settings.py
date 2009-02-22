@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'hostingchoice.catalog',
     'hostingchoice.main',
+    'hostingchoice.media_bundler',
     'django.contrib.sitemaps',
 ]
 

@@ -516,16 +516,19 @@ class FeatureType(models.Model):
     title = models.TextField(blank=True)
     description = models.TextField(blank=True)
 
-    is_tag = models.BooleanField(default=True)
+    is_category = models.BooleanField(default=True)
     priority = models.IntegerField(blank=True, default=0)
     show = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "/hosts/%s.html" % self.slug
+
     def save(self):
 
-        if self.is_tag:
+        if self.is_category:
             if not self.slug:
                 self.slug = slugify(self.name)
 
@@ -541,6 +544,20 @@ class FeatureType(models.Model):
                     self.name, self.name, self.name)
 
         super(FeatureType, self).save()
+
+    def leaderboard(self):
+        """Return a leaderboard for this feature type"""
+
+        items = Host.objects.leaderboard()
+
+        filter = []
+        for item in items:
+            features = item.features()
+            for feature in features:
+                if feature.type == self and feature.value:
+                    filter.append(item)
+        return filter
+
 
 
 class Hit(models.Model):

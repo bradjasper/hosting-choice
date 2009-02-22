@@ -57,9 +57,9 @@ class HitsAdmin(admin.ModelAdmin):
 
 class FeatureTypeAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'group', 'is_tag')
-    list_filter = ('group',)
-    ordering = ('name', 'group', 'is_tag')
+    list_display = ('name', 'group', 'is_category')
+    list_filter = ('group', 'is_category')
+    ordering = ('name', 'group', 'is_category')
     search_fields = ('name', 'group', 'title', 'description', 'slug')
 
 class SummaryAdmin(admin.ModelAdmin):

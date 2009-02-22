@@ -5,25 +5,43 @@
     &raquo;
     <a href="/hosts.html" title="Hosts">Hosts</a>
     &raquo;
-    <strong>{{category.name}}</strong>
+    <strong>
+    {%- if category.title %}
+        {{ category.title }}
+    {% else %}
+        {{category.name}}
+    {% endif -%}
+    </strong>
 {% endblock %}
 
 {% block title -%}
     {% if category %}
-        {{ category.name }} Reviews - Top 10 {{category.name }} Reviews -
+        {% if category.title %}
+            {{ category.title }} -
+        {% else %}
+            {{ category.name }} Reviews - Top 10 {{category.name }} Reviews -
+        {% endif %}
         {{ super() }}
     {% endif %}
 {%- endblock %}
 
 {% block meta_keyword -%}
-    {{ category.name }} Reviews, {{ category.name }} Hosting Reviews, {{ super() }}
+    {% if category.description %}
+        {{ category.description }}
+    {% else %}
+        {{ category.name }} Reviews, {{ category.name }} Hosting Reviews, {{ super() }}
+    {% endif %}
 {%- endblock %}
 
 {% block content %}
     <div id="category">
-        <h1>Top <strong>{{category.name}}</strong> Web Hosts</h1>
+        {% if category.title %}
+            <h1>{{category.title}}</h1>
+        {% else %}
+            <h1>Top <strong>{{category.name}}</strong> Web Hosts</h1>
+        {% endif %}
         <p class="desc">{{category.description}}</p>
-        {% call macros.Leaderboard(hosts, 50, False) %}
+        {% call macros.Leaderboard(leaderboard, 50, False) %}
         {% endcall %}
     </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 
+DEBUG = True
 DATABASE_USER='root'
 DATABASE_PASSWORD=''
 DATABASE_NAME='hostingchoice'
@@ -24,6 +25,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
+    'media_bundler',
     'hostingchoice.catalog',
 	'hostingchoice.main',
 )

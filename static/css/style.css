@@ -961,3 +961,6 @@ hr {
     width: 90% !important;
 }
 
+#features div {
+    width: 100% !important;
+}
