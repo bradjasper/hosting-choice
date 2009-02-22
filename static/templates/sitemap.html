@@ -44,6 +44,11 @@
                         {{ category.name }}</a>
                     </li>
                 {% endfor %}
+                {%- for feature in features %}
+                    <li><a href="{{ feature.get_absolute_url() }}">
+                        {{ feature.title }}</a>
+                    </li>
+                {% endfor %}
                 </ul>
                 {% endif %}
             </li>

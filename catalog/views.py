@@ -78,17 +78,19 @@ def show_host(request, slug):
 def show_category(request, slug):
     """Return the view for a category listing"""
 
+    hosts = None
     try:
         category = models.Category.objects.get(slug=slug)
         hosts = models.Host.objects.leaderboard()
-
     except models.Category.DoesNotExist:
-        category = None
-        hosts = []
-
+        try:
+            category = models.FeatureType.objects.get(slug=slug)
+            hosts = category.leaderboard()
+        except models.FeatureType.DoesNotExist:
+            category = None
 
     return response.render('category.html', {
-        'hosts': hosts,
+        'leaderboard': hosts,
         'category': category,
         'request': request})
 
@@ -100,9 +102,16 @@ def show_categories(request):
         categories = models.Category.objects.filter(parent=0).order_by('name')
         cache.set('categories', categories, settings.CACHE_TIMEOUT)
 
+    features = cache.get('features')
+    if not features:
+        features = models.FeatureType.objects.filter(
+            is_category=True).order_by('-priority')
+        cache.set('features', features, settings.CACHE_TIMEOUT)
+
     return response.render('categories.html', {
         'categories': categories,
-        'request': request})
+        'request': request,
+        'features': features})
 
 
 def report(request, id):
@@ -169,9 +178,11 @@ def sitemap_xml(request):
 
     hosts = models.Host.objects.leaderboard()
     categories = models.Category.objects.all()
+    features = models.FeatureType.objects.filter(is_category=True).order_by('-priority')
 
     return response.render('sitemap.xml', {
         'hosts': hosts,
+        'features': features,
         'categories': categories})
 
 def sitemap(request):
@@ -179,8 +190,10 @@ def sitemap(request):
 
     hosts = models.Host.objects.leaderboard()
     categories = models.Category.objects.all()
+    features = models.FeatureType.objects.filter(is_category=True).order_by('-priority')
 
     return response.render('sitemap.html', {
+        'features': features,
         'hosts': hosts,
         'categories': categories})
 

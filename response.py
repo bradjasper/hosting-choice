@@ -37,6 +37,7 @@ def render(template, context = None):
         context = {}
 
     categories = catalog.models.Category.objects.filter()
+    features = catalog.models.FeatureType.objects.filter(is_category=True).order_by('-priority')
     hosts = catalog.models.Host.objects.leaderboard()
     recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')[:10]
     articles = main.models.Entry.objects.all().order_by('-pub_date')[0:10]
@@ -73,6 +74,7 @@ def render(template, context = None):
     context.update({
         'categories': categories,
         'hosts': hosts,
+        'features': features,
         'recent_reviews': recent_reviews,
         'articles': articles})
 

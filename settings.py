@@ -1,7 +1,7 @@
 # Django settings for bizdir project.
 import socket
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'hostingchoice.catalog',
     'hostingchoice.main',
+    'hostingchoice.media_bundler',
     'django.contrib.sitemaps',
 ]
 

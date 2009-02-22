@@ -42,6 +42,13 @@
 </table>
 </div>
 
+<div id="features">
+    <h3>Features</h3>
+    <div><p>{% for feature in features %}
+        <strong><a href="{{feature.get_absolute_url()}}">{{ feature.title
+                }}</a></strong>
+    {% endfor %}</p></div>
+</div>
 <div>
 <h3>Site Links</h3>
 <ul>
