@@ -40,12 +40,17 @@ class Common(models.Model):
 
     def cache_get(self, key):
         """Shortcut for getting cache items with a namespace"""
-        return cache.get("%s-%s" % (self.slug, key))
+        return cache.get(self.get_key(key))
 
     def cache_set(self, key, value):
         """Shortcut for setting cache items with a namespace"""
 
-        cache.set("%s-%s" %  (self.slug, key), value, settings.CACHE_TIMEOUT)
+        cache.set(self.get_key(key), value, settings.CACHE_TIMEOUT)
+
+    def get_key(self, key):
+
+        slug = getattr(self, 'slug', self.id)
+        return "%s-%s" % (slug, key)
 
 class CommonManager(models.Manager):
 
