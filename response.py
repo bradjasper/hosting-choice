@@ -43,7 +43,7 @@ def get_sidebar():
                 filter(active=1).order_by('-date')[:10],
 
         'articles': main.models.Entry.objects.all(). \
-                order_by('-pub_date')[0:10]}
+                order_by('-pub_date')}
 
     cache.set('sidebar', sidebar, settings.CACHE_TIMEOUT)
 
