@@ -572,9 +572,7 @@ class FeatureType(Common):
         cached = self.cache_get('feature')
         if cached:
             return cached
-        else:
-            assert False, 'not cached'
-        
+
         items = Host.objects.leaderboard()
 
         filter = []

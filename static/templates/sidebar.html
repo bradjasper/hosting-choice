@@ -12,8 +12,22 @@
 <div id="email_form">
 {%- include 'email_form.html' %}
 </div>
-    
-<div>
+
+ <div>
+<h3>Site Links</h3>
+<ul>
+    <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
+    <li><a href="/matrix.html">Top 10 Web Hosts Matrix</a></li>
+    <li><a href="/hosts.html">Hosting Directory</a></li>
+    <li><a href="/submit.html">Submit A Host</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/sitemap.html">Sitemap</a></li>
+    <li><a href="/about.html">About Us</a></li>
+</ul>
+</div>   
+
+<div id="recent_reviews">
 <h3>Recent Reviews</h3>
 <ul>
     {% for review in recent_reviews %}
@@ -21,6 +35,7 @@
         <a title="{{review.host.name}} Review" href="/host/{{review.host.slug}}.html">
             {{review.host.name}} Review</a>
         by {{review.name}}
+        <p>{{ review.text | truncate(200) }}</p>
     </li>
     {% endfor %}
 </ul>
@@ -54,16 +69,4 @@
     </ul></div>
 </div>
 
-<div>
-<h3>Site Links</h3>
-<ul>
-    <li><a href="/leaderboard.html">Top 10 Web Hosts</a></li>
-    <li><a href="/matrix.html">Top 10 Web Hosts Matrix</a></li>
-    <li><a href="/hosts.html">Hosting Directory</a></li>
-    <li><a href="/submit.html">Submit A Host</a></li>
-    <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/faq.html">FAQ</a></li>
-    <li><a href="/sitemap.html">Sitemap</a></li>
-    <li><a href="/about.html">About Us</a></li>
-</ul>
-</div>
+

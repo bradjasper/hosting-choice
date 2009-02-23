@@ -40,7 +40,7 @@ def get_sidebar():
         'hosts': catalog.models.Host.objects.leaderboard(),
 
         'recent_reviews': catalog.models.Comment.objects. \
-                filter(active=1).order_by('-date')[:10],
+                filter(active=1).order_by('-date')[:12],
 
         'articles': main.models.Entry.objects.all(). \
                 order_by('-pub_date')}
