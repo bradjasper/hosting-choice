@@ -1,11 +1,14 @@
 import MySQLdb
 import jinja2
 from django import http
+from django.core.cache import cache
 
 import catalog.models
 import main.models
 from main import forms
 import format
+
+import settings
 
 env = jinja2.Environment(extensions=['jinja2.ext.loopcontrols'],
         loader=jinja2.PackageLoader('hostingchoice', 'static/templates'))
@@ -20,6 +23,32 @@ def render_to_response(template, context = None):
     contents = obj.render(**context)
 
     return http.HttpResponse(contents)
+
+def get_sidebar():
+    """Return standard items from the sidebar"""
+
+    cached = cache.get('sidebar')
+    if cached:
+        return cached
+
+    sidebar = {
+        'categories': catalog.models.Category.objects.filter(),
+
+        'features': catalog.models.FeatureType.objects. \
+                filter(is_category=True).order_by('-priority'),
+
+        'hosts': catalog.models.Host.objects.leaderboard(),
+
+        'recent_reviews': catalog.models.Comment.objects. \
+                filter(active=1).order_by('-date')[:10],
+
+        'articles': main.models.Entry.objects.all(). \
+                order_by('-pub_date')[0:10]}
+
+    cache.set('sidebar', sidebar, settings.CACHE_TIMEOUT)
+
+    return sidebar
+
 
 
 env.filters['smart_round'] = format.smart_round
@@ -36,11 +65,7 @@ def render(template, context = None):
     if context is None:
         context = {}
 
-    categories = catalog.models.Category.objects.filter()
-    features = catalog.models.FeatureType.objects.filter(is_category=True).order_by('-priority')
-    hosts = catalog.models.Host.objects.leaderboard()
-    recent_reviews = catalog.models.Comment.objects.filter(active=1).order_by('-date')[:10]
-    articles = main.models.Entry.objects.all().order_by('-pub_date')[0:10]
+    context.update(get_sidebar())
 
     if 'request' in context:
         request = context['request']
@@ -70,13 +95,6 @@ def render(template, context = None):
             context['email_form'] = forms.EmailForm()
 
         del context['request']
-
-    context.update({
-        'categories': categories,
-        'hosts': hosts,
-        'features': features,
-        'recent_reviews': recent_reviews,
-        'articles': articles})
 
     return render_to_response(template, context)
 

@@ -132,14 +132,14 @@ class Host(Common):
     def features(self):
         """Return list of features sorted by priority"""
 
-        cached = self.cache_get('features')
+        cached = self.cache_get('host_features')
         if cached:
             return cached
 
         items = Feature.objects.filter(host=self).exclude(value=0)
         sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
 
-        self.cache_set('features', items)
+        self.cache_set('host_features', items)
 
         return items
 
