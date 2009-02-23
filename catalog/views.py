@@ -97,10 +97,10 @@ def show_category(request, slug):
 def show_categories(request):
     """Return an overall view of the categories"""
 
-    categories = cache.get('categories')
+    categories = cache.get('show_categories')
     if not categories:
         categories = models.Category.objects.filter(parent=0).order_by('name')
-        cache.set('categories', categories, settings.CACHE_TIMEOUT)
+        cache.set('show_categories', categories, settings.CACHE_TIMEOUT)
 
     features = cache.get('features')
     if not features:

@@ -569,7 +569,7 @@ class FeatureType(Common):
     def leaderboard(self):
         """Return a leaderboard for this feature type"""
 
-        cached = self.cache_get('feature')
+        cached = self.cache_get('feature_leaderboard')
         if cached:
             return cached
         
@@ -583,7 +583,7 @@ class FeatureType(Common):
                     filter.append(item)
 
 
-        self.cache_set('feature', filter)
+        self.cache_set('feature_leaderboard', filter)
 
         return filter
 
