@@ -961,6 +961,16 @@ hr {
     width: 90% !important;
 }
 
+#features {
+    width: 100% !important;
+}
+
 #features div {
     width: 100% !important;
+}
+
+#features div ul li {
+    float: left;
+    display: block;
+    width: 25% !important;
 }

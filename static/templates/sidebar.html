@@ -44,11 +44,15 @@
 
 <div id="features">
     <h3>Features</h3>
-    <div><p>{% for feature in features %}
-        <strong><a href="{{feature.get_absolute_url()}}">{{ feature.title
-                }}</a></strong>
-    {% endfor %}</p></div>
+    <div><ul>
+        {% for feature in features %}
+        <li><strong><a href="{{feature.get_absolute_url()}}"
+                title="{{ feature.title }}">
+                {{ feature.name }} Hosting</a></strong></li>
+        {% endfor %}
+    </ul></div>
 </div>
+
 <div>
 <h3>Site Links</h3>
 <ul>
