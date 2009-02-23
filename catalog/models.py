@@ -361,6 +361,19 @@ class Category(Common):
     def get_absolute_url(self):
         return "/hosts/%s.html" % self.slug
 
+    def leaderboard(self):
+        """Return a leaderboard for this category"""
+
+        cached = self.cache_get('category_leaderboard')
+        if cached:
+            return cached
+        
+        items = self.host_set.leaderboard()
+
+        self.cache_set('category_leaderboard', items)
+
+        return items
+
 
 class Quote(models.Model):
     """Excerpt of a Comment, highlights a hosts' good or bad qualities"""
@@ -500,15 +513,23 @@ class Feature(models.Model):
     type_group = property(get_group)
 
 
+class FeatureGroupManager(models.Manager):
+
+    def groups(self):
+        """Return a grouping of features in a dictionary"""
+
+        assert False, 'boom'
+
 class FeatureGroup(models.Model):
     value = models.CharField(max_length=255)
     priority = models.IntegerField(blank=True, default=0)
     show = models.BooleanField(default=False)
+    objects = FeatureGroupManager()
 
     def __unicode__(self):
         return self.value
 
-class FeatureType(models.Model):
+class FeatureType(Common):
     name = models.CharField(max_length=255)
     group = models.ForeignKey('FeatureGroup', default=None)
 
@@ -548,6 +569,10 @@ class FeatureType(models.Model):
     def leaderboard(self):
         """Return a leaderboard for this feature type"""
 
+        cached = self.cache_get('feature')
+        if cached:
+            return cached
+        
         items = Host.objects.leaderboard()
 
         filter = []
@@ -556,6 +581,10 @@ class FeatureType(models.Model):
             for feature in features:
                 if feature.type == self and feature.value:
                     filter.append(item)
+
+
+        self.cache_set('feature', filter)
+
         return filter
 
 

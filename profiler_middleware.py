@@ -15,7 +15,7 @@ class ProfilerMiddleware(object):
             self.profiler.create_stats()
             out = StringIO()
             old_stdout, sys.stdout = sys.stdout, out
-            self.profiler.print_stats(1)
+            self.profiler.print_stats(2)
             sys.stdout = old_stdout
             response.content = '<pre>%s</pre>' % out.getvalue()
         return response
