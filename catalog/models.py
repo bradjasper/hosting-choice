@@ -136,7 +136,7 @@ class Host(Common):
         if cached:
             return cached
 
-        items = Feature.objects.filter(host=self).exclude(value=0)
+        items = filter(lambda x: x.type.show > -1 and x.value != "0", Feature.objects.filter(host=self))
         sorted(items, lambda x,y: cmp(x.type.priority, y.type.priority))
 
         self.cache_set('host_features', items)
@@ -530,6 +530,11 @@ class FeatureGroup(models.Model):
         return self.value
 
 class FeatureType(Common):
+    SHOW_CHOICES = (
+        (-1, 'SEO'),
+        (0, 'Hide'),
+        (1, 'Always'))
+
     name = models.CharField(max_length=255)
     group = models.ForeignKey('FeatureGroup', default=None)
 
@@ -539,7 +544,7 @@ class FeatureType(Common):
 
     is_category = models.BooleanField(default=True)
     priority = models.IntegerField(blank=True, default=0)
-    show = models.BooleanField(default=False)
+    show = models.IntegerField(default=1, choices=SHOW_CHOICES)
 
     def __unicode__(self):
         return self.name
