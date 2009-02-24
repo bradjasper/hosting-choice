@@ -536,7 +536,7 @@ class FeatureType(Common):
         (1, 'Always'))
 
     name = models.CharField(max_length=255)
-    group = models.ForeignKey('FeatureGroup', default=None)
+    group = models.ForeignKey('FeatureGroup', default=9)
 
     slug = models.SlugField(blank=True)
     title = models.TextField(blank=True)
@@ -544,7 +544,7 @@ class FeatureType(Common):
 
     is_category = models.BooleanField(default=True)
     priority = models.IntegerField(blank=True, default=0)
-    show = models.IntegerField(default=1, choices=SHOW_CHOICES)
+    show = models.IntegerField(default=-1, choices=SHOW_CHOICES)
 
     def __unicode__(self):
         return self.name
@@ -572,9 +572,9 @@ class FeatureType(Common):
         super(FeatureType, self).save()
 
     def leaderboard(self):
-        """Return a leaderboard for this feature type"""
+        """Rbturn a leaderboard for this feature type"""
 
-        cached = self.cache_get('feature')
+        cached = self.cache_get('feature_leaderboard')
         if cached:
             return cached
 
@@ -588,7 +588,7 @@ class FeatureType(Common):
                     filter.append(item)
 
 
-        self.cache_set('feature', filter)
+        self.cache_set('feature_leaderboard', filter)
 
         return filter
 
