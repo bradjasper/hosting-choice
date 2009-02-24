@@ -1,7 +1,7 @@
 # Django settings for bizdir project.
 import socket
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
