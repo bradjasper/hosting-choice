@@ -213,6 +213,7 @@ Nos	Count	Predict	Keyword
 206	38	38	free web site hosting
 207	38	38	art bell radio host
 208	38	38	shared host
+>>>>>>>>>>>>>>
 209	38	38	hosting reseller
 210	38	38	myspace image hosting
 211	38	38	site hosting
@@ -503,6 +504,7 @@ Nos	Count	Predict	Keyword
 496	11	11	free image hosting search
 497	11	11	how to host a tacky party
 498	11	11	web hosting plan cheapest monthly rate
+>>>>>>>>>>>>>>>>>>
 499	11	11	junkyard wars host
 500	11	11	radio host pay scale
 501	11	11	the host by stephenie meyer
