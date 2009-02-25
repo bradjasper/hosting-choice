@@ -2,6 +2,14 @@ import math
 
 import markdown
 
+def slugify(data):
+    """Turn a piece of data into a slug"""
+
+    data = data.lower()
+    data = re.sub('\s+', '-', data)
+    return re.sub('[^a-z0-9\-]', '', data)
+
+
 def datetimeformat(value, format=None):
 
     if format is None:
