@@ -69,4 +69,14 @@
     </ul></div>
 </div>
 
+<div id="tags">
+    <h3>Tags</h3>
+    <div><ul>
+        {% for feature in tags %}
+        <li><strong><a href="{{feature.get_absolute_url()}}"
+                title="{{ feature.title }}">
+                {{ feature.name }}</a></strong></li>
+        {% endfor %}
+    </ul></div>
+</div>
 

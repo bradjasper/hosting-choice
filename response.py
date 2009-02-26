@@ -35,7 +35,10 @@ def get_sidebar():
         'categories': catalog.models.Category.objects.filter(),
 
         'features': catalog.models.FeatureType.objects. \
-                filter(is_category=True).order_by('-priority'),
+                filter(is_category=True).exclude(show=-1).order_by('-priority'),
+
+        'tags': catalog.models.FeatureType.objects. \
+                filter(is_category=True, show=-1).order_by('-priority'),
 
         'hosts': catalog.models.Host.objects.leaderboard(),
 

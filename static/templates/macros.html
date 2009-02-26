@@ -209,6 +209,15 @@
     {% endif %}
 {% endmacro %}
 
+{% macro Feature_Class(feature) %}
+    {% if feature.type.show == 0 %}
+        hide
+    {% elif feature.type.show == 2 and feature.value == 0 %}
+        hide
+    {% endif %}
+    {{ caller() }}
+{% endmacro %}
+
 {% macro Info_Table(host) %}
     <a name="info"></a>
     <table id="info">
@@ -219,8 +228,8 @@
                     <th colspan="2">{{ group.value }}</th>
                 </tr>
                 {% for feature in features %}
-                <tr class="{% if not feature.type.show %}hide{% endif %}
-                    {{ loop.cycle('alt', '') }}">
+                <tr class="{% call Feature_Class(feature) %}
+                            {%- endcall %} {{ loop.cycle('alt', '') }}">
                         <td>{{ feature.type.name }}</td>
                         <td>
                             {%- if feature.value == "-1" %}

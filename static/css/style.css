@@ -961,18 +961,30 @@ hr {
     width: 90% !important;
 }
 
-#features, #recent_reviews {
+#features, #recent_reviews, #tags {
     width: 100% !important;
 }
 
-#features div, #recent_reviews {
+#features div, #recent_reviews, #tags div {
     width: 100% !important;
 }
 
-#features div ul li, #recent_reviews ul li {
+#features div ul li, #recent_reviews ul li, #tags div ul li {
     float: left;
     display: block;
     width: 25% !important;
+}
+
+#tags div {
+    width: 95% !important;
+}
+#tags div ul li {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#tags {
+    font-size: 85% !important;
 }
 
 #recent_reviews ul li {

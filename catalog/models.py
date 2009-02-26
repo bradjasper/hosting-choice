@@ -526,6 +526,7 @@ class FeatureType(Common):
     SHOW_CHOICES = (
         (-1, 'SEO'),
         (0, 'Hide'),
+        (2, 'If Valid'),
         (1, 'Always'))
 
     name = models.CharField(max_length=255)
