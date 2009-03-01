@@ -72,6 +72,7 @@
 {% endmacro %}
 
 {%- macro Leaderboard(hosts, limit, more_link) -%}
+    {{ caller() }}
     <table class="leaderboard" summary="Top Web Hosts Leaderboard">
         {%- if hosts -%}
             <tr>
@@ -152,7 +153,6 @@
             No Hosts!
         {% endif %}
     </table>
-    {{ caller() }}
 {%- endmacro -%}
 
 {% macro Matrix(hosts, limit, more_link) %}

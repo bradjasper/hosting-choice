@@ -69,13 +69,6 @@ class SummaryAdmin(admin.ModelAdmin):
     ordering = ('host', 'type', 'text')
     search_fields = ('host', 'type', 'text')
 
-class LeadAdmin(admin.ModelAdmin):
-
-    list_display = ('name', 'email', 'platform', 'ip')
-    list_filter = ('platform',)
-    ordering = ('ip', 'name', 'email', 'platform')
-    search_fields = ('name', 'email', 'platform', 'ip')
-
 
 admin.site.register(models.Host, HostAdmin)
 admin.site.register(models.Category)
@@ -87,5 +80,4 @@ admin.site.register(models.FeatureType, FeatureTypeAdmin)
 admin.site.register(models.Quote, QuoteAdmin)
 admin.site.register(models.Hit, HitsAdmin)
 admin.site.register(models.Summary, SummaryAdmin)
-admin.site.register(models.Lead, LeadAdmin)
 

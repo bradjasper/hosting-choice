@@ -3,19 +3,24 @@
 {% block breadcrumbs %}
     {{ super() }}
     &raquo;
-    <strong>Top 10 Web Hosts</strong>
+    <strong>Top 10 Web Hosting</strong>
 {% endblock %}
 
 {% block title %}
     {% if hosts %}
-        Top 10 Web Hosts - Top 10 Web Hosting
+        Top 10 Web Hosting
         {{ super() }}
     {% endif %}
 {% endblock %}
 
 {%- block content -%}
-    <h1>Top Web Hosts</h1>
+    <h1>Top 10 Web Hosting</h1>
 
     {% call macros.Leaderboard(hosts, 10) %}
+        <p>Here is our pick for the <strong>top 10 web hosting</strong>.
+    If you need help finding a hosting plan, fill out a <a
+        href="#leads">hosting quote</a>. Its free and you'll receive 
+    offers custom fit to your needs. <a href="#leads">Receive hosting
+        quotes</a>!</p>
     {% endcall %}
 {%- endblock -%}

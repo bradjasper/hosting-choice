@@ -961,11 +961,11 @@ hr {
     width: 90% !important;
 }
 
-#features, #recent_reviews, #tags {
+#features, #recent_reviews, #tags, #leads {
     width: 100% !important;
 }
 
-#features div, #recent_reviews, #tags div {
+#features div, #recent_reviews, #tags div, #leads div {
     width: 100% !important;
 }
 
@@ -998,4 +998,22 @@ hr {
 #recent_reviews ul li p {
     font-weight: normal !important;
     color: #333 !important;
+}
+
+
+#leads table {
+    width: 100%;
+}
+
+#leads td, #leads th {
+    padding: 5px;
+}
+
+#leads table th {
+    width: 75px;
+}
+
+#leads .errorlist {
+    color: red !important;
+    list-style-type: none !important;
 }

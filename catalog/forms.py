@@ -1,5 +1,7 @@
 from django import forms
 
+import models
+
 class CommentForm(forms.Form):
 
     name = forms.CharField(max_length=255,
@@ -21,3 +23,10 @@ class CommentForm(forms.Form):
         initial=-1)
     rating_support_val = forms.IntegerField(widget=forms.HiddenInput(),
         initial=-1)
+
+class LeadForm(forms.ModelForm):
+
+    class Meta:
+        model = models.Lead
+
+

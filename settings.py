@@ -104,5 +104,5 @@ FORCE_SCRIPT_NAME = ''
 
 PREPEND_WWW = False
 
-if socket.gethostname() == 'brad-jaspers-macbook-pro-2.local':
+if socket.gethostname() == 'MBP.local':
 	from settings_dev import *

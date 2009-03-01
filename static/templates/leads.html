@@ -1,0 +1,56 @@
+<a name="leads"></a>
+<h3>Get FREE Shared Hosting Quotes!</h3>
+<p>Enter your information below and we'll find the perfect host for you.</p>
+
+<form action="#leads" method="POST">
+    <input type="hidden" name="submit_lead" value="1" />
+    <table>
+        {% if lead_messages %}
+            {% if lead_messages['success'] %}
+                <p class="success">{{ lead_messages['success'] }}</p>
+            {% elif lead_messages['error'] %}
+                <p class="error">{{ lead_messages['error'] }}</p>
+            {% endif %}
+        {% endif %}
+
+        <tr>
+            <th>
+                <label for="id_name">Name:</label>
+            </th>
+            <td>
+                {{ lead_form.name }}
+                {{ lead_form.name.errors }}
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>
+                <label for="id_email">Email:</label>
+            </th>
+            <td>
+                {{ lead_form.email }}
+                {{ lead_form.email.errors }}
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <label for="id_platform">Platform:</label>
+            </th>
+            <td>
+                {{ lead_form.platform }}
+                {{ lead_form.platform.errors }}
+            </td>
+        </tr>
+
+        <tr>
+            <th></th>
+            <td>
+                <br />
+                <input type="submit" value="Submit Request" />
+            </td>
+        </tr>
+    </table>
+
+</form>

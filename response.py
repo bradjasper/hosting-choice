@@ -5,7 +5,8 @@ from django.core.cache import cache
 
 import catalog.models
 import main.models
-from main import forms
+import main.forms
+import catalog.forms
 import format
 
 import settings
@@ -75,8 +76,34 @@ def render(template, context = None):
 
         context['active_page'] = get_section(request.META['PATH_INFO'])
 
-        form = forms.EmailForm(request.POST)
+        form = main.forms.EmailForm(request.POST)
         context['email_form'] = form
+
+        if 'submit_lead' in request.POST:
+            lead_form = catalog.forms.LeadForm(request.POST)
+
+            if lead_form.is_valid():
+
+                name = lead_form.data['name']
+                email = lead_form.data['email']
+                platform = lead_form.data['platform']
+
+                new_lead = catalog.models.Lead(name=name,
+                    email=email, platform=platform,
+                    ip=request.META['REMOTE_ADDR'])
+
+                new_lead.save()
+
+                context['lead_messages'] = {'success':
+                    """Successfully added your information. You will receive
+                    your quotes via e-mail shortly"""}
+
+                lead_form = catalog.forms.LeadForm()
+
+        else:
+            lead_form = catalog.forms.LeadForm()
+
+        context['lead_form'] = lead_form
 
         if form.is_valid():
             email = form.data['value']
@@ -95,7 +122,7 @@ def render(template, context = None):
 
 
         else:
-            context['email_form'] = forms.EmailForm()
+            context['email_form'] = main.forms.EmailForm()
 
         del context['request']
 

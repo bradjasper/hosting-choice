@@ -605,64 +605,20 @@ class Hit(models.Model):
             return split.netloc
         return ''
 
-'''
-class Coupon(models.Model):
-
-    host = models.ForeignKey('Host')
-
-    value = models.CharField(max_length=255)
-    text = models.TextField()
-
-    active = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return "%s - %s - %s" % (self.host, self.value, self.text)
-
 class Lead(models.Model):
-    """These are leads stored from users that want a host quote"""
-
-    SPACE_CHOICES = (
-        (0, "I don't know"),
-        (1, "10GB+"),
-        (2, "5GB+"),
-        (3, "1GB+"),
-        (4, "Less than 1GB"))
-
-    BW_CHOICES = (
-        (0, "I don't know"),
-        (1, "100GB+"),
-        (2, "50GB+"),
-        (3, "10GB+"),
-        (4, "Less than 10GB"))
+    """These are leads stored from users that want a host quote. Its simple
+    on purpose."""
 
     PLATFORM_CHOICES = (
         (0, "I don't know"),
         (1, "Linux"),
         (2, "Windows"))
 
-    BUDGET_CHOICES = (
-        (0, "I don't know"),
-        (1, "$100+"),
-        (2, "$50+"),
-        (3, "$10+"),
-        (4, "Less than $10"))
-
-    name_first = models.CharField(max_length=255)
-    name_last = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
-    phone = models.CharField(max_length=255)
-    country = models.CharField(max_length=255, choices=places.COUNTRIES)
-    
-    space = models.IntegerField(default=0, choices=SPACE_CHOICES)
-    bandwidth = models.IntegerField(default=0, choices=BW_CHOICES)
-    platform = models.IntegerField(default=0, choices=PLATFORM_CHOICES)
-    budget = models.IntegerField(default=0, choices=BUDGET_CHOICES)
+    platform = models.IntegerField(default=1, choices=PLATFORM_CHOICES)
+    ip = models.IPAddressField(blank=True)
 
-    note = models.TextField()
-
-
-
-'''
 
 class Summary(models.Model):
 
