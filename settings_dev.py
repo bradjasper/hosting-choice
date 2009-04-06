@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'media_bundler',
     'hostingchoice.catalog',
 	'hostingchoice.main',
+	'hostingchoice.links',
 )
 
 TEMPLATE_DIRS = (

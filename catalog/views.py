@@ -87,7 +87,7 @@ def show_category(request, slug):
             category = models.FeatureType.objects.get(slug=slug)
             hosts = category.leaderboard()
         except models.FeatureType.DoesNotExist:
-            category = None
+            raise http.Http404
 
     return response.render('category.html', {
         'leaderboard': hosts,

@@ -8,6 +8,7 @@ import main.models
 import main.forms
 import catalog.forms
 import format
+import links.models
 
 import settings
 
@@ -45,6 +46,8 @@ def get_sidebar():
 
         'recent_reviews': catalog.models.Comment.objects. \
                 filter(active=1).order_by('-date')[:12],
+                
+        'links': links.models.Link.objects.all().order_by('-priority'),
 
         'articles': main.models.Entry.objects.all(). \
                 order_by('-pub_date')}
@@ -66,65 +69,66 @@ env.filters['unlimited'] = format.unlimited
 def render(template, context = None):
     """Generic render method to render full pages"""
 
+
     if context is None:
         context = {}
 
     context.update(get_sidebar())
 
-    if 'request' in context:
-        request = context['request']
+    if 'request' not in context:
+        assert False, 'Context is invalid'
 
-        context['active_page'] = get_section(request.META['PATH_INFO'])
+    request = context['request']
 
-        form = main.forms.EmailForm(request.POST)
-        context['email_form'] = form
+    context['active_page'] = get_section(request.META['PATH_INFO'])
 
-        if 'submit_lead' in request.POST:
-            lead_form = catalog.forms.LeadForm(request.POST)
+    form = main.forms.EmailForm(request.POST)
+    context['email_form'] = form
 
-            if lead_form.is_valid():
+    if 'submit_lead' in request.POST:
+        lead_form = catalog.forms.LeadForm(request.POST)
 
-                name = lead_form.data['name']
-                email = lead_form.data['email']
-                platform = lead_form.data['platform']
+        if lead_form.is_valid():
 
-                new_lead = catalog.models.Lead(name=name,
-                    email=email, platform=platform,
-                    ip=request.META['REMOTE_ADDR'])
+            name = lead_form.data['name']
+            email = lead_form.data['email']
+            platform = lead_form.data['platform']
 
-                new_lead.save()
-
-                context['lead_messages'] = {'success':
-                    """Successfully added your information. You will receive
-                    your quotes via e-mail shortly"""}
-
-                lead_form = catalog.forms.LeadForm()
-
-        else:
-            lead_form = catalog.forms.LeadForm()
-
-        context['lead_form'] = lead_form
-
-        if form.is_valid():
-            email = form.data['value']
-            new_obj = main.models.Email(value=email,
+            new_lead = catalog.models.Lead(name=name,
+                email=email, platform=platform,
                 ip=request.META['REMOTE_ADDR'])
 
-            try:
-                new_obj.save()
-            except MySQLdb.IntegrityError:
-                context['email_messages'] = {'error':
-                    'This email is already in our database'}
-            else:
-                context['email_messages'] = {'success':
-                    'Successfully added your name to the list. You will now'
-                        + ' receive offers from our partners'}
+            new_lead.save()
 
+            context['lead_messages'] = {'success':
+                """Successfully added your information. You will receive
+                your quotes via e-mail shortly"""}
 
+            lead_form = catalog.forms.LeadForm()
+
+    else:
+        lead_form = catalog.forms.LeadForm()
+
+    context['lead_form'] = lead_form
+
+    if form.is_valid():
+        email = form.data['value']
+        new_obj = main.models.Email(value=email,
+            ip=request.META['REMOTE_ADDR'])
+
+        try:
+            new_obj.save()
+        except MySQLdb.IntegrityError:
+            context['email_messages'] = {'error':
+                'This email is already in our database'}
         else:
-            context['email_form'] = main.forms.EmailForm()
+            context['email_messages'] = {'success':
+                'Successfully added your name to the list. You will now'
+                    + ' receive offers from our partners'}
 
-        del context['request']
+
+    else:
+        context['email_form'] = main.forms.EmailForm()
 
     return render_to_response(template, context)
 

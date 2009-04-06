@@ -1,6 +1,7 @@
 January 18, 2009 - April 18, 2009
 http://hostingdiscussion.com/
 Price $125/3 months
+PPL: $41.66
 PR: 5
 Keyword: Best Web Hosting
 
@@ -9,6 +10,7 @@ Keyword: Best Web Hosting
 January 18, 2009 - March 18, 2009
 http://formtoemail.com
 Price: $178/2 months
+PPL: $89
 PR: 6
 Keyword: Best Web Hosting
 
@@ -18,6 +20,7 @@ Keyword: Best Web Hosting
 January 21, 2009 - March 21, 2009
 http://netgull.co
 Price: $120/3 months
+PPL: $40
 PR: 5
 Keyword: Best Web Hosting
 
@@ -26,5 +29,6 @@ Keyword: Best Web Hosting
 January 22, 2009 - February 22, 2009
 http://thenextweb.com
 Price: $60/month
+PPL: $60
 PR: 5
 Keyword: Best Web Hosting
